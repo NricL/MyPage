@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IA Bloomer · Eneric Lopez</title>
+<meta name="description" content="Eneric Lopez, Directeur IA et Impact Social, Microsoft France. Lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société." />
+<meta property="og:title" content="IA Bloomer · Eneric Lopez" />
+<meta property="og:description" content="Lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société." />
+<meta property="og:image" content="assets/bloomer-logo-cream.png" />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="assets/bloomer-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white: #0a1628;
+  --bg: #0d1f3c;
+  --gray-50: #122845;
+  --gray-100: #1a3357;
+  --gray-200: #2a4670;
+  --gray-400: #6a86ad;
+  --gray-600: #a5b8d4;
+  --gray-800: #e2ebf7;
+  --gray-900: #ffffff;
+
+  --blue: #4d9fff;
+  --blue-dark: #82b9ff;
+  --blue-soft: rgba(77,159,255,.12);
+  --blue-line: rgba(77,159,255,.35);
+
+  --navy: #0d1f3c;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 15.5px; line-height: 1.65;
+  color: var(--gray-800); background: var(--white);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+a { color: var(--blue); text-decoration: none; transition: color .15s; }
+a:hover { color: var(--blue-dark); }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.75rem; }
+img { max-width: 100%; height: auto; }
+
+/* NAV */
+nav.top {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(10, 22, 40, .85);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gray-100);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 1rem 1.75rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .95rem; color: var(--gray-900); }
+.brand img { height: 26px; width: 26px; object-fit: contain; filter: brightness(0) invert(1); opacity: .9; }
+.nav-links { display: flex; gap: 1.8rem; font-size: .88rem; font-weight: 500; }
+.nav-links a { color: var(--gray-600); }
+.nav-links a:hover { color: var(--blue); }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* HERO — light, airy */
+.hero {
+  padding: 6rem 0 5rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 4rem; align-items: center;
+}
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: left; } }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 500; color: var(--gray-600);
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+.hero-title {
+  font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+  font-weight: 700; color: var(--gray-900);
+  line-height: 1.05; letter-spacing: -2px;
+  margin-bottom: 1rem;
+}
+.hero-role { font-size: 1.1rem; color: var(--gray-600); margin-bottom: 1.75rem; font-weight: 400; }
+.hero-role strong { color: var(--gray-900); font-weight: 600; }
+.hero-manifesto {
+  font-size: 1.15rem; line-height: 1.55;
+  color: var(--gray-800); font-weight: 400;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--blue);
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+.hero-manifesto strong { color: var(--blue); font-weight: 600; }
+.hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px; border-radius: 8px;
+  font-weight: 500; font-size: 14px;
+  transition: all .15s;
+  border: 1px solid transparent;
+  font-family: inherit;
+}
+.btn-primary { background: var(--blue); color: var(--navy); }
+.btn-primary:hover { background: var(--blue-dark); color: var(--navy); }
+.btn-ghost { background: transparent; color: var(--gray-800); border-color: var(--gray-200); }
+.btn-ghost:hover { border-color: var(--gray-800); color: var(--gray-900); }
+.btn svg { width: 14px; height: 14px; }
+
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+.hero-visual-frame {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-visual-frame img {
+  width: 100%; max-width: 420px; height: auto; display: block;
+}
+@media (max-width: 900px) {
+  .hero-visual-frame { padding: 1.25rem 1rem; border-radius: 18px; }
+  .hero-visual-frame img { max-width: 300px; }
+}
+
+/* SECTIONS */
+section { padding: 5rem 0; }
+.section-eyebrow {
+  font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: .85rem;
+}
+.section-title {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 700; letter-spacing: -.8px;
+  color: var(--gray-900); line-height: 1.2;
+  margin-bottom: 1rem; max-width: 700px;
+}
+.section-sub {
+  font-size: 1rem; color: var(--gray-600); line-height: 1.65;
+  max-width: 620px; margin-bottom: 3rem;
+}
+
+/* CONVICTIONS — minimal cards */
+.convictions { background: var(--bg); border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); }
+.conv-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-100);
+  border-radius: 12px; overflow: hidden;
+}
+@media (max-width: 900px) { .conv-grid { grid-template-columns: 1fr; } }
+.conv-card {
+  background: var(--white);
+  padding: 1.75rem 1.5rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.conv-card:hover { background: var(--blue-soft); }
+.conv-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: .75rem;
+}
+.conv-card h3 { font-size: 1.1rem; font-weight: 600; color: var(--gray-900); letter-spacing: -.3px; line-height: 1.3; margin-bottom: .5rem; }
+.conv-card p { font-size: 14px; color: var(--gray-600); line-height: 1.55; }
+
+/* PUBLICATIONS */
+.chips {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2.5rem;
+}
+.chip {
+  padding: 7px 14px; border-radius: 100px;
+  background: transparent; border: 1px solid var(--gray-200);
+  color: var(--gray-600); font-weight: 500; font-size: 13px;
+  cursor: pointer; transition: all .15s; font-family: inherit;
+}
+.chip:hover { border-color: var(--blue); color: var(--blue); }
+.chip.active { background: var(--blue); color: var(--navy); border-color: var(--blue); }
+.chip .count { opacity: .55; margin-left: 5px; font-size: 11.5px; }
+
+.pub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .pub-grid { grid-template-columns: 1fr; } }
+.pub-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: 1.75rem;
+  display: flex; flex-direction: column;
+  transition: all .2s;
+}
+.pub-card:hover { border-color: var(--blue-line); }
+.pub-card.hidden { display: none; }
+.pub-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase;
+  color: var(--blue); margin-bottom: .8rem;
+}
+.pub-card h3 { font-size: 1.2rem; font-weight: 600; color: var(--gray-900); letter-spacing: -.4px; line-height: 1.3; margin-bottom: .7rem; }
+.pub-meta { font-size: 12.5px; color: var(--gray-400); margin-bottom: 1rem; }
+.pub-quote {
+  font-size: 14.5px; line-height: 1.5;
+  color: var(--gray-800); font-weight: 500;
+  padding-left: 1rem; border-left: 2px solid var(--blue);
+  margin: 0 0 1.2rem;
+}
+.pub-keys { list-style: none; padding: 0; margin: 0 0 1.4rem; display: grid; gap: .45rem; }
+.pub-keys li {
+  font-size: 13.5px; color: var(--gray-600);
+  padding-left: 16px; position: relative; line-height: 1.5;
+}
+.pub-keys li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--blue);
+}
+.pub-keys strong { color: var(--gray-900); font-weight: 600; }
+.pub-link {
+  margin-top: auto;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-weight: 500; font-size: 13.5px; color: var(--blue);
+}
+.pub-link::after { content: "→"; transition: transform .15s; }
+.pub-card:hover .pub-link::after { transform: translateX(3px); }
+.pub-link-muted { color: var(--gray-400); }
+.pub-link-muted::after { content: ""; }
+
+/* ACCULTURATION — light background, single accent panel */
+.acculturation { background: var(--bg); border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); }
+
+.program {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 14px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center;
+}
+@media (max-width: 900px) { .program { grid-template-columns: 1fr; padding: 1.75rem; gap: 1.5rem; } }
+.program-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-soft);
+  padding: 5px 11px; border-radius: 100px; margin-bottom: 1rem;
+  width: fit-content;
+}
+.program h3 { font-size: 1.5rem; font-weight: 700; color: var(--gray-900); letter-spacing: -.5px; margin-bottom: .75rem; line-height: 1.25; }
+.program p { color: var(--gray-600); line-height: 1.65; margin-bottom: 1.25rem; font-size: 15px; }
+.program strong { color: var(--gray-900); font-weight: 600; }
+.program-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.prog-stat {
+  padding: 1.25rem 1rem;
+  background: var(--bg);
+  border-radius: 10px;
+  text-align: center;
+}
+.prog-stat .num { font-size: 2.1rem; font-weight: 700; color: var(--blue); letter-spacing: -1px; line-height: 1; }
+.prog-stat .lbl { font-size: 12px; color: var(--gray-600); margin-top: .4rem; line-height: 1.35; }
+
+.literacy-label { font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+.literacy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .literacy-grid { grid-template-columns: 1fr; } }
+.literacy-card {
+  display: block;
+  padding: 1.4rem 1.3rem;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  transition: all .15s;
+  color: var(--gray-800);
+}
+.literacy-card:hover { border-color: var(--blue); color: var(--gray-800); transform: translateY(-1px); }
+.literacy-card .audience {
+  font-size: 11px; font-weight: 600; letter-spacing: .6px;
+  text-transform: uppercase; color: var(--blue); margin-bottom: .5rem;
+}
+.literacy-card h4 { font-size: 1rem; font-weight: 600; color: var(--gray-900); margin-bottom: .4rem; letter-spacing: -.2px; }
+.literacy-card p { font-size: 13px; color: var(--gray-600); margin-bottom: .85rem; line-height: 1.5; }
+.literacy-link { font-size: 12.5px; font-weight: 500; color: var(--blue); }
+.literacy-link::after { content: " →"; }
+
+/* TALKS */
+.talks-block-title {
+  font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--gray-400); margin: 2.5rem 0 1rem;
+}
+.talks-block-title:first-of-type { margin-top: 0; }
+.talks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (max-width: 720px) { .talks-grid { grid-template-columns: 1fr; } }
+.talk-card {
+  display: flex; flex-direction: column;
+  padding: 1.4rem 1.3rem;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  transition: all .15s;
+  color: var(--gray-800);
+}
+.talk-card:hover { border-color: var(--blue-line); }
+.talk-card .src {
+  font-size: 11px; font-weight: 600; letter-spacing: .5px;
+  text-transform: uppercase; color: var(--blue); margin-bottom: .5rem;
+}
+.talk-card h4 { font-size: 1rem; font-weight: 600; color: var(--gray-900); letter-spacing: -.3px; line-height: 1.3; margin-bottom: .5rem; }
+.talk-card p { font-size: 13px; color: var(--gray-600); line-height: 1.5; flex: 1; margin-bottom: .9rem; }
+.talk-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12.5px; font-weight: 500; color: var(--blue);
+}
+.talk-link::after { content: "→"; transition: transform .15s; }
+.talk-card:hover .talk-link::after { transform: translateX(3px); }
+
+.talks-footer {
+  margin-top: 3rem; padding-top: 2rem;
+  border-top: 1px solid var(--gray-100);
+  font-size: 13.5px; color: var(--gray-600); text-align: center;
+}
+
+/* FOOTER */
+footer {
+  background: var(--white);
+  color: var(--gray-600);
+  padding: 2.5rem 0;
+  font-size: 13px;
+  border-top: 1px solid var(--gray-100);
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 1.75rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; color: var(--gray-900); font-weight: 600; }
+.footer-brand img { height: 22px; filter: brightness(0) invert(1); opacity: .85; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { color: var(--gray-600); font-weight: 500; }
+.footer-links a:hover { color: var(--blue); }
+.footer-meta { width: 100%; text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-100); font-size: 12px; color: var(--gray-400); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/bloomer-logo.png" alt="" />
+      <span>IA Bloomer</span>
+    </a>
+    <div class="nav-links">
+      <a href="#convictions">Convictions</a>
+      <a href="#publications">Publications</a>
+      <a href="#acculturation">Acculturation</a>
+      <a href="#talks">Prises de parole</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Microsoft France · Directeur IA &amp; Impact Social
+      </div>
+
+      <h1 class="hero-title">Eneric Lopez</h1>
+
+      <p class="hero-role">
+        J'écris sur ce que l'IA fait au travail, au management, à la cognition et à la société.
+      </p>
+
+      <p class="hero-manifesto">
+        <strong>#Bloomer</strong> lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#publications">Mes publications</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-visual-frame">
+        <img src="assets/bloomer-logo-tight.png" alt="Logo IA Bloomer" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="convictions" class="convictions">
+  <div class="wrap">
+    <div class="section-eyebrow">Mes convictions</div>
+    <h2 class="section-title">Sept lignes qui guident ce que j'écris</h2>
+    <p class="section-sub">Pas une liste d'articles, une grille de lecture. Cliquez pour filtrer les publications associées.</p>
+
+    <div class="conv-grid">
+      <div class="conv-card" data-filter="travail" tabindex="0">
+        <div class="conv-tag">Travail &amp; Transformation</div>
+        <h3>Le blocage n'est plus technologique</h3>
+        <p>Il est organisationnel. Sans révision des systèmes d'évaluation, la formation reste orpheline.</p>
+      </div>
+      <div class="conv-card" data-filter="management" tabindex="0">
+        <div class="conv-tag">Management &amp; IA</div>
+        <h3>L'IA révèle la vraie valeur du manager</h3>
+        <p>Moins tenir le centre de l'information, mieux tenir le cadre où l'on apprend, décide et se fait confiance.</p>
+      </div>
+      <div class="conv-card" data-filter="emploi" tabindex="0">
+        <div class="conv-tag">Emploi &amp; Inclusion</div>
+        <h3>L'IA ne licencie pas</h3>
+        <p>Elle cesse d'ouvrir la porte aux plus jeunes. La rampe de lancement des juniors disparaît sans bruit.</p>
+      </div>
+      <div class="conv-card" data-filter="valeur" tabindex="0">
+        <div class="conv-tag">Valeur &amp; ROI</div>
+        <h3>L'IA a trois ROI, pas un</h3>
+        <p>Return on Inclusiveness, on Individuals, on Industrialization. La valeur n'est jamais purement financière.</p>
+      </div>
+      <div class="conv-card" data-filter="france" tabindex="0">
+        <div class="conv-tag">France &amp; PME</div>
+        <h3>La France décroche, les PME paient</h3>
+        <p>32 % d'adoption, et nos petites structures sont les grandes oubliées. C'est ici que se joue la souveraineté.</p>
+      </div>
+      <div class="conv-card" data-filter="cognition" tabindex="0">
+        <div class="conv-tag">Cognition &amp; Hygiène</div>
+        <h3>L'hygiène cognitive, power skill clé</h3>
+        <p>L'IA amplifie ce que l'on cultive ou ce qu'on abandonne. Gardons les mains sur le volant.</p>
+      </div>
+      <div class="conv-card" data-filter="societe" tabindex="0">
+        <div class="conv-tag">IA Sociétale &amp; Valeurs</div>
+        <h3>Chaque déploiement encode des valeurs</h3>
+        <p>La vraie question n'est pas ce que les LLMs savent faire, c'est : à quelles valeurs sont-ils alignés ?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-eyebrow">Publications de référence</div>
+    <h2 class="section-title">12 articles, une grille de lecture</h2>
+    <p class="section-sub">Articles fondateurs et publications LinkedIn épinglées. Filtrez par conviction.</p>
+
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">Toutes <span class="count">12</span></button>
+      <button class="chip" data-filter="travail">Travail</button>
+      <button class="chip" data-filter="management">Management</button>
+      <button class="chip" data-filter="emploi">Emploi</button>
+      <button class="chip" data-filter="valeur">Valeur</button>
+      <button class="chip" data-filter="france">France</button>
+      <button class="chip" data-filter="cognition">Cognition</button>
+      <button class="chip" data-filter="societe">Sociétal</button>
+    </div>
+
+    <div class="pub-grid" id="pubs">
+
+      <article class="pub-card" data-pillar="travail">
+        <div class="pub-tag">Travail &amp; Transformation</div>
+        <h3>Les individus sont prêts, les organisations non</h3>
+        <p class="pub-meta">Décryptage du Work Trend Index 2026 · 20 000 travailleurs, 10 pays</p>
+        <p class="pub-quote">« Formation sans transformation : l'illusion de compétences. »</p>
+        <ul class="pub-keys">
+          <li><strong>58 %</strong> produisent ce qu'ils ne pouvaient pas faire il y a un an</li>
+          <li><strong>13 %</strong> seulement récompensés pour réinventer leur pratique</li>
+          <li>Impact IA <strong>2× plus dépendant</strong> du contexte organisationnel que de l'effort individuel</li>
+        </ul>
+        <a class="pub-link" href="https://www.linkedin.com/pulse/les-individus-sont-pr%C3%AAts-organisations-non-eneric-lopez-hyr2e/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="management">
+        <div class="pub-tag">Management &amp; IA</div>
+        <h3>Le manager à l'ère de l'IA : Model, Coach, Care</h3>
+        <p class="pub-meta">Article LinkedIn en préparation · manager augmenté, juniors, charge cognitive</p>
+        <p class="pub-quote">« L'IA ne réinvente pas le management. Elle révèle ce qui en faisait vraiment la valeur. »</p>
+        <ul class="pub-keys">
+          <li><strong>Model</strong> : montrer comment on pense avec l'IA, pas seulement comment on l'utilise</li>
+          <li><strong>Coach</strong> : préserver les terrains d'apprentissage et le jugement des juniors</li>
+          <li><strong>Care</strong> : protéger la sécurité psychologique et la charge cognitive</li>
+        </ul>
+        <span class="pub-link pub-link-muted">URL LinkedIn à ajouter après publication</span>
+      </article>
+
+      <article class="pub-card" data-pillar="travail">
+        <div class="pub-tag">Travail &amp; Transformation</div>
+        <h3>Adoption vs Transformation : le fossé français</h3>
+        <p class="pub-meta">AI Proficiency Report 2026 × YouGov × Microsoft France · février 2026</p>
+        <p class="pub-quote">« Le problème n'est pas l'outil. C'est l'absence de pilotage stratégique. »</p>
+        <ul class="pub-keys">
+          <li><strong>60 %</strong> dirigeants priorisent l'IA vs <strong>39 %</strong> cadres</li>
+          <li><strong>71 %</strong> des cadres français toujours pas formés</li>
+          <li><strong>61 %</strong> utilisent l'IA via comptes personnels (shadow AI)</li>
+        </ul>
+        <a class="pub-link" href="https://www.linkedin.com/posts/elopezfr_ia-leadership-transformation-share-7429447059726004224-rqpU/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="travail">
+        <div class="pub-tag">Travail &amp; Transformation</div>
+        <h3>NfW 2025 : de la productivité individuelle à l'ingéniosité collective</h3>
+        <p class="pub-meta">Synthèse du New Future of Work Report 2025 · Microsoft Research</p>
+        <p class="pub-quote">« Utilisons-nous l'IA pour remplacer les humains ou pour amplifier leur ingéniosité ? »</p>
+        <ul class="pub-keys">
+          <li>40-60 min/jour gagnées ne valent rien si on génère <strong>2 h de vérification</strong> aux collègues</li>
+          <li>Concept signature : <strong>Workslop</strong></li>
+          <li>Pénalité de compétence invisible · Déqualification cognitive</li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/new-future-work-report-2025-de-la-productivit%C3%A9-%C3%A0-collective-lopez-eu8ie" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="travail">
+        <div class="pub-tag">Travail &amp; Transformation</div>
+        <h3>Réinventer le travail à l'ère de l'IA</h3>
+        <p class="pub-meta">Article fondateur · synthèse WEF, OIT, Terra Nova</p>
+        <p class="pub-quote">« Ce n'est pas ce que l'IA peut faire qui façonnera notre avenir, mais ce que nous choisissons d'en faire. »</p>
+        <ul class="pub-keys">
+          <li><strong>70 %</strong> des compétences auront changé d'ici 2030</li>
+          <li><strong>9 %</strong> maîtrisent vraiment l'IA, <strong>47 %</strong> sont novices</li>
+          <li>Concept signature : <strong>Économie relationnelle</strong></li>
+        </ul>
+        <a class="pub-link" href="https://www.linkedin.com/pulse/r%C3%A9inventer-le-travail-%C3%A0-lere-de-lia-lenjeu-des-eneric-lopez-mlegc/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="emploi">
+        <div class="pub-tag">Emploi &amp; Inclusion</div>
+        <h3>L'IA et l'emploi : la vraie transformation est celle qu'on ne voit pas</h3>
+        <p class="pub-meta">Rapport Anthropic « Labor Market Impacts of AI » · 1 M de conversations</p>
+        <p class="pub-quote">« L'IA ne licencie pas. Elle cesse d'ouvrir la porte aux plus jeunes. »</p>
+        <ul class="pub-keys">
+          <li><strong>94 %</strong> potentiel théorique, <strong>33 %</strong> en réalité</li>
+          <li><strong>−14 %</strong> d'embauche des 22-25 ans dans les métiers exposés</li>
+          <li>Femmes surexposées de <strong>+16 points</strong></li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/lia-et-lemploi-la-vraie-transformation-est-celle-que-lon-eneric-lopez-mpvie" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="valeur">
+        <div class="pub-tag">Valeur &amp; ROI</div>
+        <h3>De la valeur de l'IA : quels ROI ? Quoi, comment, quand ?</h3>
+        <p class="pub-meta">Article référence enrichi de l'étude IDC</p>
+        <p class="pub-quote">« L'IA a trois ROI : Return on Inclusiveness, on Individuals, on Industrialization. »</p>
+        <ul class="pub-keys">
+          <li>ROI moyen mesuré : <strong>3,7×</strong>, pics à <strong>4,9×</strong> (finance, médias)</li>
+          <li>Entreprises qui forment : <strong>+30 %</strong> d'adoption</li>
+          <li>Cadre signature : AI = trois « I »</li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/de-la-valeur-lia-quels-rois-quoi-comment-quand-eneric-lopez-orkce" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="france">
+        <div class="pub-tag">France &amp; PME</div>
+        <h3>France et IA générative : défis et opportunités pour nos PME</h3>
+        <p class="pub-meta">Analyse de l'étude « AI and the Global Economy » · LinkedIn</p>
+        <p class="pub-quote">« La France décroche, et nos PME sont les grandes oubliées. »</p>
+        <ul class="pub-keys">
+          <li>Adoption FR <strong>32 %</strong> vs 51 % US, 62 % Inde, 41 % Allemagne</li>
+          <li>Petites entreprises FR : seulement <strong>24 %</strong></li>
+          <li><strong>57 %</strong> manquent de compétences techniques IA</li>
+        </ul>
+        <a class="pub-link" href="https://www.linkedin.com/pulse/france-ia-g%C3%A9n%C3%A9rative-d%C3%A9fis-et-opportunit%C3%A9s-pour-nos-pme-eneric-lopez-bwm6e/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="cognition">
+        <div class="pub-tag">Cognition &amp; Hygiène</div>
+        <h3>Anthropomorphisme et IA : de la prise de conscience à la conception responsable</h3>
+        <p class="pub-meta">Hier, j'ai dit « merci » à Copilot. Pas par politesse. Par réflexe.</p>
+        <p class="pub-quote">« Le vrai enjeu n'est pas que l'IA parle comme nous, c'est quand elle laisse croire qu'elle est comme nous. »</p>
+        <ul class="pub-keys">
+          <li><strong>58 %</strong> des scénarios LLM montrent de la sycophance</li>
+          <li><strong>37 %</strong> des compagnons IA usent de rétention émotionnelle</li>
+          <li>De ELIZA (1966) à Mustafa Suleyman</li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/anthropomorphisme-et-ia-de-la-prise-conscience-%C3%A0-conception-lopez-ypghf" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="cognition">
+        <div class="pub-tag">Cognition &amp; Hygiène</div>
+        <h3>IA générative et cerveau humain : l'heure de la vigilance cognitive</h3>
+        <p class="pub-meta">Étude MIT Media Lab sur la « dette cognitive » + 10 autres recherches</p>
+        <p class="pub-quote">« L'IA n'efface pas l'humain. Elle amplifie ce que l'on cultive ou ce qu'on abandonne. »</p>
+        <ul class="pub-keys">
+          <li>L'effort cognitif diminue sur certaines tâches, dépendance possible</li>
+          <li>Tout dépend de la <strong>vigilance métacognitive</strong></li>
+          <li>L'<strong>hygiène cognitive</strong>, power skill de cette décennie</li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/ia-g%C3%A9n%C3%A9rative-et-cerveau-humain-lheure-de-la-vigilance-eneric-lopez-wuabe" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="societe">
+        <div class="pub-tag">IA Sociétale &amp; Valeurs</div>
+        <h3>L'IA à l'école : du constat aux solutions concrètes</h3>
+        <p class="pub-meta">Mettre l'IA au service de l'enseignement, avec lucidité et confiance</p>
+        <p class="pub-quote">« Faire de l'IA un allié pédagogique, pas un substitut. »</p>
+        <ul class="pub-keys">
+          <li><strong>86 %</strong> des élèves utilisent déjà l'IA pour apprendre</li>
+          <li><strong>20 %</strong> seulement des enseignants l'intègrent</li>
+          <li><strong>80 %</strong> n'ont reçu aucune formation</li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/lia-%C3%A0-l%C3%A9cole-du-constat-aux-solutions-concr%C3%A8tes-eneric-lopez-tbr5e" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+      <article class="pub-card" data-pillar="societe">
+        <div class="pub-tag">IA Sociétale &amp; Valeurs</div>
+        <h3>L'IA Sociétale : quand les modèles doivent intégrer nos valeurs humaines</h3>
+        <p class="pub-meta">White paper Microsoft Research Asia · projet Value Compass</p>
+        <p class="pub-quote">« La vraie question n'est plus ce que les LLMs savent faire. C'est : à quelles valeurs sont-ils alignés ? »</p>
+        <ul class="pub-keys">
+          <li>Value Compass : Bienveillance, Liberté, Sécurité, Justice, Universalité</li>
+          <li>Une IA qui n'est plus un outil mais un <strong>acteur</strong> social</li>
+          <li>Aligner les valeurs <strong>dès la conception</strong></li>
+        </ul>
+        <a class="pub-link" href="https://fr.linkedin.com/pulse/lia-soci%C3%A9tale-quand-les-mod%C3%A8les-doivent-apprendre-%C3%A0-int%C3%A9grer-lopez-aqjke" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="acculturation" class="acculturation">
+  <div class="wrap">
+    <div class="section-eyebrow">Acculturation &amp; programmes</div>
+    <h2 class="section-title">Démocratiser l'IA, pas la fantasmer</h2>
+    <p class="section-sub">Diriger l'IA et l'Impact Social chez Microsoft France, c'est opérer des programmes concrets pour que l'IA serve toutes les générations.</p>
+
+    <div class="program">
+      <div>
+        <span class="program-badge">Initiative nationale</span>
+        <h3>« À VOUS L'IA »</h3>
+        <p>Un agent conversationnel grand public qui propose <strong>plus de 1 000 cas d'usage</strong> concrets, des Labs IA en région pour les TPE/PME, et l'objectif de former près d'<strong>1 million de Français</strong> d'ici 2027.</p>
+        <a class="btn btn-primary" href="https://aka.ms/avouslia" target="_blank" rel="noopener">Découvrir l'agent</a>
+      </div>
+      <div class="program-stats">
+        <div class="prog-stat">
+          <div class="num">1 000+</div>
+          <div class="lbl">cas d'usage opérationnels</div>
+        </div>
+        <div class="prog-stat">
+          <div class="num">1 M</div>
+          <div class="lbl">Français formés d'ici 2027</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="literacy-label">Sites d'IA literacy par public</div>
+
+    <div class="literacy-grid">
+      <a class="literacy-card" href="https://aka.ms/comprendreIA" target="_blank" rel="noopener">
+        <div class="audience">Jeunes</div>
+        <h4>Comprendre l'IA</h4>
+        <p>Poser les bases, démystifier, donner envie aux plus jeunes.</p>
+        <span class="literacy-link">aka.ms/comprendreIA</span>
+      </a>
+      <a class="literacy-card" href="https://aka.ms/lyceeIA" target="_blank" rel="noopener">
+        <div class="audience">Lycéens</div>
+        <h4>Lycée &amp; IA</h4>
+        <p>Usages, esprit critique et projets concrets pour s'approprier l'IA.</p>
+        <span class="literacy-link">aka.ms/lyceeIA</span>
+      </a>
+      <a class="literacy-card" href="https://aka.ms/IAsecteurpublic" target="_blank" rel="noopener">
+        <div class="audience">Acteurs publics</div>
+        <h4>IA pour le secteur public</h4>
+        <p>Acculturation et cas d'usage pour déployer l'IA au service de l'intérêt général.</p>
+        <span class="literacy-link">aka.ms/IAsecteurpublic</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="talks">
+  <div class="wrap">
+    <div class="section-eyebrow">Prises de parole</div>
+    <h2 class="section-title">Porter le débat public sur l'IA</h2>
+    <p class="section-sub">Sélection d'interventions TV, vidéos, podcasts, presse et conférences.</p>
+
+    <div class="talks-block-title">Télévision &amp; radio</div>
+    <div class="talks-grid">
+      <a class="talk-card" href="https://www.bfmtv.com/economie/replay-emissions/tech-and-co/eneric-lopez-directeur-ia-et-impact-social-de-microsoft-france-28-03_EN-202403281011.html" target="_blank" rel="noopener">
+        <span class="src">BFM Business · Tech &amp; Co</span>
+        <h4>« À vous l'IA » : démocratiser l'intelligence artificielle</h4>
+        <p>Invité de François Sorel, 28 mars 2024. Lancement de l'initiative nationale de formation.</p>
+        <span class="talk-link">Voir le replay</span>
+      </a>
+    </div>
+
+    <div class="talks-block-title">Masterclasses &amp; vidéos Microsoft</div>
+    <div class="talks-grid">
+      <a class="talk-card" href="https://news.microsoft.com/source/emea/features/la-masterclasse-culture-ia/?lang=fr" target="_blank" rel="noopener">
+        <span class="src">Masterclasse IA · épisode 1</span>
+        <h4>Culture &amp; IA</h4>
+        <p>Avec Pierre Fautrel (collectif OBVIOUS) : l'IA générative au service des industries créatives.</p>
+        <span class="talk-link">Regarder</span>
+      </a>
+      <a class="talk-card" href="https://www.youtube.com/watch?v=LMe3Vvol4Zs" target="_blank" rel="noopener">
+        <span class="src">Masterclasse IA · épisode 2</span>
+        <h4>Médias, Démocratie &amp; IA</h4>
+        <p>Comment l'IA reconfigure les médias, l'information et le débat démocratique.</p>
+        <span class="talk-link">Regarder</span>
+      </a>
+    </div>
+
+    <div class="talks-block-title">Podcasts &amp; vidéos partenaires</div>
+    <div class="talks-grid">
+      <a class="talk-card" href="https://www.youtube.com/watch?v=eYKjCmjEJMM" target="_blank" rel="noopener">
+        <span class="src">Comptoir IA · Nicolas Guyon</span>
+        <h4>« À vous l'IA » : le plan Microsoft pour la France</h4>
+        <p>Podcast vidéo, mars 2024. Décryptage de l'initiative de formation 1 M de Français.</p>
+        <span class="talk-link">Écouter</span>
+      </a>
+      <a class="talk-card" href="https://www.youtube.com/watch?v=LkVDaDU9SW4" target="_blank" rel="noopener">
+        <span class="src">Yes We Care · HumanSide</span>
+        <h4>Un système de performance basé sur l'impact</h4>
+        <p>Penser un modèle de performance qui mette l'impact social au cœur de l'organisation.</p>
+        <span class="talk-link">Regarder</span>
+      </a>
+      <a class="talk-card" href="https://www.youtube.com/watch?v=AdGJ4vOAr9M" target="_blank" rel="noopener">
+        <span class="src">Synrise</span>
+        <h4>Rendre l'IA accessible à toutes les organisations</h4>
+        <p>Facteurs clés de succès des projets IA avec la communauté entrepreneuriale Synrise.</p>
+        <span class="talk-link">Regarder</span>
+      </a>
+    </div>
+
+    <div class="talks-block-title">Presse &amp; interviews</div>
+    <div class="talks-grid">
+      <a class="talk-card" href="https://www.lejournaldesentreprises.com/article/eneric-lopez-microsoft-les-entreprises-francaises-doivent-passer-laction-en-matiere-dia-2133109" target="_blank" rel="noopener">
+        <span class="src">Le Journal des Entreprises · déc. 2025</span>
+        <h4>« Les entreprises françaises doivent passer à l'action »</h4>
+        <p>Coup d'envoi du Tour de France de l'IA depuis le salon BE 5.0, Mulhouse.</p>
+        <span class="talk-link">Lire</span>
+      </a>
+      <a class="talk-card" href="https://www.latribune.fr/innovation/2020-02-18/il-ne-tient-qu-a-nous-de-definir-l-ia-que-nous-voulons-en-europe-eneric-lopez-microsoft-840029.html" target="_blank" rel="noopener">
+        <span class="src">La Tribune · févr. 2020</span>
+        <h4>« Il ne tient qu'à nous de définir l'IA que nous voulons en Europe »</h4>
+        <p>Interview à la sortie de la stratégie numérique européenne sur l'IA.</p>
+        <span class="talk-link">Lire</span>
+      </a>
+    </div>
+
+    <div class="talks-block-title">Conférences &amp; keynotes</div>
+    <div class="talks-grid">
+      <a class="talk-card" href="https://news.microsoft.com/fr-fr/exec/eneric-lopez/" target="_blank" rel="noopener">
+        <span class="src">Microsoft France</span>
+        <h4>Tour de France de l'IA · 2025-2026</h4>
+        <p>Six étapes (Mulhouse, Toulouse, Nantes, Lyon, Bordeaux, Marseille) pour acculturer PME, ETI et startups régionales.</p>
+        <span class="talk-link">En savoir plus</span>
+      </a>
+      <a class="talk-card" href="https://www.littlebigconnection.com/fr/blog/entreprise/ia-microsoft-forward" target="_blank" rel="noopener">
+        <span class="src">FORWARD · LittleBig Connection · mai 2024</span>
+        <h4>Keynote « L'IA au cœur des organisations »</h4>
+        <p>Devant cent décideurs Achats : accélération, IA générative, compétences et change management.</p>
+        <span class="talk-link">Voir le compte-rendu</span>
+      </a>
+    </div>
+
+    <p class="talks-footer">
+      Liste complète sur la <a href="https://news.microsoft.com/fr-fr/exec/eneric-lopez/" target="_blank" rel="noopener">fiche porte-parole Microsoft France</a> ou en suivant l'<a href="https://www.linkedin.com/in/elopezfr/recent-activity/all/" target="_blank" rel="noopener">activité LinkedIn en continu</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/bloomer-logo.png" alt="" />
+      <span>IA Bloomer · Eneric Lopez</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://news.microsoft.com/fr-fr/exec/eneric-lopez/" target="_blank" rel="noopener">Microsoft</a>
+      <a href="https://github.com/nricl" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="footer-meta">
+      Bloomer : lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société · Mise à jour juin 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+  const chips = document.querySelectorAll('#chips .chip');
+  const cards = document.querySelectorAll('#pubs .pub-card');
+
+  function applyFilter(filter) {
+    chips.forEach(c => c.classList.toggle('active', c.dataset.filter === filter));
+    cards.forEach(card => {
+      const match = filter === 'all' || card.dataset.pillar === filter;
+      card.classList.toggle('hidden', !match);
+    });
+  }
+  chips.forEach(chip => chip.addEventListener('click', () => applyFilter(chip.dataset.filter)));
+
+  document.querySelectorAll('.conv-card').forEach(card => {
+    const handler = () => {
+      applyFilter(card.dataset.filter);
+      document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
+    };
+    card.addEventListener('click', handler);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+  });
+</script>
+
+</body>
+</html>
