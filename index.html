@@ -63,7 +63,7 @@ nav.top {
 .nav-links a:hover { color: var(--blue); }
 @media (max-width: 720px) { .nav-links { display: none; } }
 
-/* HERO — light, airy */
+/* HERO */
 .hero {
   padding: 6rem 0 5rem;
   background: var(--white);
@@ -98,6 +98,33 @@ nav.top {
 }
 .hero-manifesto strong { color: var(--blue); font-weight: 600; }
 .hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+.hero-proofs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 2rem;
+  max-width: 620px;
+}
+.hero-proof {
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: .9rem .95rem;
+  background: rgba(255,255,255,.02);
+}
+.hero-proof strong {
+  display: block;
+  color: var(--gray-900);
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-bottom: .35rem;
+}
+.hero-proof span {
+  display: block;
+  color: var(--gray-600);
+  font-size: 12.5px;
+  line-height: 1.35;
+}
+@media (max-width: 720px) { .hero-proofs { grid-template-columns: 1fr; } }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 11px 20px; border-radius: 8px;
@@ -145,7 +172,7 @@ section { padding: 5rem 0; }
   max-width: 620px; margin-bottom: 3rem;
 }
 
-/* CONVICTIONS — minimal cards */
+/* CONVICTIONS */
 .convictions { background: var(--bg); border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); }
 .conv-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
@@ -194,6 +221,36 @@ section { padding: 5rem 0; }
 }
 .pub-card:hover { border-color: var(--blue-line); }
 .pub-card.hidden { display: none; }
+.pub-card.featured-pub {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: .86fr 1.14fr;
+  gap: 1.8rem;
+  padding: 2rem;
+  border-color: var(--blue-line);
+  background:
+    radial-gradient(circle at 92% 12%, rgba(77,159,255,.18), transparent 34%),
+    linear-gradient(135deg, rgba(77,159,255,.10), rgba(255,255,255,.02) 42%),
+    var(--white);
+}
+.pub-card.featured-pub h3 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  max-width: 620px;
+}
+.pub-card.featured-pub .pub-quote {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+.pub-card.featured-pub .pub-keys {
+  align-content: start;
+  margin-bottom: 0;
+}
+.pub-card.featured-pub .pub-link {
+  margin-top: 1.2rem;
+}
+@media (max-width: 900px) {
+  .pub-card.featured-pub { grid-template-columns: 1fr; }
+}
 .pub-tag {
   font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase;
   color: var(--blue); margin-bottom: .8rem;
@@ -226,7 +283,7 @@ section { padding: 5rem 0; }
 .pub-link-muted { color: var(--gray-400); }
 .pub-link-muted::after { content: ""; }
 
-/* ACCULTURATION — light background, single accent panel */
+/* ACCULTURATION */
 .acculturation { background: var(--bg); border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); }
 
 .program {
@@ -377,6 +434,21 @@ footer {
         <a class="btn btn-primary" href="#publications">Mes publications</a>
         <a class="btn btn-ghost" href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
+
+      <div class="hero-proofs" aria-label="Repères rapides">
+        <div class="hero-proof">
+          <strong>12</strong>
+          <span>publications de référence</span>
+        </div>
+        <div class="hero-proof">
+          <strong>7</strong>
+          <span>convictions pour lire l'IA</span>
+        </div>
+        <div class="hero-proof">
+          <strong>1 000+</strong>
+          <span>cas d'usage avec À VOUS L'IA</span>
+        </div>
+      </div>
     </div>
 
     <div class="hero-visual">
@@ -390,8 +462,8 @@ footer {
 <section id="convictions" class="convictions">
   <div class="wrap">
     <div class="section-eyebrow">Mes convictions</div>
-    <h2 class="section-title">Sept lignes qui guident ce que j'écris</h2>
-    <p class="section-sub">Pas une liste d'articles, une grille de lecture. Cliquez pour filtrer les publications associées.</p>
+    <h2 class="section-title">Sept convictions, pas un fil d'actualité</h2>
+    <p class="section-sub">Une page de référence doit aider à comprendre une pensée. Chaque conviction ouvre une porte vers les articles qui la documentent.</p>
 
     <div class="conv-grid">
       <div class="conv-card" data-filter="travail" tabindex="0">
@@ -436,8 +508,8 @@ footer {
 <section id="publications">
   <div class="wrap">
     <div class="section-eyebrow">Publications de référence</div>
-    <h2 class="section-title">12 articles, une grille de lecture</h2>
-    <p class="section-sub">Articles fondateurs et publications LinkedIn épinglées. Filtrez par conviction.</p>
+    <h2 class="section-title">Le socle éditorial</h2>
+    <p class="section-sub">Une sélection courte : les articles qui structurent mon regard sur l'IA, le travail, le management, la cognition et la société.</p>
 
     <div class="chips" id="chips">
       <button class="chip active" data-filter="all">Toutes <span class="count">12</span></button>
@@ -452,6 +524,21 @@ footer {
 
     <div class="pub-grid" id="pubs">
 
+      <article class="pub-card featured-pub" data-pillar="management">
+        <div>
+          <div class="pub-tag">Publication phare · Management &amp; IA</div>
+          <h3>Le manager à l'ère de l'IA : Model, Coach, Care</h3>
+          <p class="pub-meta">LinkedIn · juin 2026 · manager augmenté, juniors, charge cognitive</p>
+          <p class="pub-quote">« L'IA ne réinvente pas le management. Elle révèle ce qui en faisait vraiment la valeur. »</p>
+          <a class="pub-link" href="https://www.linkedin.com/pulse/le-manager-%C3%A0-l%C3%A8re-de-lia-model-coach-care-eneric-lopez-ldbye/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
+        </div>
+        <ul class="pub-keys">
+          <li><strong>Model</strong> : montrer comment on pense avec l'IA, pas seulement comment on l'utilise</li>
+          <li><strong>Coach</strong> : préserver les terrains d'apprentissage et le jugement des juniors</li>
+          <li><strong>Care</strong> : protéger la sécurité psychologique et la charge cognitive</li>
+        </ul>
+      </article>
+
       <article class="pub-card" data-pillar="travail">
         <div class="pub-tag">Travail &amp; Transformation</div>
         <h3>Les individus sont prêts, les organisations non</h3>
@@ -463,19 +550,6 @@ footer {
           <li>Impact IA <strong>2× plus dépendant</strong> du contexte organisationnel que de l'effort individuel</li>
         </ul>
         <a class="pub-link" href="https://www.linkedin.com/pulse/les-individus-sont-pr%C3%AAts-organisations-non-eneric-lopez-hyr2e/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
-      </article>
-
-      <article class="pub-card" data-pillar="management">
-        <div class="pub-tag">Management &amp; IA</div>
-        <h3>Le manager à l'ère de l'IA : Model, Coach, Care</h3>
-        <p class="pub-meta">Article LinkedIn en préparation · manager augmenté, juniors, charge cognitive</p>
-        <p class="pub-quote">« L'IA ne réinvente pas le management. Elle révèle ce qui en faisait vraiment la valeur. »</p>
-        <ul class="pub-keys">
-          <li><strong>Model</strong> : montrer comment on pense avec l'IA, pas seulement comment on l'utilise</li>
-          <li><strong>Coach</strong> : préserver les terrains d'apprentissage et le jugement des juniors</li>
-          <li><strong>Care</strong> : protéger la sécurité psychologique et la charge cognitive</li>
-        </ul>
-        <a class="pub-link" href="https://www.linkedin.com/pulse/le-manager-%C3%A0-l%C3%A8re-de-lia-model-coach-care-eneric-lopez-ldbye/" target="_blank" rel="noopener">Lire sur LinkedIn</a>
       </article>
 
       <article class="pub-card" data-pillar="travail">
