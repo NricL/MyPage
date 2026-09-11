@@ -9,6 +9,7 @@
 <meta property="og:description" content="Lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société." />
 <meta property="og:image" content="assets/bloomer-logo-cream.png" />
 <meta property="og:type" content="website" />
+<link rel="canonical" href="https://nricl.github.io/MyPage/" />
 <link rel="icon" type="image/png" href="assets/bloomer-logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,7 +34,15 @@
 
   --navy: #0d1f3c;
 }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid var(--blue-dark); outline-offset: 5px; }
+.skip-link { position: fixed; top: .5rem; left: 1rem; z-index: 100; padding: .75rem 1rem; background: var(--white); transform: translateY(-150%); }
+.skip-link:focus { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 15.5px; line-height: 1.65;
@@ -59,21 +68,26 @@ nav.top {
 .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; font-size: .95rem; color: var(--gray-900); }
 .brand img { height: 26px; width: 26px; object-fit: contain; filter: brightness(0) invert(1); opacity: .9; }
 .nav-links { display: flex; gap: 1.8rem; font-size: .88rem; font-weight: 500; }
-.nav-links a { color: var(--gray-600); }
+.nav-links a { color: var(--gray-600); display: inline-flex; align-items: center; min-height: 44px; }
 .nav-links a:hover { color: var(--blue); }
-@media (max-width: 720px) { .nav-links { display: none; } }
+@media (max-width: 720px) {
+  html { scroll-padding-top: 9rem; }
+  .nav-inner { flex-direction: column; align-items: flex-start; gap: .25rem; padding: .65rem 1.25rem .35rem; }
+  .nav-links { width: 100%; justify-content: space-between; gap: .5rem; font-size: .78rem; }
+  .wrap { padding-inline: 1.25rem; }
+}
 
 /* HERO */
 .hero {
-  padding: 6rem 0 5rem;
+  padding: 4rem 0 3rem;
   background: var(--white);
   border-bottom: 1px solid var(--gray-100);
 }
 .hero-grid {
-  display: grid; grid-template-columns: 1.5fr 1fr;
-  gap: 4rem; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 3rem; align-items: center;
 }
-@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; text-align: left; } }
+@media (max-width: 720px) { .hero-grid { grid-template-columns: 1fr; text-align: left; } }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 12px; font-weight: 500; color: var(--gray-600);
@@ -98,33 +112,38 @@ nav.top {
 }
 .hero-manifesto strong { color: var(--blue); font-weight: 600; }
 .hero-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
-.hero-proofs {
+.hero-paths {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 2rem;
-  max-width: 620px;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-200);
 }
-.hero-proof {
-  border: 1px solid var(--gray-100);
-  border-radius: 12px;
-  padding: .9rem .95rem;
-  background: rgba(255,255,255,.02);
+.hero-path {
+  display: block;
+  padding: .5rem 0;
 }
-.hero-proof strong {
+.hero-path strong {
   display: block;
   color: var(--gray-900);
-  font-size: 1.2rem;
-  line-height: 1;
-  margin-bottom: .35rem;
+  font-size: 1rem;
+  margin-bottom: .25rem;
 }
-.hero-proof span {
+.hero-path strong::after { content: " →"; color: var(--blue); }
+.hero-path:hover strong { color: var(--blue); }
+.hero-path span {
   display: block;
   color: var(--gray-600);
-  font-size: 12.5px;
-  line-height: 1.35;
+  font-size: .875rem;
+  line-height: 1.5;
 }
-@media (max-width: 720px) { .hero-proofs { grid-template-columns: 1fr; } }
+@media (max-width: 720px) {
+  .hero { padding-top: 2.5rem; }
+  .hero-grid { gap: 0; }
+  .hero-visual { display: none !important; }
+  .hero-paths { grid-template-columns: 1fr; gap: .75rem; margin-top: 2rem; }
+}
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 11px 20px; border-radius: 8px;
@@ -142,13 +161,12 @@ nav.top {
 .hero-visual { display: flex; justify-content: center; align-items: center; }
 .hero-visual-frame {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  border-radius: 16px;
+  padding: 1.25rem;
   display: flex; align-items: center; justify-content: center;
 }
 .hero-visual-frame img {
-  width: 100%; max-width: 420px; height: auto; display: block;
+  width: 100%; max-width: 250px; height: auto; display: block;
 }
 @media (max-width: 900px) {
   .hero-visual-frame { padding: 1.25rem 1rem; border-radius: 18px; }
@@ -156,7 +174,7 @@ nav.top {
 }
 
 /* SECTIONS */
-section { padding: 5rem 0; }
+section { padding: 4rem 0; }
 .section-eyebrow {
   font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
   color: var(--blue); margin-bottom: .85rem;
@@ -169,7 +187,7 @@ section { padding: 5rem 0; }
 }
 .section-sub {
   font-size: 1rem; color: var(--gray-600); line-height: 1.65;
-  max-width: 620px; margin-bottom: 3rem;
+  max-width: 660px; margin-bottom: 2rem;
 }
 
 /* CONVICTIONS */
@@ -180,14 +198,19 @@ section { padding: 5rem 0; }
   border: 1px solid var(--gray-100);
   border-radius: 12px; overflow: hidden;
 }
-@media (max-width: 900px) { .conv-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .conv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .conv-grid { grid-template-columns: 1fr; } }
 .conv-card {
+  display: block;
   background: var(--white);
   padding: 1.75rem 1.5rem;
   cursor: pointer;
   transition: background .15s;
 }
 .conv-card:hover { background: var(--blue-soft); }
+.conv-card:focus-visible { outline-offset: -3px; }
+.conv-card:last-child { grid-column: 1 / -1; }
+.conv-link { display: inline-block; margin-top: 1rem; font-size: .85rem; font-weight: 500; }
 .conv-tag {
   font-size: 11px; font-weight: 600; letter-spacing: .6px; text-transform: uppercase;
   color: var(--blue); margin-bottom: .75rem;
@@ -197,9 +220,10 @@ section { padding: 5rem 0; }
 
 /* PUBLICATIONS */
 .chips {
-  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2.5rem;
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem;
 }
 .chip {
+  min-height: 44px;
   padding: 7px 14px; border-radius: 100px;
   background: transparent; border: 1px solid var(--gray-200);
   color: var(--gray-600); font-weight: 500; font-size: 13px;
@@ -207,7 +231,12 @@ section { padding: 5rem 0; }
 }
 .chip:hover { border-color: var(--blue); color: var(--blue); }
 .chip.active { background: var(--blue); color: var(--navy); border-color: var(--blue); }
-.chip .count { opacity: .55; margin-left: 5px; font-size: 11.5px; }
+.chip .count { margin-left: 5px; font-size: 11.5px; }
+.pub-status { color: var(--gray-600); font-size: .875rem; margin-bottom: 1.5rem; }
+.pub-disclosure { margin-bottom: 1rem; }
+.pub-disclosure summary { cursor: pointer; color: var(--blue); font-size: .875rem; padding: .65rem 0; min-height: 44px; }
+.pub-disclosure .pub-keys { margin-top: .5rem; margin-bottom: .5rem; }
+.pub-more { margin-top: 1.5rem; cursor: pointer; }
 
 .pub-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 @media (max-width: 900px) { .pub-grid { grid-template-columns: 1fr; } }
@@ -215,12 +244,11 @@ section { padding: 5rem 0; }
   background: var(--white);
   border: 1px solid var(--gray-100);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex; flex-direction: column;
   transition: all .2s;
 }
 .pub-card:hover { border-color: var(--blue-line); }
-.pub-card.hidden { display: none; }
 .pub-card.featured-pub {
   grid-column: 1 / -1;
   display: grid;
@@ -228,10 +256,7 @@ section { padding: 5rem 0; }
   gap: 1.8rem;
   padding: 2rem;
   border-color: var(--blue-line);
-  background:
-    radial-gradient(circle at 92% 12%, rgba(77,159,255,.18), transparent 34%),
-    linear-gradient(135deg, rgba(77,159,255,.10), rgba(255,255,255,.02) 42%),
-    var(--white);
+  background: var(--gray-50);
 }
 .pub-card.featured-pub h3 {
   font-size: clamp(1.45rem, 3vw, 2rem);
@@ -256,7 +281,7 @@ section { padding: 5rem 0; }
   color: var(--blue); margin-bottom: .8rem;
 }
 .pub-card h3 { font-size: 1.2rem; font-weight: 600; color: var(--gray-900); letter-spacing: -.4px; line-height: 1.3; margin-bottom: .7rem; }
-.pub-meta { font-size: 12.5px; color: var(--gray-400); margin-bottom: 1rem; }
+.pub-meta { font-size: 12.5px; color: var(--gray-600); margin-bottom: 1rem; }
 .pub-quote {
   font-size: 14.5px; line-height: 1.5;
   color: var(--gray-800); font-weight: 500;
@@ -274,6 +299,7 @@ section { padding: 5rem 0; }
 }
 .pub-keys strong { color: var(--gray-900); font-weight: 600; }
 .pub-link {
+  min-height: 44px;
   margin-top: auto;
   display: inline-flex; align-items: center; gap: 5px;
   font-weight: 500; font-size: 13.5px; color: var(--blue);
@@ -390,14 +416,17 @@ footer {
 .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--gray-900); font-weight: 600; }
 .footer-brand img { height: 22px; filter: brightness(0) invert(1); opacity: .85; }
 .footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { color: var(--gray-600); font-weight: 500; }
+.footer-links a { color: var(--gray-600); font-weight: 500; display: inline-flex; align-items: center; min-height: 44px; }
+.footer-contact { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gray-100); }
+.footer-contact h2 { color: var(--gray-900); font-size: 1.4rem; margin-bottom: .35rem; }
 .footer-links a:hover { color: var(--blue); }
 .footer-meta { width: 100%; text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-100); font-size: 12px; color: var(--gray-400); }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Aller au contenu</a>
 
-<nav class="top">
+<nav class="top" aria-label="Navigation principale">
   <div class="nav-inner">
     <a href="#top" class="brand">
       <img src="assets/bloomer-logo.png" alt="" />
@@ -406,7 +435,7 @@ footer {
     <div class="nav-links">
       <a href="#convictions">Convictions</a>
       <a href="#publications">Publications</a>
-      <a href="#acculturation">Acculturation</a>
+      <a href="#acculturation">Ressources</a>
       <a href="#talks">Prises de parole</a>
     </div>
   </div>
@@ -431,23 +460,8 @@ footer {
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#publications">Mes publications</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-
-      <div class="hero-proofs" aria-label="Repères rapides">
-        <div class="hero-proof">
-          <strong>12</strong>
-          <span>publications de référence</span>
-        </div>
-        <div class="hero-proof">
-          <strong>7</strong>
-          <span>convictions pour lire l'IA</span>
-        </div>
-        <div class="hero-proof">
-          <strong>1 000+</strong>
-          <span>cas d'usage avec À VOUS L'IA</span>
-        </div>
+        <a class="btn btn-primary" href="#publications">Explorer mes articles</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">Échanger sur LinkedIn</a>
       </div>
     </div>
 
@@ -457,50 +471,63 @@ footer {
       </div>
     </div>
   </div>
+  <nav class="wrap hero-paths" aria-label="Choisir un point de départ">
+    <a class="hero-path" href="#publications"><strong>Comprendre ce qui change</strong><span>Travail, management, esprit critique : mes analyses.</span></a>
+    <a class="hero-path" href="#acculturation"><strong>Passer à la pratique</strong><span>Des cas d'usage et des ressources pour apprendre.</span></a>
+    <a class="hero-path" href="#talks"><strong>Écouter les échanges</strong><span>Podcasts, interviews et conférences.</span></a>
+  </nav>
 </header>
 
+<main id="main" tabindex="-1">
 <section id="convictions" class="convictions">
   <div class="wrap">
     <div class="section-eyebrow">Mes convictions</div>
     <h2 class="section-title">Sept convictions, pas un fil d'actualité</h2>
-    <p class="section-sub">Une page de référence doit aider à comprendre une pensée. Chaque conviction ouvre une porte vers les articles qui la documentent.</p>
+    <p class="section-sub">L'IA ne se résume pas à ses performances. Voici les questions qui guident mes analyses. Choisissez un thème pour retrouver les articles associés.</p>
 
     <div class="conv-grid">
-      <div class="conv-card" data-filter="travail" tabindex="0">
+      <a class="conv-card" data-filter="travail" href="#publications">
         <div class="conv-tag">Travail &amp; Transformation</div>
         <h3>Le blocage n'est plus technologique</h3>
         <p>Il est organisationnel. Sans révision des systèmes d'évaluation, la formation reste orpheline.</p>
-      </div>
-      <div class="conv-card" data-filter="management" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="management" href="#publications">
         <div class="conv-tag">Management &amp; IA</div>
         <h3>L'IA révèle la vraie valeur du manager</h3>
         <p>Moins tenir le centre de l'information, mieux tenir le cadre où l'on apprend, décide et se fait confiance.</p>
-      </div>
-      <div class="conv-card" data-filter="emploi" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="emploi" href="#publications">
         <div class="conv-tag">Emploi &amp; Inclusion</div>
         <h3>L'IA ne licencie pas</h3>
         <p>Elle cesse d'ouvrir la porte aux plus jeunes. La rampe de lancement des juniors disparaît sans bruit.</p>
-      </div>
-      <div class="conv-card" data-filter="valeur" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="valeur" href="#publications">
         <div class="conv-tag">Valeur &amp; ROI</div>
         <h3>L'IA a trois ROI, pas un</h3>
         <p>Return on Inclusiveness, on Individuals, on Industrialization. La valeur n'est jamais purement financière.</p>
-      </div>
-      <div class="conv-card" data-filter="france" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="france" href="#publications">
         <div class="conv-tag">France &amp; PME</div>
         <h3>La France décroche, les PME paient</h3>
         <p>32 % d'adoption, et nos petites structures sont les grandes oubliées. C'est ici que se joue la souveraineté.</p>
-      </div>
-      <div class="conv-card" data-filter="cognition" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="cognition" href="#publications">
         <div class="conv-tag">Cognition &amp; Hygiène</div>
         <h3>L'hygiène cognitive, power skill clé</h3>
         <p>L'IA amplifie ce que l'on cultive ou ce qu'on abandonne. Gardons les mains sur le volant.</p>
-      </div>
-      <div class="conv-card" data-filter="societe" tabindex="0">
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
+      <a class="conv-card" data-filter="societe" href="#publications">
         <div class="conv-tag">IA Sociétale &amp; Valeurs</div>
         <h3>Chaque déploiement encode des valeurs</h3>
         <p>La vraie question n'est pas ce que les LLMs savent faire, c'est : à quelles valeurs sont-ils alignés ?</p>
-      </div>
+        <span class="conv-link">Explorer les articles →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -508,23 +535,25 @@ footer {
 <section id="publications">
   <div class="wrap">
     <div class="section-eyebrow">Publications de référence</div>
-    <h2 class="section-title">Le socle éditorial</h2>
-    <p class="section-sub">Une sélection courte : les articles qui structurent mon regard sur l'IA, le travail, le management, la cognition et la société.</p>
+    <h2 class="section-title" id="publications-title" tabindex="-1">Des lectures pour prendre du recul</h2>
+    <p class="section-sub">Du management à l'esprit critique, plusieurs portes d'entrée dans mes analyses. Retrouvez chaque texte complet sur LinkedIn.</p>
 
-    <div class="chips" id="chips">
-      <button class="chip active" data-filter="all">Toutes <span class="count">12</span></button>
+    <div class="chips" id="chips" role="group" aria-label="Filtrer les articles par thème" hidden>
+      <button class="chip" data-filter="selection">Pour commencer</button>
+      <button class="chip" data-filter="all">Tous les articles</button>
       <button class="chip" data-filter="travail">Travail</button>
       <button class="chip" data-filter="management">Management</button>
       <button class="chip" data-filter="emploi">Emploi</button>
       <button class="chip" data-filter="valeur">Valeur</button>
       <button class="chip" data-filter="france">France</button>
       <button class="chip" data-filter="cognition">Cognition</button>
-      <button class="chip" data-filter="societe">Sociétal</button>
+      <button class="chip" data-filter="societe">Société</button>
     </div>
+    <p class="pub-status" id="pub-status" role="status" aria-live="polite" aria-atomic="true"></p>
 
     <div class="pub-grid" id="pubs">
 
-      <article class="pub-card featured-pub" data-pillar="management">
+      <article class="pub-card featured-pub" data-pillar="management" data-selected>
         <div>
           <div class="pub-tag">Publication phare · Management &amp; IA</div>
           <h3>Le manager à l'ère de l'IA : Model, Coach, Care</h3>
@@ -539,7 +568,7 @@ footer {
         </ul>
       </article>
 
-      <article class="pub-card" data-pillar="travail">
+      <article class="pub-card" data-pillar="travail" data-selected>
         <div class="pub-tag">Travail &amp; Transformation</div>
         <h3>Les individus sont prêts, les organisations non</h3>
         <p class="pub-meta">Décryptage du Work Trend Index 2026 · 20 000 travailleurs, 10 pays</p>
@@ -617,7 +646,7 @@ footer {
         <a class="pub-link" href="https://fr.linkedin.com/pulse/de-la-valeur-lia-quels-rois-quoi-comment-quand-eneric-lopez-orkce" target="_blank" rel="noopener">Lire sur LinkedIn</a>
       </article>
 
-      <article class="pub-card" data-pillar="france">
+      <article class="pub-card" data-pillar="france" data-selected>
         <div class="pub-tag">France &amp; PME</div>
         <h3>France et IA générative : défis et opportunités pour nos PME</h3>
         <p class="pub-meta">Analyse de l'étude « AI and the Global Economy » · LinkedIn</p>
@@ -643,7 +672,7 @@ footer {
         <a class="pub-link" href="https://fr.linkedin.com/pulse/anthropomorphisme-et-ia-de-la-prise-conscience-%C3%A0-conception-lopez-ypghf" target="_blank" rel="noopener">Lire sur LinkedIn</a>
       </article>
 
-      <article class="pub-card" data-pillar="cognition">
+      <article class="pub-card" data-pillar="cognition" data-selected>
         <div class="pub-tag">Cognition &amp; Hygiène</div>
         <h3>IA générative et cerveau humain : l'heure de la vigilance cognitive</h3>
         <p class="pub-meta">Étude MIT Media Lab sur la « dette cognitive » + 10 autres recherches</p>
@@ -669,7 +698,7 @@ footer {
         <a class="pub-link" href="https://fr.linkedin.com/pulse/lia-%C3%A0-l%C3%A9cole-du-constat-aux-solutions-concr%C3%A8tes-eneric-lopez-tbr5e" target="_blank" rel="noopener">Lire sur LinkedIn</a>
       </article>
 
-      <article class="pub-card" data-pillar="societe">
+      <article class="pub-card" data-pillar="societe" data-selected>
         <div class="pub-tag">IA Sociétale &amp; Valeurs</div>
         <h3>L'IA Sociétale : quand les modèles doivent intégrer nos valeurs humaines</h3>
         <p class="pub-meta">White paper Microsoft Research Asia · projet Value Compass</p>
@@ -684,11 +713,12 @@ footer {
 
     </div>
   </div>
+    <div class="wrap"><button class="btn btn-ghost pub-more" id="pub-more" aria-controls="pubs" hidden>Voir tous les articles</button></div>
 </section>
 
 <section id="acculturation" class="acculturation">
   <div class="wrap">
-    <div class="section-eyebrow">Acculturation &amp; programmes</div>
+    <div class="section-eyebrow">Ressources &amp; programmes</div>
     <h2 class="section-title">Démocratiser l'IA, pas la fantasmer</h2>
     <p class="section-sub">Diriger l'IA et l'Impact Social chez Microsoft France, c'est opérer des programmes concrets pour que l'IA serve toutes les générations.</p>
 
@@ -696,7 +726,7 @@ footer {
       <div>
         <span class="program-badge">Initiative nationale</span>
         <h3>« À VOUS L'IA »</h3>
-        <p>Un agent conversationnel grand public qui propose <strong>plus de 1 000 cas d'usage</strong> concrets, des Labs IA en région pour les TPE/PME, et l'objectif de former près d'<strong>1 million de Français</strong> d'ici 2027.</p>
+        <p>Une initiative nationale pour découvrir ce que l'IA peut apporter au quotidien : <strong>des Labs IA en région pour les TPE/PME</strong>, des parcours de formation et un agent pour explorer <strong>plus de 1 000 cas d'usage</strong> concrets.</p>
         <a class="btn btn-primary" href="https://avouslia.fr" target="_blank" rel="noopener">Découvrir l'agent</a>
       </div>
       <div class="program-stats">
@@ -706,12 +736,12 @@ footer {
         </div>
         <div class="prog-stat">
           <div class="num">1 M</div>
-          <div class="lbl">Français formés d'ici 2027</div>
+          <div class="lbl">objectif de Français à former d'ici 2027</div>
         </div>
       </div>
     </div>
 
-    <div class="literacy-label">Sites d'IA literacy par public</div>
+    <h3 class="literacy-label">Choisir une ressource selon votre public</h3>
 
     <div class="literacy-grid">
       <a class="literacy-card" href="https://aka.ms/comprendreIA" target="_blank" rel="noopener">
@@ -742,7 +772,7 @@ footer {
     <h2 class="section-title">Porter le débat public sur l'IA</h2>
     <p class="section-sub">Sélection d'interventions TV, vidéos, podcasts, presse et conférences.</p>
 
-    <div class="talks-block-title">Télévision &amp; radio</div>
+    <h3 class="talks-block-title">Télévision &amp; radio</h3>
     <div class="talks-grid">
       <a class="talk-card" href="https://www.bfmtv.com/economie/replay-emissions/tech-and-co/eneric-lopez-directeur-ia-et-impact-social-de-microsoft-france-28-03_EN-202403281011.html" target="_blank" rel="noopener">
         <span class="src">BFM Business · Tech &amp; Co</span>
@@ -752,7 +782,7 @@ footer {
       </a>
     </div>
 
-    <div class="talks-block-title">Masterclasses &amp; vidéos Microsoft</div>
+    <h3 class="talks-block-title">Masterclasses &amp; vidéos Microsoft</h3>
     <div class="talks-grid">
       <a class="talk-card" href="https://news.microsoft.com/source/emea/features/la-masterclasse-culture-ia/?lang=fr" target="_blank" rel="noopener">
         <span class="src">Masterclasse IA · épisode 1</span>
@@ -768,7 +798,7 @@ footer {
       </a>
     </div>
 
-    <div class="talks-block-title">Podcasts &amp; vidéos partenaires</div>
+    <h3 class="talks-block-title">Podcasts &amp; vidéos partenaires</h3>
     <div class="talks-grid">
       <a class="talk-card" href="https://www.youtube.com/watch?v=eYKjCmjEJMM" target="_blank" rel="noopener">
         <span class="src">Comptoir IA · Nicolas Guyon</span>
@@ -796,7 +826,7 @@ footer {
       </a>
     </div>
 
-    <div class="talks-block-title">Presse &amp; interviews</div>
+    <h3 class="talks-block-title">Presse &amp; interviews</h3>
     <div class="talks-grid">
       <a class="talk-card" href="https://www.lejournaldesentreprises.com/article/eneric-lopez-microsoft-les-entreprises-francaises-doivent-passer-laction-en-matiere-dia-2133109" target="_blank" rel="noopener">
         <span class="src">Le Journal des Entreprises · déc. 2025</span>
@@ -812,7 +842,7 @@ footer {
       </a>
     </div>
 
-    <div class="talks-block-title">Conférences &amp; keynotes</div>
+    <h3 class="talks-block-title">Conférences &amp; keynotes</h3>
     <div class="talks-grid">
       <a class="talk-card" href="https://news.microsoft.com/fr-fr/exec/eneric-lopez/" target="_blank" rel="noopener">
         <span class="src">Microsoft France</span>
@@ -833,9 +863,17 @@ footer {
     </p>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="footer-inner">
+    <div class="footer-contact">
+      <div>
+        <h2>Poursuivre la conversation</h2>
+        <p>Une question sur un article ou envie d'échanger sur les usages de l'IA ?</p>
+      </div>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/elopezfr/" target="_blank" rel="noopener">Retrouvons-nous sur LinkedIn</a>
+    </div>
     <div class="footer-brand">
       <img src="assets/bloomer-logo.png" alt="" />
       <span>IA Bloomer · Eneric Lopez</span>
@@ -846,32 +884,81 @@ footer {
       <a href="https://github.com/nricl" target="_blank" rel="noopener">GitHub</a>
     </div>
     <div class="footer-meta">
-      Bloomer : lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société · Mise à jour juin 2026
+      Bloomer : lucide sur les défis, optimiste sur le potentiel de l'IA pour servir la société · Page mise à jour le 11 septembre 2026
     </div>
   </div>
 </footer>
 
 <script>
   const chips = document.querySelectorAll('#chips .chip');
-  const cards = document.querySelectorAll('#pubs .pub-card');
+  const cards = [...document.querySelectorAll('#pubs .pub-card')];
+  const status = document.getElementById('pub-status');
+  const more = document.getElementById('pub-more');
+  const publicationTitle = document.getElementById('publications-title');
+
+  function matchesFilter(card, filter) {
+    return filter === 'all' || (filter === 'selection' ? card.hasAttribute('data-selected') : card.dataset.pillar === filter);
+  }
 
   function applyFilter(filter) {
-    chips.forEach(c => c.classList.toggle('active', c.dataset.filter === filter));
-    cards.forEach(card => {
-      const match = filter === 'all' || card.dataset.pillar === filter;
-      card.classList.toggle('hidden', !match);
+    chips.forEach(chip => {
+      const active = chip.dataset.filter === filter;
+      chip.classList.toggle('active', active);
+      chip.setAttribute('aria-pressed', String(active));
     });
+    cards.forEach(card => {
+      card.hidden = !matchesFilter(card, filter);
+    });
+    const count = cards.filter(card => !card.hidden).length;
+    const label = [...chips].find(chip => chip.dataset.filter === filter).firstChild.textContent.trim();
+    status.textContent = `${label} : ${count} article${count > 1 ? 's' : ''} sur ${cards.length}.`;
+    more.hidden = filter !== 'selection';
   }
-  chips.forEach(chip => chip.addEventListener('click', () => applyFilter(chip.dataset.filter)));
+
+  chips.forEach(chip => {
+    const count = document.createElement('span');
+    count.className = 'count';
+    count.textContent = cards.filter(card => matchesFilter(card, chip.dataset.filter)).length;
+    chip.append(count);
+    chip.setAttribute('aria-controls', 'pubs');
+    chip.addEventListener('click', () => applyFilter(chip.dataset.filter));
+  });
+
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent;
+    card.querySelector('.pub-link').setAttribute('aria-label', `Lire sur LinkedIn : ${title} (nouvel onglet)`);
+    const keys = card.querySelector('.pub-keys');
+    if (card.classList.contains('featured-pub')) return;
+    const details = document.createElement('details');
+    details.className = 'pub-disclosure';
+    const summary = document.createElement('summary');
+    summary.textContent = 'Les points clés';
+    summary.setAttribute('aria-label', `Les points clés : ${title}`);
+    keys.before(details);
+    details.append(summary, keys);
+  });
+
+  function focusPublications() {
+    publicationTitle.focus({ preventScroll: true });
+    document.getElementById('publications').scrollIntoView();
+  }
 
   document.querySelectorAll('.conv-card').forEach(card => {
-    const handler = () => {
+    card.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      event.preventDefault();
       applyFilter(card.dataset.filter);
-      document.getElementById('publications').scrollIntoView({ behavior: 'smooth' });
-    };
-    card.addEventListener('click', handler);
-    card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); } });
+      focusPublications();
+    });
   });
+
+  more.textContent = `Voir les ${cards.length} articles`;
+  more.addEventListener('click', () => {
+    applyFilter('all');
+    focusPublications();
+  });
+  document.getElementById('chips').hidden = false;
+  applyFilter('selection');
 </script>
 
 </body>
