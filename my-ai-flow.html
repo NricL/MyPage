@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="fr" data-motion="on">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Comment Eneric relie recherche, dialogue, mémoire et création avec Copilot, Scout et son Brain. Un parcours visuel à explorer.">
+  <title>My AI Flow · La vie d’une idée</title>
+  <link rel="canonical" href="https://nricl.github.io/MyPage/my-ai-flow.html">
+  <link rel="icon" href="data:,">
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.dataset.motion = "off";
+    })();
+  </script>
+  <style>/* MyPage's palette, mapped to the artifact's semantic theme tokens. */
+:root,html[data-theme] {
+  color-scheme:dark;
+  --cp-bg:#0a1628;
+  --cp-bg-elevated:#0d1f3c;
+  --cp-surface:#122845;
+  --cp-surface-soft:#1a3357;
+  --cp-border:#2a4670;
+  --cp-border-strong:#6a86ad;
+  --cp-text:#e2ebf7;
+  --cp-text-muted:#a5b8d4;
+  --cp-text-soft:#a5b8d4;
+  --cp-heading:#ffffff;
+  --cp-accent:#4d9fff;
+  --cp-accent-hover:#82b9ff;
+  --cp-accent-soft:rgba(77,159,255,.12);
+  --cp-highlight:rgba(77,159,255,.35);
+  --cp-accent-fg:#0d1f3c;
+  --cp-link:#82b9ff;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:110px}
+body {margin:0;background:var(--cp-bg);color:var(--cp-text);font-family:"Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55}
+button,a {font:inherit;-webkit-tap-highlight-color:transparent}
+button {cursor:pointer}
+button,a,summary {touch-action:manipulation}
+a {color:inherit}
+button {color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible {outline:3px solid var(--cp-accent-hover);outline-offset:5px}
+img {max-width:100%}
+h1,h2,h3,p {margin:0}
+button {border:0}
+.sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip {position:fixed;left:20px;top:-100px;z-index:100;background:var(--cp-accent);color:var(--cp-accent-fg);padding:16px}
+.skip:focus {top:10px}
+.masthead {height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 calc(4.5vw + 130px) 0 4.5vw;border-bottom:1px solid var(--cp-border);background:var(--cp-bg);position:relative;z-index:20}
+.wordmark {display:flex;align-items:center;gap:7px;text-decoration:none;font-size:16px;letter-spacing:.025em;white-space:nowrap}
+.wordmark b {color:var(--cp-accent)}
+.brand-orbit {border:1px solid var(--cp-accent);border-radius:50%;width:30px;height:30px;display:grid;place-items:center;margin-right:6px;color:var(--cp-accent);font-size:21px}
+.edition {font-size:13px;letter-spacing:.1em;color:var(--cp-text-muted);margin-left:20px;border-left:1px solid var(--cp-border);padding-left:20px}
+.masthead nav {display:flex;gap:28px;font-size:16px;color:var(--cp-text-muted)}
+.masthead nav a {text-decoration:none}
+.masthead nav a:hover {color:var(--cp-heading)}
+.motion-button {display:flex;align-items:center;gap:8px;min-height:44px;min-width:98px;background:var(--cp-surface);border:1px solid var(--cp-border);border-radius:8px;justify-content:center;font-size:15px}
+#motion {position:fixed;top:18px;right:4.5vw;z-index:40}
+#motion-icon {font-size:16px;color:var(--cp-accent);font-weight:700}
+.hero {position:relative;min-height:min(870px,calc(100svh - 82px));padding:64px 5.5vw 85px;display:grid;grid-template-columns:1.05fr 1fr;gap:0;align-items:center;max-width:1600px;margin:auto}
+.hero-text {position:relative;z-index:2}
+.overline {font-size:14px;letter-spacing:.12em;font-weight:650;color:var(--cp-accent);display:flex;align-items:center;gap:10px}
+.status-dot {display:inline-block;width:6px;height:6px;background:var(--cp-accent);border-radius:50%}
+h1 {margin-top:25px;font-size:clamp(70px,7.7vw,122px);line-height:.95;letter-spacing:-.065em;font-weight:600;color:var(--cp-heading)}
+em {font-style:normal;color:var(--cp-accent)}
+.hero-intro {font-size:23px;line-height:1.5;color:var(--cp-text-muted);margin-top:28px}
+.hero-intro strong {font-weight:500;color:var(--cp-text)}
+.primary {margin-top:28px;padding:14px 21px;display:inline-flex;align-items:center;gap:42px;border-radius:8px;background:var(--cp-accent);color:var(--cp-accent-fg);font-weight:650;font-size:18px;text-decoration:none;transition:background .2s,transform .2s}
+.primary span {font-size:23px;line-height:1}
+.primary:hover {background:var(--cp-accent-hover);transform:translateY(-2px)}
+.hero-meta {font-size:15px;line-height:1.7;color:var(--cp-text-muted);margin-top:18px}
+.hero-universe {min-width:0;margin-left:-30px;position:relative}
+.universe {display:block;width:100%;overflow:visible}
+.universe-rings {fill:none;stroke:var(--cp-border);stroke-width:.8}
+.universe-rings circle {stroke-dasharray:1 11}
+.universe-track {fill:none;stroke:var(--cp-highlight);stroke-width:1.5}
+.universe-current {fill:none;stroke:var(--cp-accent);stroke-width:3;stroke-linecap:round;stroke-dasharray:25 180;animation:orbit-current 28s linear infinite}
+.universe-thread {stroke:var(--cp-border);fill:var(--cp-accent);stroke-width:1}
+.universe-thread path {fill:none;stroke-dasharray:3 8}
+.universe-labels {fill:var(--cp-text-muted);font-size:16px;letter-spacing:1.2px}
+.universe-core-halo {fill:none;stroke:var(--cp-highlight);animation:core-pulse 6s ease-in-out infinite;transform-origin:340px 306px}
+.universe-core {fill:var(--cp-bg-elevated);stroke:var(--cp-accent);stroke-width:1}
+.core-small {fill:var(--cp-accent);font-size:13px;letter-spacing:1.5px}
+.core-big {fill:var(--cp-heading);font-size:44px;letter-spacing:-2px;font-weight:500}
+.core-detail {fill:var(--cp-text-muted);font-size:16px}
+.universe-note {display:flex;gap:15px;align-items:center;justify-content:center;color:var(--cp-text-muted);font-size:16px;margin-top:-14px}
+.universe-note>span {font-size:43px;color:var(--cp-accent);font-weight:300}
+.universe-note b {color:var(--cp-text);font-weight:500}
+.hero-bottom {position:absolute;left:5.5vw;right:5.5vw;bottom:22px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--cp-text-muted);letter-spacing:.08em}
+.hero-bottom b {margin-left:13px;font-size:18px;color:var(--cp-accent)}
+.opening {padding:120px 6vw 110px;border-top:1px solid var(--cp-border);border-bottom:1px solid var(--cp-border);background:var(--cp-bg-elevated);text-align:center}
+.opening .overline {justify-content:center}
+.opening h2 {font-size:clamp(36px,4.6vw,68px);line-height:1.04;letter-spacing:-.05em;font-weight:550;margin-top:22px;color:var(--cp-heading)}
+.opening h2 span {color:var(--cp-accent)}
+.opening>p:not(.overline) {max-width:740px;margin:25px auto 0;font-size:21px;color:var(--cp-text-muted)}
+.tool-constellation {display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:24px;margin-top:38px}
+.tool-constellation>span {display:flex;align-items:center;gap:9px;font-size:17px}
+.tool-constellation .connector {color:var(--cp-border-strong);font-size:20px}
+.scout-symbol,.brain-symbol {font-style:normal;color:var(--cp-accent);font-size:28px;line-height:1;display:inline-flex;justify-content:center;align-items:center;flex-shrink:0;width:30px}
+.scout-symbol {border:1px solid var(--cp-accent);border-radius:8px;font-size:24px;height:30px}
+.journey {display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);column-gap:5vw;max-width:1480px;margin:auto;padding:40px 5.5vw 0;position:relative}
+.chapters {min-width:0}
+.chapter {min-height:calc(100svh - 70px);padding:82px 0 104px;border-bottom:1px solid var(--cp-border);scroll-margin-top:0;position:relative}
+.chapter-index {display:flex;align-items:center;gap:17px;color:var(--cp-accent);font-size:14px;font-weight:650;letter-spacing:.09em}
+.chapter-index b {font-weight:350;font-size:44px;letter-spacing:-2px;line-height:1}
+.chapter h2 {margin-top:24px;color:var(--cp-heading);font-size:clamp(32px,3.6vw,54px);line-height:1.05;letter-spacing:-.055em;font-weight:550;text-wrap:balance}
+.chapter-lead {font-size:21px;color:var(--cp-text-muted);margin-top:21px;max-width:550px}
+.tool-signature {margin-top:26px;display:flex;gap:12px;align-items:center;padding:13px 0;border-top:1px solid var(--cp-border);border-bottom:1px solid var(--cp-border)}
+.tool-signature img {width:40px;height:40px;object-fit:contain;flex-shrink:0}
+.tool-signature .tool-heading {font-size:18px;font-weight:650;color:var(--cp-heading)}
+.tool-signature .tool-detail {font-size:16px;color:var(--cp-text-muted);line-height:1.55;margin-top:5px}
+.how {padding:22px 0 0;list-style:none;margin:0;counter-reset:how}
+.how li {position:relative;padding-left:32px;font-size:18px;color:var(--cp-text);line-height:1.6;margin-bottom:14px;counter-increment:how}
+.how li::before {content:"0" counter(how);position:absolute;top:4px;left:0;color:var(--cp-accent);font-size:13px;font-variant-numeric:tabular-nums}
+.human-choice {font-size:17px;color:var(--cp-text-muted);padding-left:16px;border-left:2px solid var(--cp-accent);margin-top:22px}
+.human-choice b {color:var(--cp-accent);font-weight:600;display:block;font-size:13px;letter-spacing:.08em;margin-bottom:6px}
+.variant-buttons {display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
+.variant-buttons button {padding:10px 14px;min-height:46px;border-radius:8px;background:var(--cp-bg);color:var(--cp-text-muted);border:1px solid var(--cp-border);font-size:16px;transition:background .2s,color .2s,border-color .2s}
+.variant-buttons button:hover {border-color:var(--cp-accent);color:var(--cp-heading)}
+.variant-buttons button[aria-pressed="true"] {border-color:var(--cp-accent);color:var(--cp-accent-fg);background:var(--cp-accent);font-weight:650}
+.variant-description {font-size:16px;color:var(--cp-text-muted);margin-top:12px;min-height:38px}
+details {font-size:17px;color:var(--cp-text-muted)}
+.prompt {margin-top:19px}
+summary {cursor:pointer;padding:10px 0;min-height:40px}
+summary::marker {color:var(--cp-accent)}
+.prompt p {color:var(--cp-text);font-size:18px;padding:14px 18px;border-left:1px solid var(--cp-accent);background:var(--cp-accent-soft)}
+.skills {margin-top:18px}
+.skills dl {display:grid;grid-template-columns:140px 1fr;gap:14px;font-size:16px;margin:14px 0}
+.skills dt {color:var(--cp-accent);font-family:Consolas,monospace}
+.skills dd {margin:0;color:var(--cp-text-muted)}
+.skills>p {font-size:16px;margin:12px 0}
+.chapter-next {display:inline-flex;gap:12px;align-items:center;margin-top:21px;text-decoration:none;font-size:17px;color:var(--cp-accent);padding-block:8px;min-height:44px}
+.chapter-next:hover {color:var(--cp-accent-hover)}
+.inline-scene {display:none}
+.theater-column {position:relative;min-width:0}
+.theater {position:sticky;top:30px;padding-top:37px;max-height:calc(100svh - 120px);overflow-y:auto;scrollbar-width:thin}
+.theater-top {display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;letter-spacing:.08em;border-bottom:1px solid var(--cp-border);padding-bottom:15px;color:var(--cp-accent)}
+.live-line {display:flex;align-items:center;gap:7px;color:var(--cp-text-muted);font-size:12px}
+.live-line i {width:4px;height:4px;background:var(--cp-accent);border-radius:50%}
+.scene {min-height:260px;padding-top:12px}
+.scene.scene-enter .flow-art {animation:scene-enter .65s cubic-bezier(.2,.65,.2,1) both}
+.scene-caption {font-size:18px;color:var(--cp-heading);min-height:52px;max-width:590px;margin:8px 0 20px}
+.brain-rail {border-top:1px solid var(--cp-border);border-bottom:1px solid var(--cp-border);padding:17px 0 18px}
+.brain-heading {display:flex;gap:10px;align-items:center}
+.brain-heading b {font-size:14px;letter-spacing:.08em;font-weight:600;color:var(--cp-text)}
+.brain-heading .brain-symbol {font-size:24px}
+.brain-rail svg {width:100%;height:32px;display:block;overflow:visible}
+.brain-rail svg path {fill:none;stroke:var(--cp-border);stroke-width:1}
+.brain-rail svg circle {fill:var(--cp-surface);stroke:var(--cp-border-strong);stroke-width:1}
+.brain-rail svg circle.active {fill:var(--cp-accent);stroke:var(--cp-accent)}
+.brain-rail svg .rail-current {stroke:var(--cp-accent);stroke-width:2;stroke-dasharray:14 74;animation:rail 12s linear infinite}
+.brain-rail p {font-size:17px;color:var(--cp-text-muted)}
+.simulation-note {font-size:13px;line-height:1.65;color:var(--cp-text-muted);margin-top:13px;max-width:580px}
+.overview {padding:100px 5.5vw 90px;margin-top:50px;background:var(--cp-bg-elevated);border-block:1px solid var(--cp-border)}
+.overview-intro {max-width:1270px;margin:auto;display:grid;grid-template-columns:1.1fr .8fr;column-gap:60px;align-items:end}
+.overview-intro .overline {grid-column:1/-1;margin-bottom:24px}
+.overview h2 {font-size:clamp(38px,4.5vw,66px);line-height:1.06;letter-spacing:-.05em;color:var(--cp-heading);font-weight:550}
+.overview-intro>p:last-child {font-size:21px;color:var(--cp-text-muted);max-width:540px}
+.overview-flow {max-width:1270px;margin:60px auto}
+.overview-route {display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--cp-border);padding-top:24px}
+.overview-route>span {font-size:15px;color:var(--cp-text-muted)}
+.overview-route b {font-size:23px;color:var(--cp-heading);font-weight:500;line-height:2.1;white-space:nowrap}
+.overview-route i {font-size:22px;color:var(--cp-accent);font-style:normal}
+.overview-return {display:flex;gap:18px;justify-content:center;align-items:center;text-align:center;margin:25px 0;color:var(--cp-text-muted);font-size:17px}
+.overview-return>span {font-size:28px;color:var(--cp-accent)}
+.overview-brain {display:flex;align-items:center;gap:20px;padding:24px 28px;border:1px solid var(--cp-accent);border-radius:12px;background:var(--cp-accent-soft)}
+.overview-brain strong {font-size:18px;letter-spacing:.025em;color:var(--cp-heading)}
+.overview-brain>span:not(.brain-symbol) {font-size:17px;color:var(--cp-text-muted);padding-left:25px;border-left:1px solid var(--cp-border)}
+.overview-brain a {margin-left:auto;font-size:17px;color:var(--cp-accent);text-decoration:none;min-height:44px;display:flex;align-items:center}
+.principles {max-width:1270px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:38px}
+.principles>div {border-top:1px solid var(--cp-border);padding-top:21px}
+.principles>div>span {font-size:11px;color:var(--cp-accent)}
+.principles h3 {font-weight:550;font-size:22px;margin:15px 0 12px;color:var(--cp-heading);letter-spacing:-.03em}
+.principles p {font-size:18px;color:var(--cp-text-muted);max-width:360px}
+.ending {padding:105px 6vw;text-align:center;position:relative}
+.ending .overline {justify-content:center}
+.ending h2 {font-size:clamp(44px,6.9vw,110px);line-height:1.01;font-weight:550;letter-spacing:-.06em;color:var(--cp-heading);margin-top:27px}
+.ending .primary {margin-top:36px}
+.footer {border-top:1px solid var(--cp-border);padding:25px 5.5vw 125px;display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;color:var(--cp-text-muted);font-size:14px}
+.footer details {width:100%;max-width:950px;font-size:15px}
+.footer details p {margin:10px 0;line-height:1.7}
+.footer a {color:var(--cp-accent)}
+.chapter-nav {position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:30;display:flex;gap:4px;padding:8px;background:var(--cp-bg-elevated);border:1px solid var(--cp-border);border-radius:13px;max-width:calc(100% - 32px);overflow-x:auto;scrollbar-width:thin;box-shadow:0 10px 40px var(--cp-bg)}
+.chapter-nav a {display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;text-decoration:none;min-height:48px;padding:9px 12px;font-size:15px;border-radius:7px;color:var(--cp-text-muted);transition:background .2s}
+.chapter-nav a>span:first-child {font-variant-numeric:tabular-nums;font-size:12px;color:var(--cp-accent)}
+.chapter-nav a:hover {background:var(--cp-surface)}
+.chapter-nav a[aria-current="step"] {background:var(--cp-accent);color:var(--cp-accent-fg)}
+.chapter-nav a[aria-current="step"]>span:first-child {color:var(--cp-accent-fg)}
+.chapter-nav .map-link {border-left:1px solid var(--cp-border);font-size:20px;color:var(--cp-accent)}
+@keyframes orbit-current {to{stroke-dashoffset:-2050}}
+@keyframes core-pulse {50%{transform:scale(1.035);opacity:.5}}
+@keyframes rail {to{stroke-dashoffset:-352}}
+@keyframes scene-enter {from{opacity:.2;transform:translateY(17px) scale(.98)}to{opacity:1;transform:none}}
+html[data-motion="off"] {scroll-behavior:auto!important}
+html[data-motion="off"] *,html[data-motion="off"] *::before,html[data-motion="off"] *::after {animation-play-state:paused!important;scroll-behavior:auto!important;transition:none!important}
+html[data-motion="off"] .scene-enter .flow-art {animation:none!important}
+.scene-offstage * {animation-play-state:paused!important}
+@media(min-width:1700px){.hero{min-height:860px}}
+@media(max-height:780px) and (min-width:901px) {
+  .theater{top:10px;padding-top:15px}
+  .scene{max-width:540px;margin-inline:auto}
+  .scene-caption{margin-top:0;margin-bottom:14px;min-height:36px}
+  .brain-rail{padding-block:9px}
+  .simulation-note{margin-top:12px}
+  .live-line{display:none}
+}
+@media(max-width:1100px){
+  .hero{padding-inline:4vw}
+  h1{font-size:clamp(65px,8.7vw,100px)}
+  .edition{display:none}
+  .journey{column-gap:3vw;padding-inline:4vw}
+  .chapter h2{font-size:38px}
+  .chapter-lead{font-size:21px}
+  .chapter-nav a{padding-inline:9px}
+  .chapter-nav a>span:last-child{font-size:14px}
+  .live-line{display:none}
+}
+@media(max-width:900px){
+  html{scroll-padding-top:25px}
+  .masthead{padding:0 135px 0 24px;height:70px}
+  #motion{top:12px;right:24px}
+  .masthead nav{font-size:12px;gap:18px}
+  .hero{min-height:auto;padding:65px 30px 100px;grid-template-columns:1fr .94fr}
+  h1{font-size:clamp(52px,8.5vw,80px)}
+  .hero-intro{font-size:16px}
+  .hero-universe{margin-left:-12px}
+  .hero .overline{font-size:9px;letter-spacing:.11em}
+  .universe-note{font-size:10px;gap:8px}
+  .opening{padding:85px 30px}
+  .journey{display:block;padding:0 28px;max-width:700px}
+  .theater-column{display:none}
+  .chapter{min-height:0;padding:65px 0 55px;scroll-margin-top:0}
+  .chapter h2{font-size:clamp(34px,6vw,46px);max-width:550px}
+  .chapter-lead{font-size:17px}
+  .inline-scene{display:block;margin:26px -8px 18px}
+  .inline-caption{font-size:12px;color:var(--cp-text-muted);margin:12px 8px 0}
+  .chapter .how{padding-top:18px}
+  .variant-description{min-height:0}
+  .scene .flow-art{animation:none}
+  .tool-signature{margin-top:24px}
+  .overview{padding:70px 28px;margin-top:0}
+  .overview-intro{grid-template-columns:1fr;gap:22px;max-width:640px}
+  .overview-intro .overline{margin-bottom:0}
+  .overview-intro>p:last-child{max-width:600px}
+  .overview-route{flex-wrap:wrap;justify-content:center;gap:18px}
+  .overview-route span{min-width:135px;text-align:center}
+  .overview-route i{display:none}
+  .overview-brain{flex-wrap:wrap}
+  .overview-brain a{margin-left:0}
+  .principles{gap:23px}
+  .principles h3{font-size:18px}
+  .chapter-nav{bottom:12px;max-width:calc(100% - 20px);padding:5px;gap:1px;justify-content:flex-start}
+  .chapter-nav a{min-width:42px;min-height:44px;padding:7px}
+  .chapter-nav a>span:last-child{display:none}
+  .chapter-nav a>span:first-child{font-size:12px}
+  .ending{padding:85px 25px}
+}
+@media(max-width:600px){
+  .masthead{padding:0 20px;gap:12px}
+  #motion{right:20px}
+  .masthead nav{display:none}
+  .wordmark{font-size:13px}
+  .motion-button{min-width:83px}
+  .hero{grid-template-columns:1fr;padding:46px 24px 80px;gap:6px}
+  h1{font-size:clamp(60px,14.7vw,86px);margin-top:24px}
+  .hero-intro{font-size:17px}
+  .hero-universe{margin:10px -8px 0;width:calc(100% + 16px)}
+  .universe-note{font-size:11px;margin-top:-18px}
+  .hero-meta{font-size:10px}
+  .hero-bottom{left:24px;right:24px;bottom:18px;font-size:8px;letter-spacing:.06em;gap:15px}
+  .hero-bottom span:last-child{max-width:140px;text-align:right}
+  .opening{padding:65px 24px}
+  .opening h2{font-size:37px}
+  .opening>p:not(.overline){font-size:15px}
+  .tool-constellation{gap:20px;display:grid;grid-template-columns:1fr 1fr;max-width:380px;margin-inline:auto}
+  .tool-constellation>span{font-size:11px}
+  .tool-constellation .connector{display:none}
+  .journey{padding-inline:24px}
+  .chapter{padding-top:48px}
+  .chapter h2{font-size:38px}
+  .chapter-index{font-size:10px}
+  .chapter-index b{font-size:37px}
+  .chapter-lead{font-size:15px}
+  .tool-signature .tool-detail{font-size:11px}
+  .how li{font-size:14px}
+  .inline-scene{margin-inline:-12px}
+  .overview{padding-inline:24px}
+  .overview h2{font-size:38px}
+  .overview-intro>p:last-child{font-size:15px}
+  .overview-brain{padding:20px;gap:13px}
+  .overview-brain>span:not(.brain-symbol){padding-left:0;border:0}
+  .overview-brain a{width:100%}
+  .principles{grid-template-columns:1fr;gap:28px}
+  .principles h3{font-size:23px;margin:9px 0}
+  .principles p{max-width:none}
+  .ending h2{font-size:53px}
+  .footer{padding-inline:24px;gap:12px}
+  .chapter-nav a{min-width:32px;padding-inline:7px}
+  .chapter-nav a>span:first-child{font-size:10px}
+  .chapter-nav .map-link{font-size:16px;min-width:30px}
+}
+@media(max-width:350px){
+  .hero,.journey,.overview{padding-inline:18px}
+  h1{font-size:53px}
+  .hero .overline{font-size:8px}
+  .chapter h2{font-size:34px}
+  .chapter-nav{gap:0}
+  .chapter-nav a{min-width:29px;padding-inline:5px}
+  .variant-buttons{gap:5px}
+  .variant-buttons button{font-size:11px;padding-inline:10px}
+  .skills dl{grid-template-columns:1fr;gap:6px}
+  .skills dd{margin-bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  html:not([data-motion="on"]){scroll-behavior:auto}
+  html:not([data-motion="on"]) *,html:not([data-motion="on"]) *::before,html:not([data-motion="on"]) *::after{animation:none!important;transition:none!important}
+}
+@media print {
+  .masthead,.chapter-nav,.motion-button,.theater-column,.hero-universe,.primary{display:none}
+  .hero,.journey{display:block;min-height:0}
+  .chapter{min-height:0;break-inside:avoid;padding-block:25px}
+  .inline-scene{display:block;max-width:400px}
+  .hero-bottom{position:static;margin-top:20px}
+  .footer{padding-bottom:25px}
+}
+
+.flow-art {
+  width: 100%;
+  min-width: 0;
+  color: var(--cp-text);
+  font-family: "Segoe UI", Aptos, sans-serif;
+  line-height: 1;
+  isolation: isolate;
+}
+.flow-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.flow-art svg * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.flow-art .art-type {
+  fill: var(--cp-text);
+  font-family: "Segoe UI", Aptos, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+.flow-art .art-eyebrow {
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: 1.2px;
+}
+.flow-art .art-caption {
+  font-size: 20px;
+  opacity: .65;
+}
+.flow-art .art-small-fit { font-size: 20px; letter-spacing: -.45px; }
+.flow-art .art-label { font-size: 22px; font-weight: 650; letter-spacing: .35px; }
+.flow-art .art-display { font-size: 36px; font-weight: 350; letter-spacing: -1.2px; }
+.flow-art .art-display-compact { font-size: 32px; letter-spacing: -1px; }
+.flow-art .art-editorial { font-size: 35px; font-weight: 750; letter-spacing: -1.2px; }
+.flow-art .art-dialogue { font-size: 25px; font-weight: 500; letter-spacing: -.4px; }
+.flow-art .art-folio { font-size: 29px; font-weight: 350; fill: var(--cp-accent); }
+.flow-art .art-question { font-size: 85px; font-weight: 300; fill: var(--cp-accent); }
+.flow-art .art-return-question { font-size: 52px; font-weight: 300; fill: var(--cp-accent); }
+.flow-art .art-editlabel { font-size: 23px; font-style: italic; fill: var(--cp-accent); }
+.flow-art .art-tagtext { font-size: 20px; font-weight: 600; }
+.flow-art .art-shadow { fill: var(--cp-text); opacity: .045; }
+.flow-art .art-paperface,
+.flow-art .art-slideface,
+.flow-art .art-sheeticon,
+.flow-art .art-sitepage,
+.flow-art .art-book {
+  fill: var(--cp-surface);
+  stroke: var(--cp-text);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+.flow-art .art-fold { fill: var(--cp-bg); stroke: var(--cp-text); stroke-width: 1.2px; opacity: .45; }
+.flow-art .art-rule { fill: none; stroke: var(--cp-text); stroke-width: 1px; opacity: .2; }
+.flow-art .art-inkline { fill: none; stroke: var(--cp-text); stroke-width: 2px; opacity: .3; }
+.flow-art .art-binding { fill: none; stroke: var(--cp-accent); stroke-width: 3px; stroke-linecap: round; }
+.flow-art .art-deckback { fill: var(--cp-bg); stroke: var(--cp-text); stroke-width: 1px; }
+.flow-art .art-questionfield { fill: var(--cp-surface); stroke: var(--cp-accent); stroke-width: 2px; }
+.flow-art .art-voicebubble { fill: var(--cp-surface); stroke: var(--cp-text); stroke-width: 1.5px; }
+.flow-art .art-answerbubble { fill: var(--cp-bg); stroke: var(--cp-accent); stroke-width: 1.5px; }
+.flow-art .art-brainface { fill: var(--cp-surface); stroke: var(--cp-accent); stroke-width: 2.5px; }
+.flow-art .art-brainlines { fill: none; stroke: var(--cp-accent); stroke-width: 1.5px; opacity: .6; }
+.flow-art .art-orbit { fill: none; stroke: var(--cp-accent); stroke-width: 1px; stroke-dasharray: 2 7; opacity: .4; }
+.flow-art .art-ring { fill: none; stroke: var(--cp-text); stroke-width: 2px; }
+.flow-art .art-accentwash { fill: var(--cp-accent); opacity: .19; }
+.flow-art .art-accentface,
+.flow-art .art-dot { fill: var(--cp-accent); }
+.flow-art .art-tag { fill: var(--cp-accent); opacity: .18; }
+.flow-art .art-agentfield,
+.flow-art .art-choicefield { fill: var(--cp-surface); stroke: var(--cp-accent); stroke-width: 2px; }
+.flow-art .art-route,
+.flow-art .art-connection,
+.flow-art .art-return {
+  fill: none;
+  stroke: var(--cp-text);
+  stroke-width: 1.4px;
+  opacity: .25;
+}
+.flow-art .art-return { stroke-dasharray: 5 8; }
+.flow-art .art-current {
+  fill: none;
+  stroke: var(--cp-accent);
+  stroke-width: 2.3px;
+  stroke-linecap: round;
+  stroke-dasharray: 5 47;
+  animation: art-flow 8s linear infinite;
+}
+.flow-art .art-arrow {
+  fill: none;
+  stroke: var(--cp-accent);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.flow-art .art-gesture {
+  fill: none;
+  stroke: var(--cp-accent);
+  stroke-width: 1.2px;
+  opacity: .18;
+}
+.flow-art .art-chosen { fill: none; stroke: var(--cp-accent); stroke-width: 3px; }
+.flow-art .art-accentrule,
+.flow-art .art-underline,
+.flow-art .art-editmark { fill: none; stroke: var(--cp-accent); stroke-width: 2px; stroke-linecap: round; }
+.flow-art .art-check { fill: none; stroke: var(--cp-accent); stroke-width: 3px; stroke-linecap: round; stroke-linejoin: round; }
+.flow-art .art-pen { fill: none; stroke: var(--cp-accent); stroke-width: 2px; stroke-linejoin: round; }
+.flow-art .art-cursor { fill: var(--cp-surface); stroke: var(--cp-text); stroke-width: 2px; stroke-linejoin: round; }
+.flow-art .art-wavebar {
+  fill: none;
+  stroke: var(--cp-accent);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  animation: art-voice 3.6s ease-in-out infinite;
+}
+.flow-art .art-wave-reply .art-wavebar { stroke: var(--cp-text); animation-delay: -1.8s; }
+.flow-art .art-beat-1 { animation-delay: -.7s; }
+.flow-art .art-beat-2 { animation-delay: -1.4s; }
+.flow-art .art-beat-3 { animation-delay: -2.1s; }
+.flow-art .art-float { animation: art-float 9s ease-in-out infinite; }
+.flow-art .art-paper { animation: art-arrive .8s cubic-bezier(.2,.7,.2,1) both; }
+.flow-art .art-delay-1 .art-paper { animation-delay: .12s; }
+.flow-art .art-delay-2 .art-paper { animation-delay: .24s; }
+.flow-art .art-delay-3 .art-paper { animation-delay: .36s; }
+.flow-art .art-delay-1 { animation-delay: -1.8s; }
+.flow-art .art-delay-2 { animation-delay: -3.6s; }
+.flow-art .art-delay-3 { animation-delay: -5.4s; }
+.flow-art .art-tilt-back { transform: rotate(-5deg); }
+@keyframes art-flow { to { stroke-dashoffset: -104; } }
+@keyframes art-arrive { from { opacity: .15; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes art-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes art-voice { 0%, 65%, 100% { transform: scaleY(.75); } 30% { transform: scaleY(1); } }
+html[data-motion="off"] .flow-art *,
+.scene-offstage .flow-art *,
+.flow-art.scene-offstage * { animation-play-state: paused !important; }
+html[data-motion="off"] .flow-art .art-paper { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="on"]) .flow-art * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+  <a class="skip" href="#recherche">Aller au parcours</a>
+  <header class="masthead">
+    <a class="wordmark" href="#top" aria-label="My AI Flow, accueil"><span class="brand-orbit" aria-hidden="true">↗</span> MY AI <b>FLOW</b><span class="edition">PAR ENERIC</span></a>
+    <nav aria-label="Navigation principale"><a href="#recherche">Le parcours</a><a href="#ensemble">Les connexions</a></nav>
+    <button class="motion-button" id="motion" aria-pressed="false" aria-label="Mettre les animations en pause"><span id="motion-icon" aria-hidden="true">Ⅱ</span><span id="motion-label">Pause</span></button>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <p class="overline"><span class="status-dot" aria-hidden="true"></span> MA FAÇON DE TRAVAILLER À L’ÈRE DE L’IA</p>
+        <h1 id="hero-title">Une idée.<br>Tout un<br><em>mouvement.</em></h1>
+        <p class="hero-intro">L’IA ne fait pas que produire pour moi.<br>Elle relie ma façon de <strong>chercher, penser,<br class="desktop-break"> créer et apprendre.</strong></p>
+        <a class="primary" href="#recherche">Suivre le fil <span aria-hidden="true">↘</span></a>
+        <p class="hero-meta">Mon parcours personnel. Mes outils réels.<br>Et toujours, mon jugement aux commandes.</p>
+      </div>
+      <div class="hero-universe" aria-label="Une boucle de connexions autour du jugement humain">
+        <svg class="universe" viewBox="0 0 680 620" aria-hidden="true">
+          <g class="universe-rings">
+            <ellipse cx="340" cy="306" rx="249" ry="208" transform="rotate(-23 340 306)"/>
+            <ellipse cx="340" cy="306" rx="223" ry="161" transform="rotate(37 340 306)"/>
+            <ellipse cx="340" cy="306" rx="149" ry="249" transform="rotate(42 340 306)"/>
+            <circle cx="340" cy="306" r="280"/>
+          </g>
+          <path class="universe-track" d="M122 398C4 204 190 6 371 105S714 442 515 508 155 620 122 398Z"/>
+          <path class="universe-current" d="M122 398C4 204 190 6 371 105S714 442 515 508 155 620 122 398Z"/>
+          <g class="universe-thread">
+            <path d="M164 150 340 306 553 246M553 246 360 537 340 306 133 427M340 306 449 99"/>
+            <circle cx="164" cy="150" r="7"/><circle cx="553" cy="246" r="7"/><circle cx="360" cy="537" r="7"/>
+            <circle cx="133" cy="427" r="7"/><circle cx="449" cy="99" r="5"/>
+          </g>
+          <g class="universe-labels">
+            <text x="153" y="126">EXPLORER</text><text x="509" y="223">DIALOGUER</text>
+            <text x="382" y="570">APPRENDRE</text><text x="45" y="405">CRÉER</text>
+            <text x="465" y="84">RELIER</text>
+          </g>
+          <circle class="universe-core-halo" cx="340" cy="306" r="111"/>
+          <circle class="universe-core" cx="340" cy="306" r="94"/>
+          <text class="core-small" x="340" y="270" text-anchor="middle">AU CENTRE</text>
+          <text class="core-big" x="340" y="307" text-anchor="middle">Moi.</text>
+          <text class="core-detail" x="340" y="335" text-anchor="middle">Je choisis. Je décide.</text>
+        </svg>
+        <div class="universe-note"><span aria-hidden="true">∞</span><div><b>Pas une chaîne de production.</b><br>Une pensée qui se nourrit en continu.</div></div>
+      </div>
+      <div class="hero-bottom"><span>01 — 08 / LE CYCLE D’UNE IDÉE</span><span>Descendre pour explorer <b aria-hidden="true">↓</b></span></div>
+    </section>
+
+    <section class="opening" aria-labelledby="opening-title">
+      <p class="overline">CE QUI CHANGE</p>
+      <h2 id="opening-title">Pas plus d’outils.<br><span>Plus de liens entre eux.</span></h2>
+      <p>Une recherche devient une conversation. Une conversation devient une idée. Cette idée retrouve mes lectures passées, prend forme, rencontre un public. Et revient enrichie.</p>
+      <div class="tool-constellation" aria-label="Les outils de mon parcours">
+        <span><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ29waWxvdF9JY29ucyIgZGF0YS1uYW1lPSJDb3BpbG90IEljb25zIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogdXJsKCNsaW5lYXItZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMyB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQpOwogICAgICB9CgogICAgICAuY2xzLTQgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0icmFkaWFsLWdyYWRpZW50IiBjeD0iOTg3LjIxIiBjeT0iMTIxNi4wMiIgZng9Ijk4Ny4yMSIgZnk9IjEyMTYuMDIiIHI9IjIiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQwMjcxMC42NTA5IC00MDUzNDguNDk0OSkgcm90YXRlKDExNi43MTk0KSBzY2FsZSgyMzIuMjY0NCAtNDQ1Ljg4OTgpIHNrZXdYKC05LjcyNDUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMTA5ZGYyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjcyIiBzdG9wLWNvbG9yPSIjYWFkNDQ1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk3IiBzdG9wLWNvbG9yPSIjZmZkNDAwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIxNzUuODciIHkxPSI0OTguMjkiIHgyPSIxNzMuODYiIHkyPSIxMzcuNjkiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCA1MTQpIHNjYWxlKDEgLTEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzNkY2JmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4yNSIgc3RvcC1jb2xvcj0iIzA1ODhmNyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyYWRpYWwtZ3JhZGllbnQtMiIgY3g9Ijk4Ny4xNyIgY3k9IjEyMTUuODQiIGZ4PSI5ODcuMTciIGZ5PSIxMjE1Ljg0IiByPSIyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMTQ5NzQuMzQ3OSAtMzczOTA0LjY4MTEpIHJvdGF0ZSgxMTYuMDQ2Nikgc2NhbGUoMjQyLjAzNDggLTI5NC4yNzM1KSBza2V3WCguNDg1MykiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDciIHN0b3AtY29sb3I9IiM4YzQ4ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iI2YyNTk4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZmZiMTUyIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtMiIgeDE9IjMzNy41NSIgeTE9IjQwMC40OCIgeDI9IjMzNy4zNSIgeTI9IjMwMi4yNyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgwIDUxNCkgc2NhbGUoMSAtMSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDYiIHN0b3AtY29sb3I9IiNmOGFkZmEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNzEiIHN0b3AtY29sb3I9IiNhODZlZGQiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy00IiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY0LjcsMzk2LjgzbDUuMTYtMjAuNjNoNDkuNjJjMzYuNzcsMCw2OC44Mi0yNS4wMyw3Ny43NC02MC43bDQ0LjkyLTE3OS43aDg5LjY5YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdsLTQ1LjAyLDE4MC4xYy0xMS44OSw0Ny41Ni01NC42Myw4MC45My0xMDMuNjYsODAuOTNoLTExOC40NWMtNTIuMTMsMC05MC4zOC00OC45OS03Ny43NC05OS41N1oiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNjQuNywzOTYuODNsNS4xNi0yMC42M2g0OS42MmMzNi43NywwLDY4LjgyLTI1LjAzLDc3Ljc0LTYwLjdsNDQuOTItMTc5LjdoODkuNjljNTIuMTMsMCw5MC4zOCw0OC45OSw3Ny43NCw5OS41N2wtNDUuMDIsMTgwLjFjLTExLjg5LDQ3LjU2LTU0LjYzLDgwLjkzLTEwMy42Niw4MC45M2gtMTE4LjQ1Yy01Mi4xMywwLTkwLjM4LTQ4Ljk5LTc3Ljc0LTk5LjU3WiIvPgo8L3N2Zz4=" alt="" width="28" height="28"> Copilot</span>
+        <span class="connector" aria-hidden="true">↔</span>
+        <span><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTI4Ljc0IDRIMTAuMjZBMS4yNiAxLjI2IDAgMCAwIDkgNS4yNnYyMS40OEExLjI2IDEuMjYgMCAwIDAgMTAuMjYgMjhoMTcuMzcyQTIuMzY4IDIuMzY4IDAgMCAwIDMwIDI1LjYzMlY1LjI2QTEuMjYgMS4yNiAwIDAgMCAyOC43NCA0eiIgZmlsbD0iI2NhNjRlYSIvPjxwYXRoIGZpbGw9IiNhZTRiZDUiIGQ9Ik0yNCAxMGg2djZoLTZ6Ii8+PHBhdGggZmlsbD0iIzkzMzJiZiIgZD0iTTI0IDE2aDZ2NmgtNnoiLz48cGF0aCBkPSJNMjQgMjJ2Nmg0Ljc0QTEuMjYgMS4yNiAwIDAgMCAzMCAyNi43NFYyMnoiIGZpbGw9IiM3NzE5YWEiLz48cGF0aCBkPSJNMTYgMTBIOXYxNGg2LjgzNEExLjE3IDEuMTcgMCAwIDAgMTcgMjIuODMzVjExYTEgMSAwIDAgMC0xLTF6IiBvcGFjaXR5PSIuNzUiLz48cmVjdCB4PSIyIiB5PSI5IiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHJ4PSIxLjI2IiBmaWxsPSIjNzcxOWFhIi8+PHBhdGggZD0iTTUuMTQ0IDEySDYuODlsNC4xNTMgNS4zMDVjLjE1Ni4yMzkuMjc0LjQzLjM1Mi41NzVoLjAyMmE3LjcwOCA3LjcwOCAwIDAgMS0uMDUtMS4wODhWMTJoMS40ODl2OGgtMS42MzRMNi45NCAxNC41NWE0LjIgNC4yIDAgMCAxLS4zMTgtLjU2NGgtLjAyOGExMS4wODEgMTEuMDgxIDAgMCAxIC4wNDUgMS4xOTRWMjBINS4xNDR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="" width="28" height="28"> OneNote</span>
+        <span class="connector" aria-hidden="true">↔</span>
+        <span><i class="scout-symbol" aria-hidden="true">↗</i> Scout / Autopilot</span>
+        <span class="connector" aria-hidden="true">↔</span>
+        <span><i class="brain-symbol" aria-hidden="true">✳</i> Mon Brain</span>
+      </div>
+    </section>
+
+    <div class="journey" id="parcours">
+      <div class="chapters">
+        <section class="chapter" id="recherche" aria-labelledby="title-recherche" data-index="0">
+    <p class="chapter-index"><b>01</b><span>RESEARCH / RECHERCHER</span></p>
+    <h2 id="title-recherche">Je pars des sources, pas des certitudes</h2>
+    <p class="chapter-lead">Je confie une question ouverte à Researcher, puis je remonte aux sources avant de former mon point de vue.</p>
+    <div class="tool-signature"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ29waWxvdF9JY29ucyIgZGF0YS1uYW1lPSJDb3BpbG90IEljb25zIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogdXJsKCNsaW5lYXItZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMyB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQpOwogICAgICB9CgogICAgICAuY2xzLTQgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0icmFkaWFsLWdyYWRpZW50IiBjeD0iOTg3LjIxIiBjeT0iMTIxNi4wMiIgZng9Ijk4Ny4yMSIgZnk9IjEyMTYuMDIiIHI9IjIiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQwMjcxMC42NTA5IC00MDUzNDguNDk0OSkgcm90YXRlKDExNi43MTk0KSBzY2FsZSgyMzIuMjY0NCAtNDQ1Ljg4OTgpIHNrZXdYKC05LjcyNDUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMTA5ZGYyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjcyIiBzdG9wLWNvbG9yPSIjYWFkNDQ1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk3IiBzdG9wLWNvbG9yPSIjZmZkNDAwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIxNzUuODciIHkxPSI0OTguMjkiIHgyPSIxNzMuODYiIHkyPSIxMzcuNjkiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCA1MTQpIHNjYWxlKDEgLTEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzNkY2JmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4yNSIgc3RvcC1jb2xvcj0iIzA1ODhmNyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyYWRpYWwtZ3JhZGllbnQtMiIgY3g9Ijk4Ny4xNyIgY3k9IjEyMTUuODQiIGZ4PSI5ODcuMTciIGZ5PSIxMjE1Ljg0IiByPSIyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMTQ5NzQuMzQ3OSAtMzczOTA0LjY4MTEpIHJvdGF0ZSgxMTYuMDQ2Nikgc2NhbGUoMjQyLjAzNDggLTI5NC4yNzM1KSBza2V3WCguNDg1MykiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDciIHN0b3AtY29sb3I9IiM4YzQ4ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iI2YyNTk4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZmZiMTUyIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtMiIgeDE9IjMzNy41NSIgeTE9IjQwMC40OCIgeDI9IjMzNy4zNSIgeTI9IjMwMi4yNyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgwIDUxNCkgc2NhbGUoMSAtMSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDYiIHN0b3AtY29sb3I9IiNmOGFkZmEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNzEiIHN0b3AtY29sb3I9IiNhODZlZGQiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy00IiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY0LjcsMzk2LjgzbDUuMTYtMjAuNjNoNDkuNjJjMzYuNzcsMCw2OC44Mi0yNS4wMyw3Ny43NC02MC43bDQ0LjkyLTE3OS43aDg5LjY5YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdsLTQ1LjAyLDE4MC4xYy0xMS44OSw0Ny41Ni01NC42Myw4MC45My0xMDMuNjYsODAuOTNoLTExOC40NWMtNTIuMTMsMC05MC4zOC00OC45OS03Ny43NC05OS41N1oiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNjQuNywzOTYuODNsNS4xNi0yMC42M2g0OS42MmMzNi43NywwLDY4LjgyLTI1LjAzLDc3Ljc0LTYwLjdsNDQuOTItMTc5LjdoODkuNjljNTIuMTMsMCw5MC4zOCw0OC45OSw3Ny43NCw5OS41N2wtNDUuMDIsMTgwLjFjLTExLjg5LDQ3LjU2LTU0LjYzLDgwLjkzLTEwMy42Niw4MC45M2gtMTE4LjQ1Yy01Mi4xMywwLTkwLjM4LTQ4Ljk5LTc3Ljc0LTk5LjU3WiIvPgo8L3N2Zz4=" alt="Microsoft Copilot" width="34" height="34"><div><p class="tool-heading">Agent Researcher dans Copilot</p><p class="tool-detail">Il trouve des sources et peut produire une première synthèse que je vérifie.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">J’obtiens un corpus sourcé et une première carte du sujet.<br>Recherche → Brain : je prépare les éléments que je choisirai de conserver.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je formule la question et demande à Researcher de trouver des sources pertinentes.</li><li>Je rassemble la matière dans un bloc-notes Copilot intégré à OneNote pour poursuivre l’exploration.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je décide quelles sources sont solides, utiles et dignes d’être poursuivies.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Cherche des sources variées sur le travail avec l’IA et distingue faits, analyses et questions ouvertes. »</p></details>
+    
+    <a class="chapter-next" href="#explorer">La suite : explorer <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="explorer" aria-labelledby="title-explorer" data-index="1">
+    <p class="chapter-index"><b>02</b><span>LISTEN / EXPLORER</span></p>
+    <h2 id="title-explorer">Je change de forme pour mieux comprendre</h2>
+    <p class="chapter-lead">Dans mon bloc-notes, j’écoute, je visualise ou je cartographie les sources pour découvrir ce qui mérite une question.</p>
+    <div class="tool-signature"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTI4Ljc0IDRIMTAuMjZBMS4yNiAxLjI2IDAgMCAwIDkgNS4yNnYyMS40OEExLjI2IDEuMjYgMCAwIDAgMTAuMjYgMjhoMTcuMzcyQTIuMzY4IDIuMzY4IDAgMCAwIDMwIDI1LjYzMlY1LjI2QTEuMjYgMS4yNiAwIDAgMCAyOC43NCA0eiIgZmlsbD0iI2NhNjRlYSIvPjxwYXRoIGZpbGw9IiNhZTRiZDUiIGQ9Ik0yNCAxMGg2djZoLTZ6Ii8+PHBhdGggZmlsbD0iIzkzMzJiZiIgZD0iTTI0IDE2aDZ2NmgtNnoiLz48cGF0aCBkPSJNMjQgMjJ2Nmg0Ljc0QTEuMjYgMS4yNiAwIDAgMCAzMCAyNi43NFYyMnoiIGZpbGw9IiM3NzE5YWEiLz48cGF0aCBkPSJNMTYgMTBIOXYxNGg2LjgzNEExLjE3IDEuMTcgMCAwIDAgMTcgMjIuODMzVjExYTEgMSAwIDAgMC0xLTF6IiBvcGFjaXR5PSIuNzUiLz48cmVjdCB4PSIyIiB5PSI5IiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHJ4PSIxLjI2IiBmaWxsPSIjNzcxOWFhIi8+PHBhdGggZD0iTTUuMTQ0IDEySDYuODlsNC4xNTMgNS4zMDVjLjE1Ni4yMzkuMjc0LjQzLjM1Mi41NzVoLjAyMmE3LjcwOCA3LjcwOCAwIDAgMS0uMDUtMS4wODhWMTJoMS40ODl2OGgtMS42MzRMNi45NCAxNC41NWE0LjIgNC4yIDAgMCAxLS4zMTgtLjU2NGgtLjAyOGExMS4wODEgMTEuMDgxIDAgMCAxIC4wNDUgMS4xOTRWMjBINS4xNDR6IiBmaWxsPSIjZmZmIi8+PC9zdmc+" alt="Microsoft OneNote" width="34" height="34"><div><p class="tool-heading">Bloc-notes Copilot intégré à OneNote</p><p class="tool-detail">Il transforme les sources en podcast, infographie ou mind map, selon mon besoin.</p></div></div>
+    <div class="variant-buttons" role="group" aria-label="Choisir une façon d’explorer"><button type="button" data-index="1" data-variant="podcast" aria-pressed="true">Podcast</button><button type="button" data-index="1" data-variant="infographie" aria-pressed="false">Infographie</button><button type="button" data-index="1" data-variant="mindmap" aria-pressed="false">Mind map</button><button type="button" data-index="1" data-variant="chat" aria-pressed="false">Chat</button></div><p class="variant-description"></p>
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">Je vois les liens, les tensions et les zones encore floues.<br>Exploration → Brain : je peux transmettre les synthèses à Scout.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je rassemble mes sources dans le bloc-notes Copilot intégré à OneNote.</li><li>Je choisis un podcast, une infographie ou une mind map, puis j’interroge le contenu par chat.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je choisis la forme qui m’aide vraiment et les questions qui valent d’être creusées.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« À partir de ces sources, propose une mind map des idées, désaccords et questions à approfondir. »</p></details>
+    
+    <a class="chapter-next" href="#voix">La suite : penser à voix haute <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="voix" aria-labelledby="title-voix" data-index="2">
+    <p class="chapter-index"><b>03</b><span>THINK ALOUD / PENSER À VOIX HAUTE</span></p>
+    <h2 id="title-voix">Je dialogue pour entendre ma pensée</h2>
+    <p class="chapter-lead">La voix transforme mes intuitions en conversation : Copilot répond, relance, puis m’aide à dégager un fil.</p>
+    <div class="tool-signature"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ29waWxvdF9JY29ucyIgZGF0YS1uYW1lPSJDb3BpbG90IEljb25zIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogdXJsKCNsaW5lYXItZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMyB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQpOwogICAgICB9CgogICAgICAuY2xzLTQgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0icmFkaWFsLWdyYWRpZW50IiBjeD0iOTg3LjIxIiBjeT0iMTIxNi4wMiIgZng9Ijk4Ny4yMSIgZnk9IjEyMTYuMDIiIHI9IjIiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQwMjcxMC42NTA5IC00MDUzNDguNDk0OSkgcm90YXRlKDExNi43MTk0KSBzY2FsZSgyMzIuMjY0NCAtNDQ1Ljg4OTgpIHNrZXdYKC05LjcyNDUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMTA5ZGYyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjcyIiBzdG9wLWNvbG9yPSIjYWFkNDQ1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk3IiBzdG9wLWNvbG9yPSIjZmZkNDAwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIxNzUuODciIHkxPSI0OTguMjkiIHgyPSIxNzMuODYiIHkyPSIxMzcuNjkiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCA1MTQpIHNjYWxlKDEgLTEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzNkY2JmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4yNSIgc3RvcC1jb2xvcj0iIzA1ODhmNyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyYWRpYWwtZ3JhZGllbnQtMiIgY3g9Ijk4Ny4xNyIgY3k9IjEyMTUuODQiIGZ4PSI5ODcuMTciIGZ5PSIxMjE1Ljg0IiByPSIyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMTQ5NzQuMzQ3OSAtMzczOTA0LjY4MTEpIHJvdGF0ZSgxMTYuMDQ2Nikgc2NhbGUoMjQyLjAzNDggLTI5NC4yNzM1KSBza2V3WCguNDg1MykiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDciIHN0b3AtY29sb3I9IiM4YzQ4ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iI2YyNTk4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZmZiMTUyIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtMiIgeDE9IjMzNy41NSIgeTE9IjQwMC40OCIgeDI9IjMzNy4zNSIgeTI9IjMwMi4yNyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgwIDUxNCkgc2NhbGUoMSAtMSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDYiIHN0b3AtY29sb3I9IiNmOGFkZmEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNzEiIHN0b3AtY29sb3I9IiNhODZlZGQiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy00IiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY0LjcsMzk2LjgzbDUuMTYtMjAuNjNoNDkuNjJjMzYuNzcsMCw2OC44Mi0yNS4wMyw3Ny43NC02MC43bDQ0LjkyLTE3OS43aDg5LjY5YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdsLTQ1LjAyLDE4MC4xYy0xMS44OSw0Ny41Ni01NC42Myw4MC45My0xMDMuNjYsODAuOTNoLTExOC40NWMtNTIuMTMsMC05MC4zOC00OC45OS03Ny43NC05OS41N1oiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNjQuNywzOTYuODNsNS4xNi0yMC42M2g0OS42MmMzNi43NywwLDY4LjgyLTI1LjAzLDc3Ljc0LTYwLjdsNDQuOTItMTc5LjdoODkuNjljNTIuMTMsMCw5MC4zOCw0OC45OSw3Ny43NCw5OS41N2wtNDUuMDIsMTgwLjFjLTExLjg5LDQ3LjU2LTU0LjYzLDgwLjkzLTEwMy42Niw4MC45M2gtMTE4LjQ1Yy01Mi4xMywwLTkwLjM4LTQ4Ljk5LTc3Ljc0LTk5LjU3WiIvPgo8L3N2Zz4=" alt="Microsoft Copilot" width="34" height="34"><div><p class="tool-heading">Chat vocal dans Copilot</p><p class="tool-detail">Un véritable dialogue oral, suivi à ma demande d’une synthèse de la conversation.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">J’obtiens une pensée plus articulée et une synthèse que je peux reprendre.<br>Voix → Brain : je choisis la synthèse à transmettre.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je parle avec Copilot, j’expose mes hésitations et je réponds à ses relances.</li><li>Je lui demande ensuite de synthétiser notre conversation sans effacer mes doutes.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je garde les nuances qui comptent et j’écarte les formulations qui trahissent mon intention.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Dialogue avec moi sur cette idée, relance mes zones floues, puis synthétise nos accords, doutes et prochaines questions. »</p></details>
+    
+    <a class="chapter-next" href="#memoire">La suite : se souvenir <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="memoire" aria-labelledby="title-memoire" data-index="3">
+    <p class="chapter-index"><b>04</b><span>REMEMBER / SE SOUVENIR</span></p>
+    <h2 id="title-memoire">Je construis une mémoire qui me ressemble</h2>
+    <p class="chapter-lead">Je transmets mes textes et réflexions à Scout : mon Brain personnalisé les relie à ce qui comptait déjà.</p>
+    <div class="tool-signature"><i class="scout-symbol" aria-hidden="true">↗</i><div><p class="tool-heading">Scout / Autopilot et Brain personnalisé</p><p class="tool-detail">Mes skills vault-tag, vault-weave et vault-promote classent, confrontent et enrichissent mon graphe.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">Je retrouve une mémoire reliée de mes idées, lectures et écrits.<br>Scout → Brain : mes contenus rejoignent une mémoire reliée.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>J’envoie à Scout mes articles, synthèses, réflexions et lectures importantes.</li><li>Ses skills identifient les thèmes, confrontent les angles à mes écrits et lectures, puis cartographient les relations.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Les liens proposés m’aident à réfléchir. Leur valeur intellectuelle reste à mon appréciation.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Classe cette réflexion, compare-la à mes notes existantes et propose seulement les liens qui méritent mon examen. »</p></details>
+    <details class="skills"><summary>Sous le capot : mes skills personnalisées</summary><p>Une configuration personnelle orchestrée par Scout / Autopilot, pas une fonction standard de Copilot.</p><dl><dt>vault-tag</dt><dd>Repérer thèmes, concepts et nature du contenu.</dd><dt>vault-weave</dt><dd>Confronter aux écrits et lectures : confirmation, contradiction, nouvel angle ou redondance.</dd><dt>vault-promote</dt><dd>Enrichir les notes et régénérer la cartographie.</dd><dt>brain</dt><dd>Retrouver et remobiliser cette matière pour une réflexion ou une création.</dd></dl><p>Un rapprochement suggéré n’est pas une vérité ni une conviction que j’ai adoptée.</p></details>
+    <a class="chapter-next" href="#challenger">La suite : challenger <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="challenger" aria-labelledby="title-challenger" data-index="4">
+    <p class="chapter-index"><b>05</b><span>CHALLENGE / CHALLENGER</span></p>
+    <h2 id="title-challenger">Je cherche l’angle qui résiste</h2>
+    <p class="chapter-lead">Scout mobilise mon Brain pour confronter une idée à mes écrits et lectures, puis ouvrir plusieurs chemins.</p>
+    <div class="tool-signature"><i class="scout-symbol" aria-hidden="true">↗</i><div><p class="tool-heading">Scout et Brain personnalisé</p><p class="tool-detail">Le Brain retrouve mes contenus; Scout explore confirmations, contradictions, redondances et angles nouveaux.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">Je repars avec des angles distincts, reliés à mon parcours plutôt qu’à une réponse générique.<br>Brain → Challenge : il rappelle, relie et met mes idées en tension.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je demande à Scout d’explorer plusieurs angles à partir de ce que mon Brain retrouve.</li><li>Je compare les pistes, leurs tensions et leur valeur pour mon sujet du moment.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je choisis l’angle à défendre; le graphe éclaire mon jugement sans décider pour moi.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Confronte cette idée à mes écrits et lectures : cherche contradiction, confirmation, redondance et angle réellement nouveau. »</p></details>
+    
+    <a class="chapter-next" href="#creer">La suite : créer <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="creer" aria-labelledby="title-creer" data-index="5">
+    <p class="chapter-index"><b>06</b><span>CREATE / CRÉER</span></p>
+    <h2 id="title-creer">Je donne une forme à l’idée</h2>
+    <p class="chapter-lead">Je transforme l’angle choisi en support, puis je bifurque vers l’écriture ou une expérience selon le public.</p>
+    <div class="tool-signature"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ29waWxvdF9JY29ucyIgZGF0YS1uYW1lPSJDb3BpbG90IEljb25zIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMiB7CiAgICAgICAgZmlsbDogdXJsKCNsaW5lYXItZ3JhZGllbnQtMik7CiAgICAgIH0KCiAgICAgIC5jbHMtMyB7CiAgICAgICAgZmlsbDogdXJsKCNyYWRpYWwtZ3JhZGllbnQpOwogICAgICB9CgogICAgICAuY2xzLTQgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0icmFkaWFsLWdyYWRpZW50IiBjeD0iOTg3LjIxIiBjeT0iMTIxNi4wMiIgZng9Ijk4Ny4yMSIgZnk9IjEyMTYuMDIiIHI9IjIiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQwMjcxMC42NTA5IC00MDUzNDguNDk0OSkgcm90YXRlKDExNi43MTk0KSBzY2FsZSgyMzIuMjY0NCAtNDQ1Ljg4OTgpIHNrZXdYKC05LjcyNDUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMTA5ZGYyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjcyIiBzdG9wLWNvbG9yPSIjYWFkNDQ1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iLjk3IiBzdG9wLWNvbG9yPSIjZmZkNDAwIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIxNzUuODciIHkxPSI0OTguMjkiIHgyPSIxNzMuODYiIHkyPSIxMzcuNjkiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCA1MTQpIHNjYWxlKDEgLTEpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzNkY2JmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii4yNSIgc3RvcC1jb2xvcj0iIzA1ODhmNyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJyYWRpYWwtZ3JhZGllbnQtMiIgY3g9Ijk4Ny4xNyIgY3k9IjEyMTUuODQiIGZ4PSI5ODcuMTciIGZ5PSIxMjE1Ljg0IiByPSIyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMTQ5NzQuMzQ3OSAtMzczOTA0LjY4MTEpIHJvdGF0ZSgxMTYuMDQ2Nikgc2NhbGUoMjQyLjAzNDggLTI5NC4yNzM1KSBza2V3WCguNDg1MykiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDciIHN0b3AtY29sb3I9IiM4YzQ4ZmYiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNSIgc3RvcC1jb2xvcj0iI2YyNTk4YSIvPgogICAgICA8c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZmZiMTUyIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtMiIgeDE9IjMzNy41NSIgeTE9IjQwMC40OCIgeDI9IjMzNy4zNSIgeTI9IjMwMi4yNyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgwIDUxNCkgc2NhbGUoMSAtMSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMDYiIHN0b3AtY29sb3I9IiNmOGFkZmEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNzEiIHN0b3AtY29sb3I9IiNhODZlZGQiIHN0b3Atb3BhY2l0eT0iMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy00IiBkPSJNMzQ3LjMsMTE1LjE3bC01LjE2LDIwLjYzaC00OS42MmMtMzYuNzcsMC02OC44MiwyNS4wMy03Ny43NCw2MC43bC00NC45MiwxNzkuN2gtODkuNjljLTUyLjEzLDAtOTAuMzgtNDguOTktNzcuNzQtOTkuNTdMNDcuNDYsOTYuNTNDNTkuMzUsNDguOTcsMTAyLjA4LDE1LjYsMTUxLjExLDE1LjZoMTE4LjQ1YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTY0LjcsMzk2LjgzbDUuMTYtMjAuNjNoNDkuNjJjMzYuNzcsMCw2OC44Mi0yNS4wMyw3Ny43NC02MC43bDQ0LjkyLTE3OS43aDg5LjY5YzUyLjEzLDAsOTAuMzgsNDguOTksNzcuNzQsOTkuNTdsLTQ1LjAyLDE4MC4xYy0xMS44OSw0Ny41Ni01NC42Myw4MC45My0xMDMuNjYsODAuOTNoLTExOC40NWMtNTIuMTMsMC05MC4zOC00OC45OS03Ny43NC05OS41N1oiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xNjQuNywzOTYuODNsNS4xNi0yMC42M2g0OS42MmMzNi43NywwLDY4LjgyLTI1LjAzLDc3Ljc0LTYwLjdsNDQuOTItMTc5LjdoODkuNjljNTIuMTMsMCw5MC4zOCw0OC45OSw3Ny43NCw5OS41N2wtNDUuMDIsMTgwLjFjLTExLjg5LDQ3LjU2LTU0LjYzLDgwLjkzLTEwMy42Niw4MC45M2gtMTE4LjQ1Yy01Mi4xMywwLTkwLjM4LTQ4Ljk5LTc3Ljc0LTk5LjU3WiIvPgo8L3N2Zz4=" alt="Microsoft Copilot" width="34" height="34"><div><p class="tool-heading">Cowork dans Copilot, puis Scout</p><p class="tool-detail">Cowork prépare un PowerPoint ou une synthèse; je coécris l’article ou confie l’expérience web à Scout.</p></div></div>
+    <div class="variant-buttons" role="group" aria-label="Choisir une forme de création"><button type="button" data-index="5" data-variant="ppt" aria-pressed="true">PowerPoint</button><button type="button" data-index="5" data-variant="article" aria-pressed="false">Article</button><button type="button" data-index="5" data-variant="site" aria-pressed="false">Expérience web</button></div><p class="variant-description"></p>
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">J’obtiens une forme éditoriale adaptée : présentation, synthèse, article, site ou expérience.<br>Brain → Création : il fournit le contexte utile, pas la voix finale.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je demande à Cowork de produire un PowerPoint ou un document de synthèse à partir de l’angle retenu.</li><li>Je reprends la main pour coécrire un article, ou je retourne dans Scout pour créer un site ou une expérience.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je reste auteur de la structure, du ton, des choix éditoriaux et de la version finale.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Prépare une présentation claire sur mon processus de travail avec l’IA, avec un fil narratif accessible et huit étapes. »</p></details>
+    
+    <a class="chapter-next" href="#partager">La suite : partager <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="partager" aria-labelledby="title-partager" data-index="6">
+    <p class="chapter-index"><b>07</b><span>SHARE / PARTAGER</span></p>
+    <h2 id="title-partager">Je partage une forme faite pour eux</h2>
+    <p class="chapter-lead">Je publie mes productions ou les utilise en clientèle. L’idée quitte mon écran et rencontre d’autres regards.</p>
+    <div class="tool-signature"><i class="brain-symbol" aria-hidden="true">↗</i><div><p class="tool-heading">Les formats que je partage</p><p class="tool-detail">Infographies, PowerPoint, articles et sites web.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">Mon travail devient un objet concret que d’autres peuvent comprendre, discuter et utiliser.<br>Brain → Partage : je sélectionne ce qui éclaire vraiment.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je publie ou utilise en clientèle une infographie, un PowerPoint, un article ou un site web.</li><li>J’adapte la forme et le niveau de détail à leur contexte et à la conversation.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je décide quoi partager, sous quelle forme, avec qui et à quel moment.</p>
+    
+    
+    <a class="chapter-next" href="#apprendre">La suite : apprendre <span aria-hidden="true">↘</span></a>
+  </section>
+<section class="chapter" id="apprendre" aria-labelledby="title-apprendre" data-index="7">
+    <p class="chapter-index"><b>08</b><span>LEARN / APPRENDRE</span></p>
+    <h2 id="title-apprendre">Je referme la boucle, autrement</h2>
+    <p class="chapter-lead">Les réactions, nouveaux articles et idées issues du terrain reviennent dans Scout pour nourrir le prochain cycle.</p>
+    <div class="tool-signature"><i class="scout-symbol" aria-hidden="true">↗</i><div><p class="tool-heading">Scout</p><p class="tool-detail">Je lui transmets les apprentissages choisis pour les confronter et enrichir mon Brain personnalisé.</p></div></div>
+    
+    <div class="inline-scene"><div class="inline-art" aria-hidden="true"></div><p class="inline-caption">Mon prochain travail commence avec davantage de contexte, de continuité et de questions.<br>Retours → Brain → Recherche : la mémoire nourrit une nouvelle boucle.</p></div>
+    <ol class="how" aria-label="Comment je procède"><li>Je recueille les enseignements, réactions et nouveaux articles qui méritent de rester.</li><li>Je les transmets à Scout pour nourrir mon Brain et mes prochaines réflexions.</li></ol>
+    <p class="human-choice"><b>CE QUE JE GARDE EN MAIN</b>Je choisis ce qui devient un apprentissage durable et ce qui doit rester circonstanciel.</p>
+    <details class="prompt"><summary>Un exemple de consigne</summary><p>« Relie ces retours à mon Brain, signale les contradictions et propose les apprentissages à valider avant le prochain cycle. »</p></details>
+    
+    <a class="chapter-next" href="#ensemble">Dézoomer : voir toutes les connexions <span aria-hidden="true">↘</span></a>
+  </section>
+      </div>
+      <aside class="theater-column" aria-label="Illustration de l’étape en cours">
+        <div class="theater" id="theater">
+          <div class="theater-top"><span id="scene-label">01 / RESEARCH</span><span class="live-line"><i aria-hidden="true"></i> L’IDÉE SE TRANSFORME</span></div>
+          <div class="scene" id="scene" aria-hidden="true"></div>
+          <p class="scene-caption" id="scene-caption"></p>
+          <div class="brain-rail">
+            <div class="brain-heading"><span class="brain-symbol" aria-hidden="true">✳</span><b>BRAIN / MÉMOIRE PERSISTANTE</b></div>
+            <svg viewBox="0 0 520 46" aria-hidden="true"><path d="M8 23H512"/><path class="rail-current" d="M8 23H512"/><circle cx="10" cy="23" r="4"/><circle cx="80" cy="23" r="4"/><circle cx="150" cy="23" r="4"/><circle cx="220" cy="23" r="4"/><circle cx="290" cy="23" r="4"/><circle cx="360" cy="23" r="4"/><circle cx="430" cy="23" r="4"/><circle cx="510" cy="23" r="4"/></svg>
+            <p id="brain-caption"></p>
+          </div>
+          <p class="simulation-note">Illustration du processus, pas une capture des applications. Les échanges montrés sont des exemples.</p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="overview" id="ensemble" aria-labelledby="overview-title">
+      <div class="overview-intro"><p class="overline">LE DÉZOOM</p><h2 id="overview-title">Le vrai changement,<br>c’est la <em>continuité.</em></h2><p>Mon Brain conserve mes recherches, mes réflexions et les retours du terrain. Je m’y appuie ensuite pour explorer de nouveaux angles et préparer mes prochaines créations.</p></div>
+      <div class="overview-flow">
+        <div class="overview-route"><span>Researcher<br><b>Je trouve</b></span><i aria-hidden="true">→</i><span>Bloc-notes · Voix<br><b>Je comprends</b></span><i aria-hidden="true">→</i><span>Scout + Brain<br><b>Je confronte</b></span><i aria-hidden="true">→</i><span>Cowork · Moi · Scout<br><b>Je crée</b></span><i aria-hidden="true">→</i><span>Publication · Clientèle<br><b>J’apprends</b></span></div>
+        <div class="overview-return"><span aria-hidden="true">↳</span> Les réactions, les insights et les nouvelles lectures reviennent à Scout <span aria-hidden="true">↴</span></div>
+        <div class="overview-brain"><span class="brain-symbol" aria-hidden="true">✳</span><strong>MON BRAIN</strong><span>Ce que j’ai appris.<br>Et ce que j’ai pensé.</span><a href="#memoire">Explorer cette mémoire ↗</a></div>
+      </div>
+      <div class="principles"><div><span>01</span><h3>Les sources d’abord.</h3><p>L’IA m’aide à naviguer dans la connaissance. Elle ne remplace pas les sources.</p></div><div><span>02</span><h3>La mémoire fait le lien.</h3><p>Mes réflexions ne disparaissent pas avec la conversation. Je ne repars pas de zéro.</p></div><div><span>03</span><h3>Le choix reste humain.</h3><p>Je décide ce qui compte, ce que je crois et ce que je veux mettre dans le monde.</p></div></div>
+    </section>
+    <section class="ending">
+      <p class="overline">ET ÇA RECOMMENCE.</p>
+      <h2>De l’information<br>à la pensée.<br>De la pensée<br><em>au monde.</em></h2>
+      <a class="primary" href="#recherche">Reprendre la boucle <span aria-hidden="true">↻</span></a>
+    </section>
+  </main>
+  <footer class="footer"><a href="https://nricl.github.io/MyPage/">← Retour à IA Bloomer</a><span>MY AI FLOW · ENERIC · 2026</span><span>Un parcours personnel, pas une recette universelle.</span><details><summary>À propos de cette expérience</summary><p>Illustrations originales du processus décrit par Eneric. Les exemples de consignes ne sont pas des extraits de conversations réelles. Le Brain et ses skills constituent une configuration personnelle, pas une fonction standard de Copilot. Scout et Autopilot désignent ici le même agent.</p><p>Logos Copilot et OneNote : ressources officielles Microsoft, utilisés pour identifier les outils. Researcher et Cowork sont identifiés comme agents dans Copilot ; aucun logo spécifique n’est inventé. Palette issue de <a href="https://nricl.github.io/MyPage/" target="_blank" rel="noopener noreferrer">MyPage</a>. Cette page est indépendante et ne prétend pas être un site officiel Microsoft.</p></details></footer>
+  <nav class="chapter-nav" aria-label="Choisir une étape"><a href="#recherche" data-index="0" aria-label="01 Rechercher"><span>01</span><span>Rechercher</span></a><a href="#explorer" data-index="1" aria-label="02 Explorer"><span>02</span><span>Explorer</span></a><a href="#voix" data-index="2" aria-label="03 Penser à voix haute"><span>03</span><span>La voix</span></a><a href="#memoire" data-index="3" aria-label="04 Se souvenir"><span>04</span><span>Se souvenir</span></a><a href="#challenger" data-index="4" aria-label="05 Challenger"><span>05</span><span>Challenger</span></a><a href="#creer" data-index="5" aria-label="06 Créer"><span>06</span><span>Créer</span></a><a href="#partager" data-index="6" aria-label="07 Partager"><span>07</span><span>Partager</span></a><a href="#apprendre" data-index="7" aria-label="08 Apprendre"><span>08</span><span>Apprendre</span></a><a class="map-link" href="#ensemble" aria-label="Vue d’ensemble">↗</a></nav>
+  <div class="sr-only" id="announcement" role="status" aria-live="polite"></div>
+  <script>(() => {
+  'use strict';
+
+  // Authored SVG only: neither the index nor the variant is interpolated.
+  const text = (x, y, label, cls = '', anchor = 'start') =>
+    `<text x="${x}" y="${y}" class="art-type ${cls}" text-anchor="${anchor}">${label}</text>`;
+  const lines = (x, y, widths, gap = 12) =>
+    widths.map((w, i) => `<path class="art-inkline" d="M${x} ${y + i * gap}h${w}"/>`).join('');
+  const dot = (x, y, r = 5) => `<circle class="art-dot" cx="${x}" cy="${y}" r="${r}"/>`;
+  const trace = (d, cls = '') =>
+    `<path class="art-route ${cls}" d="${d}"/><path class="art-current ${cls}" d="${d}"/>`;
+  const arrow = (x, y, direction = 'right') => {
+    const paths = {
+      right: `M${x - 8} ${y - 6}l8 6-8 6`,
+      down: `M${x - 6} ${y - 8}l6 8 6-8`,
+      left: `M${x + 8} ${y - 6}l-8 6 8 6`
+    };
+    return `<path class="art-arrow" d="${paths[direction]}"/>`;
+  };
+  const paper = (x, y, w, h, content, cls = '') =>
+    `<g class="art-paper ${cls}">
+      <path class="art-shadow" d="M${x + 7} ${y + 9}h${w}v${h}h-${w}z"/>
+      <path class="art-paperface" d="M${x} ${y}h${w - 23}l23 23v${h - 23}h-${w}z"/>
+      <path class="art-fold" d="M${x + w - 23} ${y}v23h23"/>
+      ${content}
+    </g>`;
+  const notebook = (x, y, w, h, content, cls = '') =>
+    `<g class="art-notebook ${cls}">
+      <rect class="art-shadow" x="${x + 7}" y="${y + 8}" width="${w}" height="${h}" rx="9"/>
+      <rect class="art-paperface" x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/>
+      <path class="art-rule" d="M${x + 20} ${y}v${h}"/>
+      ${[24, 48, 72, 96].filter(v => v < h - 10).map(v =>
+        `<path class="art-binding" d="M${x - 5} ${y + v}h12"/>`).join('')}
+      ${content}
+    </g>`;
+  const brain = (x, y, r = 56) =>
+    `<g class="art-brain">
+      <circle class="art-orbit" cx="${x}" cy="${y}" r="${r + 10}"/>
+      <circle class="art-brainface" cx="${x}" cy="${y}" r="${r}"/>
+      <path class="art-brainlines" d="M${x - 22} ${y - 23}l22-10 23 13M${x - 22} ${y + 25}l22 10 23-12"/>
+      ${dot(x - 22, y - 23, 3)}${dot(x, y - 33, 3)}${dot(x + 23, y - 20, 3)}
+      ${text(x, y + 8, 'BRAIN', 'art-label', 'middle')}
+    </g>`;
+  const wave = (x, y, widths = 15, cls = '') =>
+    `<g class="art-wave ${cls}">${Array.from({ length: widths }, (_, i) => {
+      const h = [10, 23, 38, 18, 45, 29, 52, 34, 18, 42, 25, 48, 30, 17, 10][i % 15];
+      return `<path class="art-wavebar art-beat-${i % 4}" d="M${x + i * 10} ${y - h / 2}v${h}"/>`;
+    }).join('')}</g>`;
+  const entry = (label, supporting) =>
+    `${text(28, 40, label, 'art-eyebrow')}${text(28, 70, supporting, 'art-caption')}`;
+
+  function research() {
+    return `${entry('COPILOT RESEARCHER', 'Une question ouvre la recherche.')}
+      <path class="art-gesture" d="M30 369C63 300 76 189 147 133C210 83 358 84 476 114"/>
+      <g class="art-float">
+        <path class="art-questionfield" d="M31 164Q31 148 49 148h94q18 0 18 18v78q0 18-18 18h-49l-31 25 7-25H49q-18 0-18-18z"/>
+        ${text(96, 229, '?', 'art-question', 'middle')}
+      </g>
+      ${text(29, 320, 'QUESTION', 'art-label')}
+      ${trace('M165 202C195 202 187 145 220 145')}
+      ${trace('M167 208H229')}
+      ${trace('M165 214C195 214 187 277 219 277')}
+      <g class="art-float art-delay-1">
+        ${paper(230, 116, 130, 160, `${text(247, 160, '01', 'art-folio')}${lines(247, 182, [84, 69, 82, 54])}`)}
+      </g>
+      <g class="art-float art-delay-2">
+        ${paper(252, 144, 130, 160, `${text(269, 188, '02', 'art-folio')}${lines(269, 210, [81, 67, 78, 53])}`)}
+      </g>
+      <g class="art-float art-delay-3">
+        ${paper(274, 172, 130, 160, `${text(291, 216, '03', 'art-folio')}${lines(291, 238, [81, 65, 75, 48])}`)}
+      </g>
+      ${text(308, 368, '3 SOURCES', 'art-label', 'middle')}
+      ${trace('M412 246C441 246 435 211 463 211')}
+      ${arrow(460, 211)}
+      ${notebook(470, 147, 140, 171, `
+        ${text(507, 195, 'BLOC-', 'art-label')}
+        ${text(507, 222, 'NOTES', 'art-label')}
+        ${lines(506, 253, [79, 60, 73])}`)}
+      ${text(610, 365, 'Synthèse', 'art-caption', 'end')}
+      ${text(610, 392, 'si utile', 'art-caption', 'end')}
+      <path class="art-underline" d="M489 402q55 7 120-2"/>`;
+  }
+
+  function explore(variant) {
+    const start = `${entry('BLOC-NOTES COPILOT × ONENOTE', 'Un même fond, plusieurs façons d’explorer.')}
+      ${notebook(30, 166, 156, 190, `
+        ${text(65, 212, 'MES', 'art-label')}${text(65, 240, 'SOURCES', 'art-label')}
+        ${lines(66, 274, [91, 76, 87, 57])}`)}
+      ${trace('M194 259C225 259 224 231 259 231')}${arrow(256, 231)}`;
+    const variants = {
+      podcast: `<path class="art-gesture" d="M311 321C248 277 266 155 375 118C487 79 604 178 595 287"/>
+        <g class="art-float">
+          <path class="art-voicebubble" d="M290 165q0-24 24-24h239q24 0 24 24v105q0 24-24 24h-81l-34 27 5-27H314q-24 0-24-24z"/>
+          ${wave(334, 220, 20)}
+          ${text(434, 270, 'ÉCOUTER', 'art-label', 'middle')}
+        </g>
+        ${text(434, 370, 'Le podcast', 'art-display', 'middle')}
+        ${text(434, 405, 'Une autre entrée dans les sources.', 'art-caption art-small-fit', 'middle')}`,
+      infographie: `<path class="art-gesture" d="M274 375q34-181 102-245q109 58 229 224"/>
+        ${paper(279, 113, 310, 265, `
+          ${text(307, 157, 'VOIR LES LIENS', 'art-label')}
+          <circle class="art-ring" cx="358" cy="231" r="37"/>
+          <circle class="art-accentwash" cx="395" cy="231" r="37"/>
+          <path class="art-connection" d="M433 231h96m-8-6 8 6-8 6"/>
+          <path class="art-accentface" d="M550 209l22 22-22 22-22-22z"/>
+          ${text(306, 314, 'RELATION', 'art-caption')}
+          ${lines(307, 337, [216, 166])}`)}
+        ${text(437, 426, 'L’infographie', 'art-display', 'middle')}`,
+      mindmap: `<path class="art-connection" d="M421 242C421 170 354 195 349 151M440 246C490 239 512 224 522 190M436 265C467 311 499 300 523 332"/>
+        <path class="art-current" d="M421 242C421 170 354 195 349 151M440 246C490 239 512 224 522 190M436 265C467 311 499 300 523 332"/>
+        <circle class="art-accentwash" cx="414" cy="252" r="62"/>
+        ${text(414, 249, 'UNE', 'art-label', 'middle')}${text(414, 276, 'IDÉE', 'art-label', 'middle')}
+        ${dot(349, 151)}${text(286, 129, 'TRAVAIL', 'art-label')}
+        ${dot(522, 190)}${text(609, 164, 'JUGEMENT', 'art-label', 'end')}
+        ${dot(523, 332)}${text(608, 368, 'APPRENTISSAGE', 'art-label', 'end')}
+        ${text(432, 426, 'La carte mentale', 'art-display art-display-compact', 'middle')}`,
+      chat: `${paper(401, 130, 166, 177, lines(423, 171, [111, 95, 111, 80, 100, 55]), 'art-tilt-back')}
+        ${paper(421, 153, 166, 177, `
+          ${text(441, 198, 'SOURCES', 'art-label')}${lines(443, 224, [112, 92, 103, 72])}`)}
+        <g class="art-float">
+          <path class="art-voicebubble" d="M279 211q0-18 18-18h175q18 0 18 18v69q0 18-18 18h-117l-28 23 5-23h-35q-18 0-18-18z"/>
+          ${text(300, 235, 'Que disent', 'art-dialogue')}
+          ${text(300, 268, 'ces sources ?', 'art-dialogue')}
+        </g>
+        ${text(434, 388, 'Le dialogue', 'art-display', 'middle')}
+        ${text(434, 422, 'Questionner, puis revenir au texte.', 'art-caption art-small-fit', 'middle')}`
+    };
+    return start + (variants[variant] || variants.podcast);
+  }
+
+  function aloud() {
+    return `${entry('COPILOT · DIALOGUE VOCAL', 'Parler, répondre, préciser. Puis demander une synthèse.')}
+      <path class="art-gesture" d="M29 367C158 434 377 388 388 221S241 73 210 133"/>
+      <g class="art-float">
+        <path class="art-voicebubble" d="M32 133q0-19 19-19h223q19 0 19 19v77q0 19-19 19h-148l-29 24 4-24H51q-19 0-19-19z"/>
+        ${text(52, 150, 'MOI', 'art-label')}${wave(112, 181, 15)}
+      </g>
+      <g class="art-float art-delay-2">
+        <path class="art-answerbubble" d="M110 270q0-19 19-19h221q19 0 19 19v77q0 19-19 19h-33l5 22-28-22H129q-19 0-19-19z"/>
+        ${text(134, 288, 'COPILOT', 'art-label')}${wave(165, 323, 15, 'art-wave-reply')}
+      </g>
+      ${trace('M303 178C349 178 305 270 354 270')}
+      ${trace('M377 307C409 307 393 224 427 224')}${arrow(423, 224)}
+      ${paper(435, 136, 177, 231, `
+        ${text(452, 181, 'SYNTHÈSE', 'art-label')}
+        <path class="art-accentrule" d="M453 199h133"/>
+        ${text(453, 236, 'IDÉE', 'art-dialogue')}
+        ${text(453, 277, 'DOUTE', 'art-dialogue')}
+        ${text(453, 318, 'QUESTION', 'art-dialogue')}`)}
+      ${text(426, 409, 'À ma demande', 'art-caption')}
+      <path class="art-underline" d="M425 419q81 7 182-1"/>`;
+  }
+
+  function remember() {
+    return `${entry('SCOUT / AUTOPILOT · UN MÊME AGENT', 'Relier ce qui arrive à ce qui existe déjà.')}
+      ${paper(29, 130, 170, 176, `
+        ${text(46, 171, 'NOUVELLE', 'art-label')}
+        ${text(46, 199, 'NOTE', 'art-label')}
+        ${lines(46, 222, [119, 102, 113])}
+        <path class="art-tag" d="M47 273l10-10h71v23H57z"/>
+        ${text(91, 281, 'tags', 'art-tagtext', 'middle')}`)}
+      ${trace('M207 218C242 218 221 245 254 245')}${arrow(250, 245)}
+      ${brain(321, 245, 59)}
+      <path class="art-connection" d="M359 199C410 161 433 159 467 159M390 246H471M359 292C410 330 433 336 467 336"/>
+      <path class="art-current art-delay-1" d="M359 199C410 161 433 159 467 159M390 246H471M359 292C410 330 433 336 467 336"/>
+      <g class="art-float art-delay-1">
+        <path class="art-book" d="M475 133q26-12 51 0v53q-25-12-51 0zM526 133q26-12 51 0v53q-25-12-51 0z"/>
+        ${text(526, 115, 'LECTURE', 'art-label', 'middle')}
+      </g>
+      <g class="art-float art-delay-2">
+        <path class="art-sheeticon" d="M493 216h61l16 16v47h-77z"/>
+        ${lines(505, 240, [48, 40, 28])}
+        ${text(526, 210, 'ÉCRIT', 'art-label', 'middle')}
+      </g>
+      <g class="art-float art-delay-3">
+        <path class="art-ring" d="M528 306l33 30-33 30-33-30z"/>
+        ${dot(528, 336, 6)}
+        ${text(528, 398, 'CONCEPT', 'art-label', 'middle')}
+      </g>
+      ${text(31, 360, 'Article, synthèse,', 'art-caption')}
+      ${text(31, 388, 'réflexion…', 'art-caption')}
+      ${text(313, 438, 'Liens à examiner, pas des vérités.', 'art-caption', 'middle')}`;
+  }
+
+  function challenge() {
+    return `${entry('SCOUT + BRAIN', 'Élargir le regard. Garder le choix.')}
+      ${brain(106, 247, 57)}
+      ${text(106, 350, 'EXPLORER', 'art-label', 'middle')}
+      <path class="art-route" d="M174 247C234 247 229 142 296 142H442M174 247C234 247 241 247 296 247H442M174 247C234 247 229 352 296 352H442"/>
+      <path class="art-current art-delay-1" d="M174 247C234 247 229 142 296 142H442"/>
+      <path class="art-current art-delay-2" d="M174 247C234 247 229 352 296 352H442"/>
+      <path class="art-chosen" d="M174 247C234 247 241 247 296 247H466"/>
+      ${dot(296, 142)}${dot(296, 247, 7)}${dot(296, 352)}
+      ${text(283, 124, 'ANGLE', 'art-label')}
+      ${text(283, 224, 'OBJECTION', 'art-label')}
+      ${text(283, 333, 'AUTRE REGARD', 'art-label')}
+      ${text(299, 172, 'Que manque-t-il ?', 'art-caption')}
+      ${text(299, 283, 'Mettre à l’épreuve', 'art-caption')}
+      ${text(299, 383, 'Changer de point de vue', 'art-caption')}
+      ${trace('M471 247C495 247 494 221 514 221')}${arrow(510, 221)}
+      <g class="art-choice">
+        <path class="art-choicefield" d="M524 183h71v76h-71z"/>
+        <path class="art-check" d="M542 221l12 12 26-28"/>
+        ${text(559, 307, 'JE', 'art-label', 'middle')}
+        ${text(559, 334, 'CHOISIS', 'art-label', 'middle')}
+      </g>
+      <path class="art-gesture" d="M30 415q248 29 425-8"/>`;
+  }
+
+  function create(variant) {
+    const intro = `${entry('COWORK DANS COPILOT', 'Un premier support. Je reprends la main.')}
+      ${text(29, 131, 'COWORK', 'art-label')}
+      ${paper(31, 152, 133, 151, `
+        <path class="art-accentface" d="M49 178h61v15H49z"/>
+        ${lines(49, 214, [85, 69, 80, 51])}
+        ${text(49, 281, 'ÉBAUCHE', 'art-caption')}`)}
+      ${trace('M172 228h36')}${arrow(204, 228)}
+      <g class="art-handoff">
+        <circle class="art-choicefield" cx="249" cy="228" r="35"/>
+        <path class="art-pen" d="M234 238l4-15 21-22 11 11-22 22zM238 223l10 11M258 203l10 10"/>
+      </g>
+      ${text(249, 292, 'MOI', 'art-label', 'middle')}
+      ${trace('M291 228h36')}${arrow(324, 228)}`;
+    const variants = {
+      ppt: `<path class="art-deckback" d="M356 154h237v184H356z"/>
+        <path class="art-deckback" d="M346 143h237v184H346z"/>
+        <g class="art-float">
+          <path class="art-slideface" d="M335 132h237v184H335z"/>
+          ${text(357, 181, 'REL IER'.replace(' ', ''), 'art-editorial')}
+          <circle class="art-ring" cx="414" cy="248" r="32"/>
+          <circle class="art-accentwash" cx="454" cy="248" r="32"/>
+          <path class="art-connection" d="M486 248h55"/>
+          ${dot(541, 248)}
+        </g>
+        ${text(468, 389, 'Le support PPT', 'art-display art-display-compact', 'middle')}
+        ${text(468, 421, 'Structurer pour présenter.', 'art-caption', 'middle')}`,
+      article: `${paper(340, 106, 249, 264, `
+          ${text(363, 153, 'LE TEXTE', 'art-editorial')}
+          <path class="art-accentrule" d="M363 173h193"/>
+          ${lines(363, 195, [190, 171, 189, 144, 184, 165, 192, 137], 17)}
+          <path class="art-editmark" d="M353 204q-12 8 0 26m11-17h117m-83 27 10-10 10 10M535 279l20-12M538 287l20-12"/>
+          ${text(551, 348, 'ma voix', 'art-editlabel', 'end')}`)}
+        ${text(465, 417, 'Coécrire l’article', 'art-display art-display-compact', 'middle')}`,
+      site: `${text(462, 123, 'RETOUR À SCOUT', 'art-label', 'middle')}
+        <path class="art-connection" d="M462 139v27"/>${arrow(462, 166, 'down')}
+        <g class="art-float">
+          <path class="art-sitepage" d="M336 181h258v178H336z"/>
+          ${text(356, 224, 'EXPLORER', 'art-editorial')}
+          <path class="art-route" d="M356 313C398 233 463 352 502 281S562 257 576 277"/>
+          <path class="art-current" d="M356 313C398 233 463 352 502 281S562 257 576 277"/>
+          <circle class="art-accentwash" cx="469" cy="281" r="26"/>
+          ${dot(368, 296, 5)}${dot(546, 259, 5)}
+          <path class="art-cursor" d="M514 300l4 30 8-10 12-3z"/>
+        </g>
+        ${text(467, 405, 'L’expérience web', 'art-display art-display-compact', 'middle')}`
+    };
+    return intro + (variants[variant] || variants.ppt);
+  }
+
+  function share() {
+    return `${entry('PARTAGER · UN GESTE HUMAIN', 'Je publie, je présente, j’utilise.')}
+      <path class="art-gesture" d="M32 411C155 391 201 292 289 177S442 88 541 116"/>
+      <path class="art-route" d="M321 279C259 279 218 171 130 171M321 279C291 243 278 186 281 173M321 279C344 237 404 175 433 174M321 279C396 279 506 182 573 175"/>
+      <path class="art-current" d="M321 279C259 279 218 171 130 171M321 279C291 243 278 186 281 173M321 279C344 237 404 175 433 174M321 279C396 279 506 182 573 175"/>
+      <g class="art-float">
+        <path class="art-sheeticon" d="M79 104h75l20 20v78H79z"/>
+        <circle class="art-ring" cx="111" cy="150" r="17"/>
+        <circle class="art-accentwash" cx="133" cy="150" r="17"/>
+        ${lines(94, 183, [62])}
+        ${text(126, 238, 'INFOGRAPHIE', 'art-label', 'middle')}
+      </g>
+      <g class="art-float art-delay-1">
+        <path class="art-deckback" d="M245 122h86v70h-86z"/>
+        <path class="art-slideface" d="M233 111h86v70h-86z"/>
+        <path class="art-accentface" d="M251 129h49v9h-49z"/>
+        ${lines(251, 155, [48, 35])}
+        ${text(276, 238, 'PPT', 'art-label', 'middle')}
+      </g>
+      <g class="art-float art-delay-2">
+        <path class="art-sheeticon" d="M389 104h75l20 20v78h-95z"/>
+        ${lines(404, 133, [47, 63, 51, 60, 43], 12)}
+        ${text(436, 238, 'ARTICLE', 'art-label', 'middle')}
+      </g>
+      <g class="art-float art-delay-3">
+        <path class="art-sitepage" d="M534 111h79v90h-79z"/>
+        <path class="art-accentrule" d="M548 129h50"/>
+        <path class="art-connection" d="M548 178q13-46 24-19t27-15"/>
+        ${text(574, 238, 'SITE', 'art-label', 'middle')}
+      </g>
+      <circle class="art-choicefield" cx="321" cy="307" r="35"/>
+      <path class="art-check" d="M306 307l10 11 24-27"/>
+      ${text(321, 375, 'JE PARTAGE', 'art-label', 'middle')}
+      ${trace('M280 317C235 330 222 370 160 370')}${arrow(165, 370, 'left')}
+      ${trace('M362 317C407 330 423 370 483 370')}${arrow(478, 370)}
+      ${text(125, 417, 'PUBLICATION', 'art-label', 'middle')}
+      ${text(528, 417, 'CLIENTÈLE', 'art-label', 'middle')}`;
+  }
+
+  function learn() {
+    return `${entry('APPRENDRE · REVENIR AUTREMENT', 'Ce qui revient nourrit la prochaine question.')}
+      <path class="art-return" d="M530 354C625 339 625 191 565 128C502 61 260 90 185 120"/>
+      <path class="art-current" d="M530 354C625 339 625 191 565 128C502 61 260 90 185 120"/>
+      ${arrow(185, 120, 'left')}
+      <g class="art-float">
+        ${paper(30, 138, 192, 57, text(44, 174, 'RÉACTIONS', 'art-label'))}
+      </g>
+      <g class="art-float art-delay-1">
+        ${paper(48, 207, 174, 57, text(62, 243, 'INSIGHTS', 'art-label'))}
+      </g>
+      <g class="art-float art-delay-2">
+        ${paper(66, 276, 156, 57, text(80, 312, 'ARTICLES', 'art-label'))}
+      </g>
+      ${text(31, 377, 'Idées recueillies', 'art-caption')}
+      ${trace('M230 168C270 168 242 235 277 235M230 237H277M230 307C270 307 242 239 277 239')}
+      <path class="art-agentfield" d="M288 194h110v87H288z"/>
+      ${text(343, 246, 'SCOUT', 'art-label', 'middle')}
+      ${trace('M405 237h37')}${arrow(438, 237)}
+      ${brain(510, 237, 55)}
+      ${trace('M510 305v43')}${arrow(510, 344, 'down')}
+      <path class="art-questionfield" d="M296 358h238q15 0 15 15v46q0 15-15 15H316l-24 15 4-15q-15 0-15-15v-46q0-15 15-15z"/>
+      ${text(307, 390, 'NOUVELLE', 'art-label')}
+      ${text(307, 417, 'QUESTION', 'art-label')}
+      ${text(510, 417, '?', 'art-return-question', 'middle')}`;
+  }
+
+  const scenes = [research, explore, aloud, remember, challenge, create, share, learn];
+  const sceneNames = ['research', 'explore', 'aloud', 'remember', 'challenge', 'create', 'share', 'learn'];
+  window.renderFlowScene = function renderFlowScene(index = 0, variant) {
+    const stage = Number.isInteger(index) && index >= 0 && index < scenes.length ? index : 0;
+    const mode = stage === 1
+      ? (['podcast', 'infographie', 'mindmap', 'chat'].includes(variant) ? variant : 'podcast')
+      : stage === 5
+        ? (['ppt', 'article', 'site'].includes(variant) ? variant : 'ppt')
+        : undefined;
+    return `<div class="flow-art art-${sceneNames[stage]}" aria-hidden="true">
+      <svg viewBox="0 0 640 460" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        ${scenes[stage](mode)}
+      </svg>
+    </div>`;
+  };
+})();
+</script>
+  <script>
+    const FLOW = [{"id":"recherche","label":"Rechercher","english":"Research","title":"Je pars des sources, pas des certitudes","lead":"Je confie une question ouverte à Researcher, puis je remonte aux sources avant de former mon point de vue.","tool":"Agent Researcher dans Copilot","toolDetail":"Il trouve des sources et peut produire une première synthèse que je vérifie.","actions":["Je formule la question et demande à Researcher de trouver des sources pertinentes.","Je rassemble la matière dans un bloc-notes Copilot intégré à OneNote pour poursuivre l’exploration."],"result":"J’obtiens un corpus sourcé et une première carte du sujet.","human":"Je décide quelles sources sont solides, utiles et dignes d’être poursuivies.","brain":"Recherche → Brain : je prépare les éléments que je choisirai de conserver.","prompt":"Cherche des sources variées sur le travail avec l’IA et distingue faits, analyses et questions ouvertes."},{"id":"explorer","label":"Explorer","english":"Listen","title":"Je change de forme pour mieux comprendre","lead":"Dans mon bloc-notes, j’écoute, je visualise ou je cartographie les sources pour découvrir ce qui mérite une question.","tool":"Bloc-notes Copilot intégré à OneNote","toolDetail":"Il transforme les sources en podcast, infographie ou mind map, selon mon besoin.","actions":["Je rassemble mes sources dans le bloc-notes Copilot intégré à OneNote.","Je choisis un podcast, une infographie ou une mind map, puis j’interroge le contenu par chat."],"result":"Je vois les liens, les tensions et les zones encore floues.","human":"Je choisis la forme qui m’aide vraiment et les questions qui valent d’être creusées.","brain":"Exploration → Brain : je peux transmettre les synthèses à Scout.","prompt":"À partir de ces sources, propose une mind map des idées, désaccords et questions à approfondir."},{"id":"voix","label":"Penser à voix haute","english":"Think aloud","title":"Je dialogue pour entendre ma pensée","lead":"La voix transforme mes intuitions en conversation : Copilot répond, relance, puis m’aide à dégager un fil.","tool":"Chat vocal dans Copilot","toolDetail":"Un véritable dialogue oral, suivi à ma demande d’une synthèse de la conversation.","actions":["Je parle avec Copilot, j’expose mes hésitations et je réponds à ses relances.","Je lui demande ensuite de synthétiser notre conversation sans effacer mes doutes."],"result":"J’obtiens une pensée plus articulée et une synthèse que je peux reprendre.","human":"Je garde les nuances qui comptent et j’écarte les formulations qui trahissent mon intention.","brain":"Voix → Brain : je choisis la synthèse à transmettre.","prompt":"Dialogue avec moi sur cette idée, relance mes zones floues, puis synthétise nos accords, doutes et prochaines questions."},{"id":"memoire","label":"Se souvenir","english":"Remember","title":"Je construis une mémoire qui me ressemble","lead":"Je transmets mes textes et réflexions à Scout : mon Brain personnalisé les relie à ce qui comptait déjà.","tool":"Scout / Autopilot et Brain personnalisé","toolDetail":"Mes skills vault-tag, vault-weave et vault-promote classent, confrontent et enrichissent mon graphe.","actions":["J’envoie à Scout mes articles, synthèses, réflexions et lectures importantes.","Ses skills identifient les thèmes, confrontent les angles à mes écrits et lectures, puis cartographient les relations."],"result":"Je retrouve une mémoire reliée de mes idées, lectures et écrits.","human":"Les liens proposés m’aident à réfléchir. Leur valeur intellectuelle reste à mon appréciation.","brain":"Scout → Brain : mes contenus rejoignent une mémoire reliée.","prompt":"Classe cette réflexion, compare-la à mes notes existantes et propose seulement les liens qui méritent mon examen."},{"id":"challenger","label":"Challenger","english":"Challenge","title":"Je cherche l’angle qui résiste","lead":"Scout mobilise mon Brain pour confronter une idée à mes écrits et lectures, puis ouvrir plusieurs chemins.","tool":"Scout et Brain personnalisé","toolDetail":"Le Brain retrouve mes contenus; Scout explore confirmations, contradictions, redondances et angles nouveaux.","actions":["Je demande à Scout d’explorer plusieurs angles à partir de ce que mon Brain retrouve.","Je compare les pistes, leurs tensions et leur valeur pour mon sujet du moment."],"result":"Je repars avec des angles distincts, reliés à mon parcours plutôt qu’à une réponse générique.","human":"Je choisis l’angle à défendre; le graphe éclaire mon jugement sans décider pour moi.","brain":"Brain → Challenge : il rappelle, relie et met mes idées en tension.","prompt":"Confronte cette idée à mes écrits et lectures : cherche contradiction, confirmation, redondance et angle réellement nouveau."},{"id":"creer","label":"Créer","english":"Create","title":"Je donne une forme à l’idée","lead":"Je transforme l’angle choisi en support, puis je bifurque vers l’écriture ou une expérience selon le public.","tool":"Cowork dans Copilot, puis Scout","toolDetail":"Cowork prépare un PowerPoint ou une synthèse; je coécris l’article ou confie l’expérience web à Scout.","actions":["Je demande à Cowork de produire un PowerPoint ou un document de synthèse à partir de l’angle retenu.","Je reprends la main pour coécrire un article, ou je retourne dans Scout pour créer un site ou une expérience."],"result":"J’obtiens une forme éditoriale adaptée : présentation, synthèse, article, site ou expérience.","human":"Je reste auteur de la structure, du ton, des choix éditoriaux et de la version finale.","brain":"Brain → Création : il fournit le contexte utile, pas la voix finale.","prompt":"Prépare une présentation claire sur mon processus de travail avec l’IA, avec un fil narratif accessible et huit étapes."},{"id":"partager","label":"Partager","english":"Share","title":"Je partage une forme faite pour eux","lead":"Je publie mes productions ou les utilise en clientèle. L’idée quitte mon écran et rencontre d’autres regards.","tool":"Les formats que je partage","toolDetail":"Infographies, PowerPoint, articles et sites web.","actions":["Je publie ou utilise en clientèle une infographie, un PowerPoint, un article ou un site web.","J’adapte la forme et le niveau de détail à leur contexte et à la conversation."],"result":"Mon travail devient un objet concret que d’autres peuvent comprendre, discuter et utiliser.","human":"Je décide quoi partager, sous quelle forme, avec qui et à quel moment.","brain":"Brain → Partage : je sélectionne ce qui éclaire vraiment.","prompt":null},{"id":"apprendre","label":"Apprendre","english":"Learn","title":"Je referme la boucle, autrement","lead":"Les réactions, nouveaux articles et idées issues du terrain reviennent dans Scout pour nourrir le prochain cycle.","tool":"Scout","toolDetail":"Je lui transmets les apprentissages choisis pour les confronter et enrichir mon Brain personnalisé.","actions":["Je recueille les enseignements, réactions et nouveaux articles qui méritent de rester.","Je les transmets à Scout pour nourrir mon Brain et mes prochaines réflexions."],"result":"Mon prochain travail commence avec davantage de contexte, de continuité et de questions.","human":"Je choisis ce qui devient un apprentissage durable et ce qui doit rester circonstanciel.","brain":"Retours → Brain → Recherche : la mémoire nourrit une nouvelle boucle.","prompt":"Relie ces retours à mon Brain, signale les contradictions et propose les apprentissages à valider avant le prochain cycle."}];
+    (() => {
+  'use strict';
+  const variants = {
+    1: {
+      podcast: {label:'Podcast',description:'J’écoute la matière de mes sources sous une autre forme. Cette animation illustre le format ; elle ne diffuse pas de son.'},
+      infographie: {label:'Infographie',description:'Je change de point d’entrée : une représentation visuelle pour mieux explorer et comprendre la matière.'},
+      mindmap: {label:'Mind map',description:'Je parcours les idées et leurs relations. Les branches montrées ici sont un exemple, pas une analyse de sources réelles.'},
+      chat: {label:'Chat',description:'Je pose mes questions sur le contenu du bloc-notes pour approfondir progressivement les points qui m’intéressent.'}
+    },
+    5: {
+      ppt: {label:'PowerPoint',description:'Cowork dans Copilot prépare un PowerPoint ou un document synthétique. Je reprends ensuite la main.'},
+      article: {label:'Article',description:'À partir de ce premier travail, je reprends la main pour coécrire l’article et choisir le propos, le ton et la version finale.'},
+      site: {label:'Expérience web',description:'Je reviens à Scout pour créer un site ou une expérience interactive : donner à vivre une idée, pas seulement la décrire.'}
+    }
+  };
+  const selected = {1:'podcast',5:'ppt'};
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const navLinks = [...document.querySelectorAll('.chapter-nav a[data-index]')];
+  const scene = document.getElementById('scene');
+  const caption = document.getElementById('scene-caption');
+  const sceneLabel = document.getElementById('scene-label');
+  const brainCaption = document.getElementById('brain-caption');
+  const announcement = document.getElementById('announcement');
+  const theater = document.getElementById('theater');
+  const railDots = [...document.querySelectorAll('.brain-rail circle')];
+  const motionButton = document.getElementById('motion');
+  let active = -1;
+  let raf = 0;
+  let userMotionChoice = false;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+  function renderInline(index) {
+    const illustration = chapters[index].querySelector('.inline-art');
+    illustration.innerHTML = window.renderFlowScene(index, selected[index]);
+  }
+
+  function renderScene(index) {
+    scene.classList.remove('scene-enter');
+    scene.innerHTML = window.renderFlowScene(index, selected[index]);
+    sceneLabel.textContent = `${String(index + 1).padStart(2,'0')} / ${FLOW[index].english.toUpperCase()}`;
+    caption.textContent = variants[index] ? variants[index][selected[index]].description : FLOW[index].result;
+    brainCaption.textContent = FLOW[index].brain;
+    railDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    // Restart the entry animation only when the displayed illustration changes.
+    void scene.offsetWidth;
+    scene.classList.add('scene-enter');
+  }
+
+  function setActive(index) {
+    if (index === active) return;
+    active = index;
+    chapters.forEach((chapter, i) => chapter.classList.toggle('is-active', i === index));
+    navLinks.forEach((link, i) => {
+      if (i === index) link.setAttribute('aria-current','step');
+      else link.removeAttribute('aria-current');
+    });
+    renderScene(index);
+  }
+
+  function updateFromScroll() {
+    raf = 0;
+    const threshold = innerHeight * .4;
+    let index = 0;
+    for (let i = 0; i < chapters.length; i++) {
+      if (chapters[i].getBoundingClientRect().top <= threshold) index = i;
+    }
+    setActive(index);
+    const bounds = document.getElementById('parcours').getBoundingClientRect();
+    const inJourney = bounds.top < innerHeight && bounds.bottom > 0;
+    theater.classList.toggle('scene-offstage', !inJourney);
+    document.querySelector('.hero-universe').classList.toggle('scene-offstage', document.querySelector('.hero').getBoundingClientRect().bottom < 0);
+    if (bounds.top > threshold || bounds.bottom < threshold) {
+      navLinks.forEach(link => link.removeAttribute('aria-current'));
+    } else {
+      navLinks[index].setAttribute('aria-current','step');
+    }
+  }
+
+  function requestScrollUpdate() {
+    if (!raf) raf = requestAnimationFrame(updateFromScroll);
+  }
+
+  document.querySelectorAll('[data-variant]').forEach(button => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.index);
+      const value = button.dataset.variant;
+      selected[index] = value;
+      const group = button.closest('.variant-buttons');
+      group.querySelectorAll('button').forEach(option => option.setAttribute('aria-pressed',String(option === button)));
+      chapters[index].querySelector('.variant-description').textContent = variants[index][value].description;
+      renderInline(index);
+      if (active === index) renderScene(index);
+      announcement.textContent = `${FLOW[index].label} : ${variants[index][value].label}. ${variants[index][value].description}`;
+    });
+  });
+
+  function updateMotionButton() {
+    const paused = document.documentElement.dataset.motion === 'off';
+    motionButton.setAttribute('aria-pressed', String(paused));
+    motionButton.setAttribute('aria-label', paused ? 'Reprendre les animations' : 'Mettre les animations en pause');
+    document.getElementById('motion-icon').textContent = paused ? '▷' : 'Ⅱ';
+    document.getElementById('motion-label').textContent = paused ? 'Animer' : 'Pause';
+  }
+  motionButton.addEventListener('click', () => {
+    userMotionChoice = true;
+    const wasPaused = document.documentElement.dataset.motion === 'off';
+    document.documentElement.dataset.motion = wasPaused ? 'on' : 'off';
+    updateMotionButton();
+    announcement.textContent = wasPaused
+      ? 'Animations activées.'
+      : 'Animations en pause. Tout le contenu reste accessible.';
+  });
+  reducedMotion.addEventListener('change', event => {
+    if (!userMotionChoice) document.documentElement.dataset.motion = event.matches ? 'off' : 'on';
+    updateMotionButton();
+  });
+
+  chapters.forEach((chapter,index) => {
+    renderInline(index);
+    if (variants[index]) chapter.querySelector('.variant-description').textContent = variants[index][selected[index]].description;
+  });
+  const visibilityObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) entry.target.classList.toggle('scene-offstage', !entry.isIntersecting);
+  }, {rootMargin:'80px'});
+  document.querySelectorAll('.inline-scene').forEach(element => visibilityObserver.observe(element));
+  document.addEventListener('visibilitychange', () => {
+    document.body.classList.toggle('scene-offstage', document.hidden);
+  });
+  addEventListener('scroll', requestScrollUpdate, {passive:true});
+  addEventListener('resize', requestScrollUpdate, {passive:true});
+  addEventListener('hashchange', requestScrollUpdate);
+  updateMotionButton();
+  updateFromScroll();
+})();
+
+  </script>
+</body>
+</html>
