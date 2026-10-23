@@ -23,7 +23,7 @@ Atelier collectif pour les lycéens, accessible depuis les ressources de l'accue
 - `fresque-metiers-tech-ia/index.html` : jeu autonome avec illustrations intégrées, 16 métiers, 10 situations et 4 phases.
 - `fresque-metiers-tech-ia/cartes-metiers-a-imprimer.pdf` : cartes illustrées à distribuer.
 - `fresque-metiers-tech-ia/guide-animateur.pdf` : préparation et déroulé de l'atelier.
-- Aucune dépendance ni compilation nécessaire pour le déploiement GitHub Pages. Lors d'une mise à jour, conserver le titre public, le retour vers My Page et les liens PDF du pied de page.
+- Aucune dépendance ni compilation nécessaire pour le déploiement GitHub Pages. Lors d'une mise à jour, conserver le titre public, le retour vers My Page en haut à gauche et les liens PDF du pied de page.
 
 ## Parcours et maintenance
 
