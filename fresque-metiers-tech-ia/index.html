@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Fresque des métiers Tech autour de l’IA pour les lycéens : 16 cartes illustrées, une mission client et 10 situations à jouer en classe. Cartes et guide à imprimer.">
+<meta name="description" content="Fresque des métiers Tech autour de l’IA pour les lycéens : 16 cartes illustrées, une mission client, 10 situations et 12 Awards collectifs.">
 <title>Fresque des métiers Tech autour de l’IA pour les lycéens | My Page</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M4 20h32M20 4v32M8 8l24 24M32 8 8 32' fill='none' stroke='currentColor' stroke-width='3'/%3E%3C/svg%3E">
 <script>
@@ -508,6 +508,68 @@ footer { display: flex; justify-content: space-between; gap: 30px; max-width: 16
   .briefing-panel .question-label { margin-bottom: 10px; }
   .briefing-panel .briefing-footer { gap: 12px; }
 }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.session-warning { margin: 16px auto; max-width: 1200px; }
+.round-meta { flex-wrap: wrap; align-items: center; }
+.award-shortcut { border: 1px solid var(--cp-border-strong); border-radius: 100px; padding: 6px 12px; background: var(--cp-accent-soft); color: var(--cp-label); font: inherit; font-weight: 650; min-height: 36px; }
+.award-shortcut:hover { border-color: var(--cp-label); }
+.award-panel, .award-collection { margin: 36px 0; padding: clamp(20px, 3vw, 40px); border: 1px solid var(--cp-border-strong); border-radius: 16px; background: var(--cp-surface); scroll-margin-top: 145px; }
+.award-panel .section-heading, .award-collection .section-heading { margin-bottom: 18px; }
+.award-panel h2, .award-collection h2 { font-size: clamp(27px, 3vw, 42px); }
+.award-panel > p, .award-collection > p { max-width: 860px; color: var(--cp-text-muted); }
+.award-counter { color: var(--cp-text-muted); white-space: nowrap; font-size: 15px; }
+.award-counter strong { color: var(--cp-label); font: 650 36px/1 Bahnschrift, "Segoe UI", sans-serif; }
+.award-checklist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; padding: 0; margin: 24px 0 18px; border: 0; min-width: 0; }
+.award-choice { display: grid; grid-template-columns: 20px 54px minmax(0, 1fr); align-items: start; gap: 12px; padding: 20px 16px; border: 1px solid var(--cp-border); border-radius: 10px; cursor: pointer; background: var(--cp-bg); }
+.award-choice:hover { border-color: var(--cp-label); }
+.award-choice input { margin: 4px 0; width: 20px; height: 20px; accent-color: var(--cp-accent); cursor: pointer; }
+.award-copy { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.award-copy strong { font: 650 18px/1.2 Bahnschrift, "Segoe UI", sans-serif; }
+.award-copy > span { font-size: 13px; color: var(--cp-text-muted); }
+.award-copy em { font-size: 12px; color: var(--cp-text-soft); font-style: normal; }
+.award-copy small { font-weight: 650; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--cp-text-muted); }
+.is-earned { border-color: var(--cp-label); background: var(--cp-accent-soft); }
+.is-earned .award-copy small { color: var(--cp-label); }
+.award-medal { display: block; width: 54px; height: 64px; overflow: visible; }
+.medal-ribbon { fill: var(--cp-accent-soft); stroke: var(--cp-label); stroke-width: 1.5; }
+.medal-face { fill: var(--cp-surface); stroke: var(--cp-border-strong); stroke-width: 1.5; }
+.medal-symbol { fill: none; stroke: var(--cp-text-muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.is-earned .medal-face, .award-toast .medal-face { fill: var(--cp-accent-soft); stroke: var(--cp-label); stroke-width: 2; }
+.is-earned .medal-symbol, .award-toast .medal-symbol { stroke: var(--cp-label); }
+.award-choice.just-earned .award-medal { animation: award-stamp .55s ease-out; }
+.award-table-wrap { overflow-x: auto; }
+.award-table { width: 100%; min-width: 580px; border-collapse: collapse; table-layout: fixed; }
+.award-table th, .award-table td { padding: 20px 12px; border-bottom: 1px solid var(--cp-border); font-size: 13px; vertical-align: middle; }
+.award-table th { text-align: left; }
+.award-table thead th { color: var(--cp-text-muted); font-weight: 600; background: transparent; }
+.award-table tbody th { font: 650 18px/1.25 Bahnschrift, "Segoe UI", sans-serif; }
+.award-table tbody th .tech-label { margin-bottom: 8px; font: 600 10px/1.3 "Segoe UI", sans-serif; }
+.award-table td { text-align: center; }
+.award-table .award-medal { margin: 0 auto 10px; }
+.award-table .is-earned { color: var(--cp-label); font-weight: 650; }
+.award-table .is-pending { color: var(--cp-text-muted); }
+.award-table .is-pending .award-medal { opacity: .45; }
+.award-revisit { display: block; margin-top: 12px; font: 400 12px/1.4 "Segoe UI", sans-serif; }
+.award-toast { position: fixed; z-index: 30; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 18px; width: min(460px, calc(100vw - 32px)); padding: 22px; border: 1px solid var(--cp-label); border-radius: 16px; background: var(--cp-panel-strong); color: var(--cp-text); box-shadow: var(--cp-shadow); animation: award-arrive .3s ease-out; }
+.award-toast[hidden] { display: none; }
+.award-toast strong { display: block; margin: 5px 0; font: 650 23px/1.15 Bahnschrift, "Segoe UI", sans-serif; }
+.award-toast p { margin: 0; font-size: 12px; color: var(--cp-text-muted); }
+.award-toast .close { align-self: flex-start; margin-left: auto; }
+.award-toast .award-medal { animation: award-stamp .55s ease-out; }
+#restart-dialog { max-width: 560px; }
+#restart-dialog h2 { font-size: 32px; }
+@keyframes award-stamp { from { opacity: .3; transform: scale(.65) rotate(-12deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes award-arrive { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1100px) {
+  .award-checklist { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .award-choice { padding: 16px 12px; gap: 10px; }
+  .award-toast { right: 16px; bottom: 16px; padding: 16px; gap: 12px; }
+  .award-toast strong { font-size: 20px; }
+  .award-panel { scroll-margin-top: 210px; }
+  .topbar nav { flex-wrap: wrap; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
   button.trading-card:is(:hover, :focus-visible), .trading-card.is-tilting, .cast-preview-card:hover .cast-art svg, .pick:hover, .button:hover { transform: none !important; }
@@ -550,7 +612,7 @@ footer { display: flex; justify-content: space-between; gap: 30px; max-width: 16
   }
   *, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; text-shadow: none !important; }
   body { background: var(--cp-surface); color: var(--cp-text); font-size: 10pt; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  .topbar, footer, .no-print, dialog, .hero-stage, .cast-preview { display: none !important; }
+  .topbar, footer, .no-print, dialog, .hero-stage, .cast-preview, .award-toast, .session-warning, .award-shortcut, .award-revisit { display: none !important; }
   main, :fullscreen main { padding: 0; max-width: none; min-height: 0; }
   body[data-print="cartes"] main > *:not(.card-grid) { display: none !important; }
   body[data-print="cartes"] .card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6mm; perspective: none; }
@@ -581,6 +643,12 @@ footer { display: flex; justify-content: space-between; gap: 30px; max-width: 16
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 window.PHASES = Object.freeze(["Comprendre", "Construire", "Tester et protéger", "Déployer et améliorer"]);
+
+window.AWARD_CRITERIA = Object.freeze([
+  { id: "action", title: "Passage à l’action", criterion: "Une action concrète a été exprimée.", prompt: "« Mon métier intervient pour… »", icon: "action" },
+  { id: "relais", title: "Connexion d’équipe", criterion: "Un relais entre métiers a été expliqué.", prompt: "« J’ai besoin de… parce que… »", icon: "relais" },
+  { id: "verification", title: "Regard critique", criterion: "Une vérification utile a été proposée.", prompt: "« Pour vérifier que cela marche, nous… »", icon: "verification" }
+]);
 
 window.METIERS = [
   {id:"conseil",name:"Besoink",job:"Consultant·e numérique",power:"La bonne question",mission:"Je comprends le problème du client avant de proposer une solution.",action:"J’observe comment les salariés cherchent une procédure et je leur demande ce qui les bloque.",cue:"Le client dit « Je veux de l’IA ! », mais on ne sait pas encore pour quoi faire.",allies:["projet","ux"],limit:"Je ne décide pas à la place des salariés de ce qui leur est utile."},
@@ -637,22 +705,173 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
 (() => {
   "use strict";
-  const roles = [...window.METIERS];
-  for (let index = roles.length - 1; index > 0; index--) {
-    const other = Math.floor(Math.random() * (index + 1));
-    [roles[index], roles[other]] = [roles[other], roles[index]];
-  }
+  window.createFresqueGame = ({ roles, rounds, phases, criteria, getStorage, onStorageError }) => {
+    const key = "fresque-metiers-awards-v1";
+    const roleIds = roles.map(item => item.id);
+    const validRole = id => roleIds.includes(id);
+    const order = [...roleIds];
+    for (let index = order.length - 1; index > 0; index--) {
+      const other = Math.floor(Math.random() * (index + 1));
+      [order[index], order[other]] = [order[other], order[index]];
+    }
+    const answers = rounds.map(() => ({ selected: new Set(), revealed: false }));
+    const awards = phases.map(() => criteria.map(() => false));
+    let storage;
+    try {
+      storage = getStorage();
+      const raw = storage.getItem(key);
+      if (raw !== null) {
+        const saved = JSON.parse(raw);
+        if (!saved || saved.version !== 1 ||
+          !Array.isArray(saved.order) || saved.order.length !== roleIds.length ||
+          new Set(saved.order).size !== roleIds.length || !saved.order.every(validRole) ||
+          !Array.isArray(saved.answers) || saved.answers.length !== rounds.length ||
+          !saved.answers.every(item => item && typeof item.revealed === "boolean" &&
+            Array.isArray(item.selected) && item.selected.every(validRole) &&
+            new Set(item.selected).size === item.selected.length) ||
+          !Array.isArray(saved.awards) || saved.awards.length !== phases.length ||
+          !saved.awards.every(row => Array.isArray(row) && row.length === criteria.length &&
+            row.every(value => typeof value === "boolean"))) {
+          throw new Error("Invalid saved classroom game");
+        }
+        order.splice(0, order.length, ...saved.order);
+        saved.answers.forEach((item, index) => {
+          answers[index].selected = new Set(item.selected);
+          answers[index].revealed = item.revealed;
+        });
+        saved.awards.forEach((row, index) => { awards[index] = [...row]; });
+      }
+    } catch (error) {
+      onStorageError("restore", error);
+    }
+    const save = () => {
+      try {
+        if (!storage) storage = getStorage();
+        storage.setItem(key, JSON.stringify({
+          version: 1, order,
+          answers: answers.map(item => ({ selected: [...item.selected], revealed: item.revealed })),
+          awards
+        }));
+      } catch (error) {
+        onStorageError("save", error);
+      }
+    };
+    const countPhase = index => awards[index].filter(Boolean).length;
+    const countAwards = () => awards.reduce((total, row) => total + row.filter(Boolean).length, 0);
+    const setAward = (phaseIndex, criterionIndex, checked) => {
+      if (!Number.isInteger(phaseIndex) || !awards[phaseIndex] ||
+        !Number.isInteger(criterionIndex) || criterionIndex < 0 || criterionIndex >= criteria.length ||
+        typeof checked !== "boolean") {
+        throw new Error("Invalid award validation");
+      }
+      const changed = awards[phaseIndex][criterionIndex] !== checked;
+      awards[phaseIndex][criterionIndex] = checked;
+      if (changed) save();
+      return changed;
+    };
+    const reset = () => {
+      answers.forEach(item => { item.selected.clear(); item.revealed = false; });
+      awards.forEach(row => row.fill(false));
+      save();
+    };
+    save();
+    return { order, answers, awards, save, countPhase, countAwards, setAward, reset };
+  };
+})();
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+(() => {
+  "use strict";
   const rounds = window.MANCHES;
   const phases = window.PHASES;
+  const criteria = window.AWARD_CRITERIA;
+  const game = window.createFresqueGame({
+    roles: window.METIERS, rounds, phases, criteria,
+    getStorage: () => window.sessionStorage,
+    onStorageError: (operation, error) => {
+      console.error(`Classroom session ${operation} failed`, error);
+      const warning = document.querySelector("#session-warning");
+      warning.textContent = operation === "restore"
+        ? "La partie précédente n’a pas pu être restaurée. Une nouvelle partie est ouverte ; gardez cet onglet ouvert."
+        : "La sauvegarde dans cet onglet est indisponible. Vous pouvez jouer, mais un rechargement risque d’effacer la partie.";
+      warning.hidden = false;
+    }
+  });
+  const roles = game.order.map(id => window.METIERS.find(item => item.id === id));
   const main = document.querySelector("main");
   const dialog = document.querySelector("#detail");
-  const answers = rounds.map(() => ({ selected: new Set(), revealed: false }));
+  const answers = game.answers;
   let currentRound = 0;
   let search = "";
   const role = id => roles.find(item => item.id === id);
   const escape = value => String(value).replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
   const art = (id, decorative = true) => window.renderCreature(id, decorative);
   const button = (text, action, primary = false) => `<button class="button${primary ? " primary" : ""}" data-action="${action}">${text}</button>`;
+  const totalAwards = phases.length * criteria.length;
+  let toastTimer;
+
+  function medal(icon) {
+    const paths = {
+      action: '<path d="m28 17-10 14h9l-3 12 13-17h-10z"/>',
+      relais: '<path d="m23 25-4 4a6 6 0 0 0 8 8l4-4m2-6 4-4a6 6 0 0 0-8-8l-4 4m-2 8 10-10"/>',
+      verification: '<path d="m19 29 6 6 13-14"/><path d="M29 13c5 4 10 4 13 4v10c0 9-6 14-13 18-7-4-13-9-13-18V17c3 0 8 0 13-4z"/>'
+    };
+    return `<svg class="award-medal" viewBox="0 0 58 68" aria-hidden="true" focusable="false"><path class="medal-ribbon" d="m13 43-3 21 12-6 7 8 7-8 12 6-3-21"/><path class="medal-face" d="m29 2 13 4 10 10 4 13-4 13-10 10-13 4-13-4L6 42 2 29l4-13L16 6z"/><g class="medal-symbol">${paths[icon]}</g></svg>`;
+  }
+
+  function awardPanel(phaseIndex) {
+    return `<section class="award-panel" id="phase-awards" aria-labelledby="phase-awards-title">
+      <div class="section-heading"><div><span class="eyebrow">Validation animateur · ${phases[phaseIndex]}</span><h2 id="phase-awards-title">Les preuves de votre coopération.</h2></div><span class="award-counter"><strong data-phase-total="${phaseIndex}">${game.countPhase(phaseIndex)}</strong> / 3 Awards</span></div>
+      <p>Animateur : cochez uniquement ce que les élèves ont exprimé. Une case = un Award collectif, une seule fois dans cette phase. La révélation du corrigé ne valide rien.</p>
+      <fieldset class="award-checklist"><legend class="sr-only">Contributions observées pendant la phase ${phases[phaseIndex]}</legend>${criteria.map((criterion, index) => {
+        const earned = game.awards[phaseIndex][index];
+        return `<label class="award-choice${earned ? " is-earned" : ""}">
+          <input type="checkbox" data-award-phase="${phaseIndex}" data-award-criterion="${index}"${earned ? " checked" : ""}>
+          ${medal(criterion.icon)}<span class="award-copy"><strong>${criterion.title}</strong><span>${criterion.criterion}</span><em>${criterion.prompt}</em><small data-award-state>${earned ? "Award obtenu" : "À explorer"}</small></span></label>`;
+      }).join("")}</fieldset>
+      <p class="small">Les cases restent cochées entre les situations de cette phase. Décochez pour corriger une validation. Une contribution manquante n’empêche pas d’avancer.</p>
+      <a class="button" href="#awards">Voir la collection · <span data-award-total>${game.countAwards()}</span> / ${totalAwards}</a>
+    </section>`;
+  }
+
+  function awardCollection() {
+    return `<section class="award-collection" aria-labelledby="collection-title"><div class="section-heading"><div><span class="eyebrow">Le palmarès de votre société de services</span><h2 id="collection-title">Vos Awards collectifs.</h2></div><span class="award-counter"><strong data-award-total>${game.countAwards()}</strong> / ${totalAwards}</span></div>
+      <p>Une action, un relais, une vérification : trois contributions à collectionner dans chacune des quatre phases. Ce tableau reflète les validations de l’animateur, pas une note ni un classement des élèves.</p>
+      <div class="award-table-wrap"><table class="award-table"><caption class="sr-only">Collection de 12 Awards, par phase et contribution</caption><thead><tr><th scope="col">Phase du projet</th>${criteria.map(item => `<th scope="col">${item.title}</th>`).join("")}</tr></thead><tbody>${phases.map((phase, phaseIndex) => {
+        const lastRound = rounds.findLastIndex(item => item.phase === phase) + 1;
+        return `<tr><th scope="row"><span class="tech-label">Phase ${phaseIndex + 1} · ${game.countPhase(phaseIndex)} / 3</span>${phase}<a href="#jeu/${lastRound}" class="award-revisit">Revoir et valider →</a></th>${criteria.map((criterion, index) => `<td class="${game.awards[phaseIndex][index] ? "is-earned" : "is-pending"}">${medal(criterion.icon)}<span>${game.awards[phaseIndex][index] ? "Obtenu" : "À explorer"}</span></td>`).join("")}</tr>`;
+      }).join("")}</tbody></table></div>
+      <p class="small">Chaque case représente un Award distinct. Vous pouvez revenir sur une phase pour compléter ou corriger la validation ; aucun doublon n’est ajouté.</p></section>`;
+  }
+
+  function awardsPage() {
+    const resume = answers.findIndex(item => !item.revealed);
+    main.innerHTML = `${awardCollection()}<div class="actions"><a class="button primary" href="${resume < 0 ? "#bilan" : `#jeu/${resume + 1}`}">${resume < 0 ? "Voir le bilan" : "Reprendre la mission"} →</a>${button("Nouvelle partie", "restart")}</div>`;
+  }
+
+  function closeToast() {
+    clearTimeout(toastTimer);
+    document.querySelector("#award-toast").hidden = true;
+  }
+
+  function announceAward(phaseIndex, criterionIndex, earned) {
+    closeToast();
+    const criterion = criteria[criterionIndex];
+    const message = earned
+      ? `${criterion.title} : Award collectif obtenu pour ${phases[phaseIndex]}. ${game.countAwards()} sur ${totalAwards}.`
+      : `${criterion.title} : validation retirée pour ${phases[phaseIndex]}. ${game.countAwards()} sur ${totalAwards}.`;
+    document.querySelector("#award-announcement").textContent = message;
+    if (!earned) return;
+    const toast = document.querySelector("#award-toast");
+    document.querySelector("#award-toast-icon").innerHTML = medal(criterion.icon);
+    document.querySelector("#award-toast-title").textContent = criterion.title;
+    document.querySelector("#award-toast-phase").textContent = `${phases[phaseIndex]} · ${game.countAwards()} / ${totalAwards} dans la collection`;
+    toast.hidden = false;
+    toastTimer = setTimeout(closeToast, 4500);
+  }
 
   function card(item, interactive = true) {
     const tag = interactive ? "button" : "article";
@@ -686,7 +905,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <section class="how" aria-label="Comment jouer">
       <article><b class="step">01</b><div><h3>Incarnez un métier</h3><p>Recevez une carte. Découvrez votre mission, votre talent et vos alliés.</p></div></article>
       <article><b class="step">02</b><div><h3>Écoutez et levez la carte</h3><p>L’animateur raconte. Vous pensez intervenir ? Levez votre carte et dites pourquoi.</p></div></article>
-      <article><b class="step">03</b><div><h3>Découvrez l’équipe</h3><p>Révélez les rôles attendus. Plusieurs métiers coopèrent et reviennent dans l’histoire.</p></div></article></section>
+      <article><b class="step">03</b><div><h3>Collectionnez les Awards</h3><p>Expliquez une action, passez un relais et proposez une vérification. L’animateur valide : jusqu’à 12 Awards collectifs, sans classement.</p></div></article></section>
       <section class="intro-strip"><span class="tech-label">Le brief client / Atelier Nova</span><p class="intro-quote">« Nos équipes passent leur temps à chercher leurs procédures. Aidez-nous à créer un assistant qui retrouve <strong>la bonne information</strong>, montre ses sources et respecte les accès de chacun. »</p><p class="intro-aside">Entreprise fictive. Les salariés participent au projet et valident les réponses liées à leur métier.</p></section>
       <div class="timeline-summary">${phases.map((phase,index)=>`<span class="phase">${String(index+1).padStart(2,"0")}<strong>${phase}</strong></span>`).join("")}</div>`;
   }
@@ -713,14 +932,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const item = rounds[currentRound];
     const state = answers[currentRound];
     const activePhase = phases.indexOf(item.phase);
-    main.innerHTML = `<div class="round-meta"><span class="phase-name">Votre client : Atelier Nova</span><span>Situation ${String(currentRound+1).padStart(2,"0")} sur ${String(rounds.length).padStart(2,"0")}</span></div>
+    const phaseEnd = !rounds[currentRound + 1] || rounds[currentRound + 1].phase !== item.phase;
+    main.innerHTML = `<div class="round-meta"><span class="phase-name">Votre client : Atelier Nova</span><button type="button" class="award-shortcut" data-action="phase-awards">Awards <span data-award-total>${game.countAwards()}</span> / ${totalAwards} · Valider ↓</button><span>Situation ${String(currentRound+1).padStart(2,"0")} sur ${String(rounds.length).padStart(2,"0")}</span></div>
       <div class="phase-track" aria-label="Progression de la mission">${phases.map((phase,index)=>`<div class="phase-point${index<activePhase?" past":""}${index===activePhase?" current":""}"><span class="phase-dot"></span><span class="phase-label">${phase}</span></div>`).join("")}</div>
       <section class="mission-layout" aria-label="Plateau de jeu, situation ${currentRound+1}">
         <article class="briefing-panel" data-index="${String(currentRound+1).padStart(2,"0")}">
           <div class="client-label"><span class="tech-label">Dans la vie du projet</span><span class="client-id"><strong>${item.phase}</strong></span></div>
           <h1 class="round-title">${item.title}</h1><p class="story">${item.story}</p>
           <div class="question-block"><p class="question-label">La question / à vous de jouer</p><h2 class="question">${item.question}</h2>
-            <div class="briefing-footer"><span class="small">Lève ta carte et explique ton action.</span>${!state.revealed?button("Révéler la réponse ↗","reveal",true):button(currentRound===rounds.length-1?"Terminer la mission →":"Épisode suivant →","next",true)}</div>
+            <div class="briefing-footer"><span class="small">Lève ta carte et explique ton action.</span>${!state.revealed?button("Révéler la réponse ↗","reveal",true):phaseEnd?button("Awards de la phase ↓","phase-awards",true):button("Épisode suivant →","next",true)}</div>
           </div>
         </article>
         <section class="board-panel" aria-label="Plateau de jeu, cartes métiers">
@@ -734,6 +954,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </section>
       </section>
       ${state.revealed ? solution(item,state) : ""}
+      ${awardPanel(activePhase)}
       <div class="round-actions no-print">${button("Retour aux fiches","catalog")}<span class="small">Chaque métier peut réapparaître. Aucune mauvaise réponse pénalisée.</span>${state.revealed?button(currentRound===rounds.length-1?"Voir le bilan →":"Continuer la mission →","next",true):""}</div>`;
   }
 
@@ -755,13 +976,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function recap() {
     const completed = answers.filter(item=>item.revealed).length;
-    main.innerHTML = `<section class="recap-hero"><div><div class="hero-index"><span class="index-led"></span><span class="index-meta">MISSION 001 / RAPPORT FINAL</span></div><span class="eyebrow">Atelier Nova / Mission accomplie</span><h1>L’IA, c’est<br><span class="accent">collectif.</span></h1>
-      <p class="lead">Du premier échange à la mise à jour, votre équipe a mobilisé des compétences différentes. Aucun métier ne fait tout. Chacun fait avancer le projet.</p>
+    main.innerHTML = `<section class="recap-hero"><div><div class="hero-index"><span class="index-led"></span><span class="index-meta">MISSION 001 / RAPPORT ${completed === rounds.length ? "FINAL" : "D’ÉTAPE"}</span></div><span class="eyebrow">Atelier Nova / ${completed === rounds.length ? "Parcours terminé" : "Mission en cours"}</span><h1>L’IA, c’est<br><span class="accent">collectif.</span></h1>
+      <p class="lead">${completed === rounds.length ? "Du premier échange à la mise à jour, votre équipe a mobilisé des compétences différentes." : "Votre équipe explore les contributions nécessaires pour accompagner le client."} Aucun métier ne fait tout. Chacun fait avancer le projet.</p>
       <p class="notice">${completed} situation${completed>1?"s":""} révélée${completed>1?"s":""} sur ${rounds.length}. Ce compteur suit le déroulé, pas la note des élèves.</p>
       </div><div class="recap-orbit" aria-label="Les métiers de l’équipe">${roles.slice(0,12).map(item=>`<span class="mini">${art(item.id)}</span>`).join("")}</div></section>
+      ${awardCollection()}
       <div class="table-wrap"><table><thead><tr><th>Situation</th><th>Rôles centraux du corrigé</th><th>Déroulé</th></tr></thead><tbody>${rounds.map((item,i)=>`<tr><td><a href="#jeu/${i+1}">${i+1}. ${item.title}</a></td><td>${Object.keys(item.answers).map(id=>`<span class="recap-name">${role(id).name}</span> · ${role(id).job}`).join("<br>")}</td><td class="recap-result">${answers[i].revealed?"Révélée":"À jouer"}</td></tr>`).join("")}</tbody></table></div>
       <section class="panel"><h2>Le dernier tour de cartes</h2><p>Chaque élève termine cette phrase : <strong>« Mon métier sert à… et j’ai besoin de… pour… »</strong></p><p class="small">Puis : quel métier avez-vous découvert ? Lequel aimeriez-vous explorer ? Ces rôles peuvent être regroupés dans une petite entreprise : une carte n’est pas forcément une personne différente.</p></section>
-      <div class="actions"><a class="button primary" href="#cartes">Retrouver les fiches</a>${button("Rejouer la mission ↗","restart")}<a class="button" href="#guide">Guide animateur</a></div>`;
+      <div class="actions"><a class="button primary" href="#cartes">Retrouver les fiches</a>${completed < rounds.length ? `<a class="button" href="#jeu/${answers.findIndex(item => !item.revealed) + 1}">Reprendre la mission →</a>` : ""}${button("Rejouer la mission ↗","restart")}<a class="button" href="#guide">Guide animateur</a></div>`;
   }
 
   function guide() {
@@ -772,6 +994,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <section class="panel"><h2>À chaque situation · 2 à 3 min</h2><ol><li>Lisez l’histoire et la question sans afficher le corrigé.</li><li>Laissez réfléchir une vingtaine de secondes. Demandez « Qui intervient ? Pour faire quoi ? »</li><li>Écoutez quelques élèves. Vous pouvez sélectionner leurs cartes à l’écran, mais ce n’est pas obligatoire.</li><li>Révélez les métiers, expliquez leurs actions puis ouvrez les contributions complémentaires si nécessaire.</li><li>Posez la question de relance et passez à la suite.</li></ol><p class="small">Pas de pénalité : on apprend les rôles, pas à deviner une réponse unique.</p></section>
       <section class="panel"><h2>Pour rester simple</h2><p><strong>IA :</strong> un outil qui peut produire une réponse, mais se tromper.<br><strong>Données :</strong> les informations utilisées par l’outil.<br><strong>Cloud :</strong> des ordinateurs accessibles à distance.<br><strong>UX/UI :</strong> la façon d’utiliser l’outil et ses écrans.<br><strong>DevOps :</strong> construire, mettre en service et maintenir le logiciel.<br><strong>Pentest :</strong> un test de sécurité autorisé.<br><strong>DPO :</strong> une personne qui conseille sur les données personnelles.</p><p>Les intitulés varient selon les entreprises. Il n’existe pas un poste par carte dans toutes les équipes. Le pentesteur peut intervenir depuis une autre entreprise ; le DPO peut être celui du client.</p></section></div>
       <section class="panel"><h2>Quatre phases, dix situations</h2><p>${phases.map((phase,index)=>`${index+1}. <strong>${phase}</strong>`).join(" · ")}</p><p>Les situations 1 et 2 précisent le besoin ; 3 à 5 construisent la solution ; 6 et 7 éprouvent les réponses et les protections ; 8 à 10 couvrent l’ouverture, le support et l’amélioration.</p><p class="small">Ces phases racontent le projet, pas le classement des métiers. La sécurité se prépare dès le début, les essais se répètent et plusieurs métiers reviennent. Projetez le quiz, pas ce corrigé, pendant la partie.</p></section>
+      <section class="panel"><h2>12 Awards à collectionner, pas une note</h2><p>Dans chaque phase, trois cases indépendantes récompensent ce que les élèves ont réellement exprimé. Vous pouvez les cocher à tout moment grâce au bouton « Awards · Valider » du plateau, puis les compléter à la fin de la phase.</p><ul>${criteria.map(item => `<li><strong>${item.title} :</strong> ${item.criterion} Relance : ${item.prompt}</li>`).join("")}</ul><p>Une case cochée attribue un Award collectif et déclenche une courte animation. Révéler le corrigé ne rapporte rien automatiquement. Ne cochez pas pour une phrase que vous avez vous-même fournie : demandez une reformulation ou un exemple à la classe.</p><p>Un Award se gagne une seule fois par phase, même si plusieurs élèves contribuent ou si vous revenez en arrière. Décochez pour corriger une validation. Une case « À explorer » n’est pas un échec et ne bloque pas la suite. Le tableau final rassemble jusqu’à 12 Awards, sans classement entre élèves.</p><p class="small">Les propositions, révélations, Awards et positions des cartes sont conservés dans cet onglet après un rechargement, si le navigateur autorise la sauvegarde. Pour une autre classe, utilisez « Nouvelle partie » et confirmez l’effacement.</p></section>
       <h2 style="margin-top:40px">Votre conducteur et le corrigé</h2>
       <div class="table-wrap"><table><thead><tr><th>Situation</th><th>Rôles centraux et actions</th><th>Message à retenir / relance</th></tr></thead><tbody>${rounds.map((item,i)=>`<tr><td><strong>${i+1}. ${item.title}</strong><br>${item.question}</td><td>${Object.entries(item.answers).map(([id,text])=>`<p><strong>${role(id).name}</strong> · ${role(id).job}<br>${text}</p>`).join("")}</td><td>${item.debrief}<p><em>${item.prompt}</em></p></td></tr>`).join("")}</tbody></table></div>
       <section class="panel"><h2>Terminer · 5 min</h2><p>Chaque élève explique son métier et nomme un allié. Faites repérer trois idées : il faut plusieurs compétences ; protéger et vérifier se fait tout au long du projet ; l’IA n’a pas toujours la réponse.</p><p><strong>Variante courte · 25 min :</strong> jouez les situations 1, 4, 5, 6, 7, 8 et 10. Présentez brièvement Pixelune, ArchiSol et Helpotron entre ces situations pour ne laisser aucune carte sans rôle.</p><p class="small">Les illustrations sont des créations originales de personnages de collection, sans reprendre les personnages ni l’identité de Pokémon. Le jeu présente des missions, pas des parcours de formation exhaustifs ni des promesses d’emploi.</p></section>
@@ -785,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function route() {
+    closeToast();
     if (dialog.open) dialog.close();
     delete document.body.dataset.print;
     const hash = location.hash || "#accueil";
@@ -795,6 +1019,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(hash==="#cartes") catalog();
     else if(hash==="#guide") guide();
     else if(hash==="#bilan") recap();
+    else if(hash==="#awards") awardsPage();
     else if(/^#jeu\/(?:[1-9]|10)$/.test(hash)){
       currentRound=Number(hash.split("/")[1])-1;
       round();
@@ -817,6 +1042,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(state.revealed) return;
       const id=target.dataset.pick;
       if(state.selected.has(id)) state.selected.delete(id); else state.selected.add(id);
+      game.save();
       target.setAttribute("aria-pressed",String(state.selected.has(id)));
       target.querySelector(".check").textContent=state.selected.has(id)?"✓":"";
       main.querySelector(".board-count").textContent=`${state.selected.size} carte${state.selected.size>1?"s":""} levée${state.selected.size>1?"s":""}`;
@@ -826,6 +1052,7 @@ document.addEventListener("DOMContentLoaded", () => {
     switch(target.dataset.action){
       case "reveal":
         answers[currentRound].revealed=true;
+        game.save();
         round();
         document.querySelector("#solution").focus({preventScroll:true});
         document.querySelector("#solution").scrollIntoView({block:"start",behavior:"instant"});
@@ -841,8 +1068,11 @@ document.addEventListener("DOMContentLoaded", () => {
         location.hash="#cartes";
         break;
       case "restart":
-        answers.forEach(item=>{item.selected.clear();item.revealed=false;});
-        location.hash="#jeu/1";
+        document.querySelector("#restart-dialog").showModal();
+        break;
+      case "phase-awards":
+        document.querySelector("#phase-awards").scrollIntoView({block:"start",behavior:"instant"});
+        document.querySelector("#phase-awards input").focus({preventScroll:true});
         break;
       case "print-cards": printCards(); break;
       case "print-guide": window.print(); break;
@@ -850,6 +1080,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   main.addEventListener("input",event=>{
     if(event.target.id==="search"){search=event.target.value;filterCards();}
+  });
+  main.addEventListener("change", event => {
+    const input = event.target;
+    if (!input.matches("input[data-award-phase]")) return;
+    const phaseIndex = Number(input.dataset.awardPhase);
+    const criterionIndex = Number(input.dataset.awardCriterion);
+    if (!game.setAward(phaseIndex, criterionIndex, input.checked)) return;
+    const label = input.closest(".award-choice");
+    label.classList.toggle("is-earned", input.checked);
+    label.classList.toggle("just-earned", input.checked);
+    label.querySelector("[data-award-state]").textContent = input.checked ? "Award obtenu" : "À explorer";
+    main.querySelectorAll("[data-award-total]").forEach(node => { node.textContent = game.countAwards(); });
+    main.querySelectorAll("[data-phase-total]").forEach(node => { node.textContent = game.countPhase(Number(node.dataset.phaseTotal)); });
+    announceAward(phaseIndex, criterionIndex, input.checked);
+  });
+  document.querySelector("#close-award-toast").addEventListener("click", closeToast);
+  document.querySelector("#cancel-restart").addEventListener("click", () => document.querySelector("#restart-dialog").close());
+  document.querySelector("#confirm-restart").addEventListener("click", () => {
+    game.reset();
+    closeToast();
+    document.querySelector("#award-announcement").textContent = "Nouvelle partie : les propositions et les Awards ont été remis à zéro.";
+    document.querySelector("#restart-dialog").close();
+    if (location.hash === "#jeu/1") route();
+    else location.hash = "#jeu/1";
   });
   const motionPreference=window.matchMedia("(prefers-reduced-motion: reduce)");
   main.addEventListener("pointermove",event=>{
@@ -921,18 +1175,22 @@ document.addEventListener("DOMContentLoaded", () => {
 <body>
 <header class="topbar">
   <div class="brand-home">
-  <a class="home-return" href="../" aria-label="Revenir à l’accueil de My Page">← My Page</a>
+  <a class="home-return" href="https://nricl.github.io/MyPage/" aria-label="Revenir à l’accueil de My Page">← My Page</a>
   <a class="brand" href="#accueil" aria-label="La fresque des métiers, accueil"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M2 14h24M14 2v24M5.5 5.5l17 17m0-17-17 17" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span> LA FRESQUE <span class="brand-sub">DES MÉTIERS</span></a>
   </div>
   <nav aria-label="Navigation principale">
-    <a href="#accueil">La mission</a><a href="#cartes">Les 16 cartes</a><a href="#guide">Guide animateur</a>
+    <a href="#accueil">La mission</a><a href="#cartes">Les 16 cartes</a><a href="#awards">Les Awards</a><a href="#guide">Guide animateur</a>
   </nav>
   <button id="project" class="theme-switch" aria-label="Afficher le jeu en plein écran">Projeter ↗</button>
   <button id="theme" class="theme-switch" aria-label="Passer en mode clair">Mode clair</button>
 </header>
+<p id="session-warning" class="notice session-warning" role="status" hidden></p>
 <main id="main" tabindex="-1"></main>
-<footer>Des personnages imaginaires. De vrais métiers. <span>Première pro · À jouer ensemble, pas à apprendre par cœur.</span><span><a href="../">← My Page</a> · <a href="cartes-metiers-a-imprimer.pdf" download>Cartes à imprimer (PDF)</a> · <a href="guide-animateur.pdf" download>Guide animateur (PDF)</a></span></footer>
+<footer>Des personnages imaginaires. De vrais métiers. <span>Première pro · À jouer ensemble, pas à apprendre par cœur.</span><span><a href="https://nricl.github.io/MyPage/">← My Page</a> · <a href="cartes-metiers-a-imprimer.pdf" download>Cartes à imprimer (PDF)</a> · <a href="guide-animateur.pdf" download>Guide animateur (PDF)</a></span></footer>
+<div id="award-toast" class="award-toast" hidden><span id="award-toast-icon" aria-hidden="true"></span><div><span class="tech-label">Award collectif débloqué</span><strong id="award-toast-title"></strong><p id="award-toast-phase"></p></div><button type="button" id="close-award-toast" class="close" aria-label="Fermer la notification">×</button></div>
+<p id="award-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+<dialog id="restart-dialog" aria-labelledby="restart-title"><h2 id="restart-title">Nouvelle équipe, nouvelle mission ?</h2><p>Les propositions, les révélations et les 12 Awards de cette partie seront effacés. L’ordre des cartes restera identique.</p><div class="actions"><button type="button" class="button" id="cancel-restart">Garder la partie</button><button type="button" class="button primary" id="confirm-restart">Effacer et rejouer</button></div></dialog>
 <dialog id="detail" aria-labelledby="detail-title"><button id="close-detail" class="close" aria-label="Fermer la fiche">×</button><div id="detail-body"></div></dialog>
-<noscript><p>Ce quiz a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur. Les fichiers metiers.js, illustrations.js et app.js doivent rester à côté de cette page.</p></noscript>
+<noscript><p>Ce quiz a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur. Les cartes et le guide PDF restent accessibles depuis le pied de page.</p></noscript>
 </body>
 </html>
