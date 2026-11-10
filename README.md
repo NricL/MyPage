@@ -24,6 +24,7 @@ Parcours de lecture et support d’animation : `https://nricl.github.io/MyPage/t
 - `travailler-avec-ia/index.html` conserve les textes développés, les trois situations professionnelles et le mode « Animer ».
 - `travailler-avec-ia/masterclass-illustrations/` contient uniquement les 14 PNG finaux. Les messages courts suivent les fiches éditoriales de l’index validé le 10 novembre 2026.
 - En projection, chaque illustration apparaît seule ; les messages se révèlent ensuite un par un. Les flèches permettent de parcourir la présentation, Échap de revenir à la lecture.
+- L’expertise et l’apprentissage permanent sont rattachés à l’illustration 08 : le paragraphe complet est conservé dans la consultation, sans écran autonome supplémentaire en projection.
 - Le bandeau du mode Animer affiche le grand titre de la partie, son numéro et les étapes de cette partie sur une ligne de points : étapes parcourues colorées, étape actuelle cerclée, étapes à venir vides. Les compteurs distinguent les étapes, les messages révélés et la position globale ; ils suivent aussi les retours en arrière.
 - Conserver les liens vers My Page en haut à gauche et en pied de page. Le compteur de projection est calculé depuis les diapositives.
 - Le site est statique, sans dépendance ni compilation. Les prompts, documents de travail et variantes abandonnées ne sont pas publiés.
