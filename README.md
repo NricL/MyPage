@@ -20,6 +20,7 @@ URL cible : `https://nricl.github.io/MyPage/`
 
 Parcours de lecture et support d’animation : `https://nricl.github.io/MyPage/travailler-avec-ia/`.
 
+- La carte « Travailler avec l’IA. Transformer le travail. » ouvre le parcours depuis la section Ressources de My Page.
 - `travailler-avec-ia/index.html` conserve les textes développés, les trois situations professionnelles et le mode « Animer ».
 - `travailler-avec-ia/masterclass-illustrations/` contient uniquement les 14 PNG finaux. Les messages courts suivent les fiches éditoriales de l’index validé le 10 novembre 2026.
 - En projection, chaque illustration apparaît seule ; les messages se révèlent ensuite un par un. Les flèches permettent de parcourir la présentation, Échap de revenir à la lecture.
