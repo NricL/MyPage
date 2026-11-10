@@ -182,6 +182,14 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
 .slide-points{display:grid;gap:0;max-width:800px;margin:26px 0 0;padding:0;list-style:none}
 .slide-points li{display:grid;grid-template-columns:30px 1fr;gap:11px;padding:12px 0;border-top:1px solid var(--cp-border-strong);font-size:clamp(17px,1.85vw,23px);line-height:1.38;animation:rise-in .25s ease both}
 .slide-points .n{color:var(--cp-warning);font-size:12px;font-weight:800}
+.presenter-main.conclusion{align-content:start}
+.conclusion .slide-copy{max-width:1100px;width:100%}
+.conclusion .slide-points li{font-size:clamp(26px,3vw,40px);padding:24px 0;line-height:1.3}
+.slide-final{margin-top:32px;padding:24px 0;border-top:2px solid var(--cp-warning);color:var(--cp-warning);font:500 clamp(32px,4vw,56px)/1.2 var(--serif)}
+.slide-final[hidden]{display:none}
+.editorial-summary{margin-top:40px;padding-top:32px;border-top:1px solid var(--rule)}
+.editorial-summary h3{margin-top:16px;font-size:clamp(30px,4vw,48px)}
+.editorial-summary ol{padding-left:24px;line-height:1.7}
 .slide-art{display:flex;justify-content:center;align-items:center}
 .slide-art[hidden]{display:none}
 .slide-art img{display:block;width:100%;max-height:min(67vh,680px);object-fit:contain}
@@ -447,6 +455,20 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
       <p class="chapter-no">À emporter</p>
       <h2>La prochaine fois que vous utilisez l’IA, quelle étape gardez-vous pour vous ?</h2>
       <p>Les trois situations montrent une même discipline, sans imposer une recette rigide : réfléchir avant de déléguer, choisir un usage pertinent et autorisé, confronter les résultats à sa propre compréhension, puis reprendre la main là où l’expertise et la relation humaine comptent. La maîtrise de l’IA se voit autant dans ce que l’on choisit de lui confier que dans ce que l’on décide de faire soi-même.</p>
+      <section class="editorial-summary" aria-labelledby="editorial-title">
+        <p class="chapter-no">Synthèse éditoriale validée · distincte du texte original du Word</p>
+        <h3 id="editorial-title">L’IA doit rimer avec Ingéniosité Amplifiée</h3>
+        <p>L’enjeu n’est pas seulement de produire plus vite, mais de mieux travailler, d’explorer d’autres possibles et de continuer à développer ce qui fait notre valeur.</p>
+        <ol>
+          <li>Maîtriser les usages, orchestrer le travail</li>
+          <li>Oser repenser les processus et expérimenter</li>
+          <li>Apprendre toujours : son métier et l’IA</li>
+          <li>Cultiver sa créativité, son empathie et son esprit critique</li>
+          <li>Préserver sa pensée, son attention et son autonomie</li>
+          <li>Protéger les données, vérifier et assumer ses choix</li>
+        </ol>
+        <p><strong>Amplifier notre ingéniosité, pas déléguer notre humanité.</strong></p>
+      </section>
     </section>
   </div>
 </main>
@@ -469,6 +491,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     <div class="slide-copy">
       <p class="slide-kicker" id="slide-kicker"></p><h1 class="slide-title" id="slide-title" tabindex="-1"></h1><p class="slide-lead" id="slide-lead"></p>
       <ul class="slide-points" id="slide-points"></ul>
+      <p class="slide-final" id="slide-final" hidden></p>
       <div class="workflow" id="slide-workflow" hidden></div>
       <div class="slide-question" id="slide-question" aria-live="polite" aria-atomic="true" hidden><div class="q-label" id="q-label"></div><p class="q-text" id="q-text"></p></div>
       <div class="slide-answer" id="slide-answer" aria-live="polite" aria-atomic="true" hidden></div>
@@ -527,24 +550,26 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
       {title:'Produire',human:'Donner une intention, des sources et une structure claires.',ai:'Rédiger des passages, reformuler et mettre en forme.'},
       {title:'Finir soi-même',human:'Corriger les erreurs, remettre de la nuance et finaliser les mots.',ai:'Un appui ponctuel, pas une conversation sans fin.'}
     ]},
-    {part:'Synthèse',kicker:'À retenir',title:'L’IA peut accélérer le travail. Le jugement reste le vôtre.',lead:'La maîtrise se voit dans ce que l’on choisit de lui confier et dans ce que l’on décide de faire soi-même.',points:['Réfléchir avant de déléguer','Choisir un usage pertinent et autorisé','Confronter les résultats à sa propre compréhension','Reprendre la main là où l’expertise et la relation humaine comptent']}
+    {part:'Synthèse',kicker:'À retenir',title:'L’IA doit rimer avec Ingéniosité Amplifiée',lead:'L’enjeu n’est pas seulement de produire plus vite, mais de mieux travailler, d’explorer d’autres possibles et de continuer à développer ce qui fait notre valeur.',points:['Maîtriser les usages, orchestrer le travail','Oser repenser les processus et expérimenter','Apprendre toujours : son métier et l’IA','Cultiver sa créativité, son empathie et son esprit critique','Préserver sa pensée, son attention et son autonomie','Protéger les données, vérifier et assumer ses choix'],final:'Amplifier notre ingéniosité, pas déléguer notre humanité.'}
   ];
   const presenter=document.getElementById('presenter'),slideTitle=document.getElementById('slide-title'),slideKicker=document.getElementById('slide-kicker'),slideLead=document.getElementById('slide-lead'),slidePoints=document.getElementById('slide-points'),slideArt=document.getElementById('slide-art'),slideQuestion=document.getElementById('slide-question'),qLabel=document.getElementById('q-label'),qText=document.getElementById('q-text'),slideAnswer=document.getElementById('slide-answer'),presenterPosition=document.getElementById('presenter-position'),presenterPart=document.getElementById('presenter-part'),presenterMain=document.getElementById('presenter-main');
   const presentationParts=[
     {key:'01 · Le métier',label:'Partie 1 sur 3',title:'Devenir un professionnel avec l’IA'},
     {key:'02 · La différence',label:'Partie 2 sur 3',title:'Cultiver sa différence humaine'},
     {key:'03 · En situation',label:'Partie 3 sur 3',title:'S’entraîner en situation'},
-    {key:'Synthèse',label:'Conclusion',title:'Ce que l’on garde pour soi'}
+    {key:'Synthèse',label:'Conclusion',title:'Ingéniosité Amplifiée'}
   ];
   const presenterSteps=document.getElementById('presenter-steps'),presenterStepStatus=document.getElementById('presenter-step-status'),presenterSectionLabel=document.getElementById('presenter-section-label');
   let slideIndex=0,pointIndex=0,questionIndex=0,answerShown=false,imageIntro=false,returnFocus=null;
   const currentSlide=()=>slides[slideIndex],isQuestion=slide=>Array.isArray(slide.questions);
+  const revealCount=slide=>(slide.points||[]).length+(slide.final?1:0);
+  const slideFinal=document.getElementById('slide-final');
   function renderPresentationProgress(){
     const slide=currentSlide(),part=presentationParts.find(part=>part.key===slide.part);
     const partSlides=slides.filter(item=>item.part===slide.part),stepIndex=partSlides.indexOf(slide);
     presenterPart.textContent=part.title;presenterSectionLabel.textContent=part.label;
     presenterPosition.textContent='Vue '+(slideIndex+1)+' / '+slides.length;
-    const reveal=slide.image&&imageIntro?'Image seule':slide.process?(answerShown?'Processus révélé':'À vous de décider'):(slide.points?.length?'Messages '+pointIndex+' / '+slide.points.length:'');
+    const reveal=slide.final&&pointIndex>slide.points.length?'Phrase finale':slide.image&&imageIntro?'Image seule':slide.process?(answerShown?'Processus révélé':'À vous de décider'):(slide.points?.length?'Messages '+pointIndex+' / '+slide.points.length:'');
     presenterStepStatus.textContent='Étape '+(stepIndex+1)+' sur '+partSlides.length+(reveal?' · '+reveal:'');
     presenterSteps.setAttribute('aria-label',part.label+' · '+partSlides.length+' étapes');
     presenterSteps.replaceChildren(...partSlides.map((item,index)=>{
@@ -590,9 +615,12 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
   });
   function renderSlide(moveFocus=false){
     const slide=currentSlide();slideKicker.textContent=slide.kicker;slideTitle.textContent=slide.title;slideLead.textContent=slide.lead;
+    const finalShown=Boolean(slide.final)&&pointIndex>slide.points.length;
+    presenterMain.classList.toggle('conclusion',Boolean(slide.final));
+    slideFinal.hidden=!finalShown;slideFinal.textContent=slide.final||'';
     presenterMain.classList.toggle('scenario',Boolean(slide.process));
     presenterMain.classList.toggle('process-shown',Boolean(slide.process)&&answerShown);
-    slideLead.hidden=!slide.lead;
+    slideLead.hidden=!slide.lead||finalShown;
     slideWorkflow.hidden=!slide.process||!answerShown;
     if(slide.process&&answerShown)renderWorkflow(slideWorkflow,slide);else slideWorkflow.replaceChildren();
     presenterMain.classList.toggle('no-art',!slide.image);
@@ -600,16 +628,17 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     presenterMain.classList.toggle('image-intro',Boolean(slide.image)&&imageIntro);
     document.querySelector('.slide-copy').hidden=Boolean(slide.image)&&imageIntro;
     slidePoints.replaceChildren();
-    const points=isQuestion(slide)?[]:(slide.points||[]).slice(0,pointIndex);
-    points.forEach((text,i)=>{const li=document.createElement('li');li.style.animationDelay=(i*.045)+'s';const n=document.createElement('span');n.className='n';n.textContent=String(i+1).padStart(2,'0');const copy=document.createElement('span');copy.textContent=text;li.append(n,copy);slidePoints.append(li)});
+    const pointStart=slide.final?Math.max(0,pointIndex-1):0;
+    const points=isQuestion(slide)||finalShown?[]:(slide.points||[]).slice(pointStart,pointIndex);
+    points.forEach((text,i)=>{const li=document.createElement('li');li.style.animationDelay=(i*.045)+'s';const n=document.createElement('span');n.className='n';n.textContent=String(pointStart+i+1).padStart(2,'0');const copy=document.createElement('span');copy.textContent=text;li.append(n,copy);slidePoints.append(li)});
     if(slide.image){slideArt.replaceChildren();const img=document.createElement('img');img.src=slide.image;img.alt=slide.alt;slideArt.append(img);slideArt.hidden=false}
     else{slideArt.replaceChildren();slideArt.hidden=true}
     slideQuestion.hidden=!isQuestion(slide);
     if(isQuestion(slide)){const question=slide.questions[questionIndex];qLabel.textContent='Question '+(questionIndex+1)+' / '+slide.questions.length;qText.textContent=question.q;slideAnswer.textContent=question.a}
     slideAnswer.hidden=!isQuestion(slide)||!answerShown;
     renderPresentationProgress();
-    const complete=slide.process?answerShown:isQuestion(slide)?questionIndex===slide.questions.length-1&&answerShown:pointIndex>=(slide.points||[]).length;
-    const next=document.getElementById('next-slide');next.replaceChildren();next.append(document.createTextNode(slide.process?(answerShown?'Situation suivante':'Voir le processus idéal'):isQuestion(slide)?answerShown?(questionIndex<slide.questions.length-1?'Question suivante':'Continuer'):'Révéler le repère':complete?'Continuer':'Message suivant'));const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent=' →';next.append(arrow);next.disabled=slideIndex===slides.length-1&&complete;
+    const complete=slide.process?answerShown:isQuestion(slide)?questionIndex===slide.questions.length-1&&answerShown:pointIndex>=revealCount(slide);
+    const next=document.getElementById('next-slide');next.replaceChildren();next.append(document.createTextNode(finalShown?'Terminé':slide.final&&pointIndex===slide.points.length?'Phrase finale':slide.process?(answerShown?'Situation suivante':'Voir le processus idéal'):isQuestion(slide)?answerShown?(questionIndex<slide.questions.length-1?'Question suivante':'Continuer'):'Révéler le repère':complete?'Continuer':'Message suivant'));const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent=' →';next.append(arrow);next.disabled=slideIndex===slides.length-1&&complete;
     document.getElementById('prev-slide').disabled=slideIndex===0&&pointIndex===0&&questionIndex===0;
     if(moveFocus){presenterMain.scrollTop=0;(imageIntro?document.getElementById('next-slide'):slideTitle).focus({preventScroll:true})}
   }
@@ -620,7 +649,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     if(slide.process&&!answerShown){answerShown=true;renderSlide();presenterMain.scrollTop=0;return}
     if(slide.image&&imageIntro){imageIntro=false;pointIndex=Math.min(1,(slide.points||[]).length);renderSlide();return}
     if(isQuestion(slide)){if(!answerShown){answerShown=true;renderSlide();return}if(questionIndex<slide.questions.length-1){questionIndex++;answerShown=false;renderSlide();return}}
-    else if(pointIndex<(slide.points||[]).length){pointIndex++;renderSlide();return}
+    else if(pointIndex<revealCount(slide)){pointIndex++;renderSlide();if(slide.final)presenterMain.scrollTop=0;return}
     if(slideIndex<slides.length-1){slideIndex++;pointIndex=0;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[slideIndex].image);renderSlide(true)}
   }
   function previous(){
@@ -628,7 +657,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     if(slide.process&&answerShown){answerShown=false;renderSlide();presenterMain.scrollTop=0;return}
     if(slide.image&&!imageIntro){if(pointIndex>0){pointIndex--;if(pointIndex===0)imageIntro=true;renderSlide();return}}
     if(isQuestion(slide)){if(answerShown){answerShown=false;renderSlide();return}if(questionIndex>0){questionIndex--;renderSlide();return}}
-    else if(pointIndex>0){pointIndex--;renderSlide();return}
+    else if(pointIndex>0){pointIndex--;renderSlide();if(slide.final)presenterMain.scrollTop=0;return}
     if(slideIndex>0){slideIndex--;questionIndex=isQuestion(slides[slideIndex])?slides[slideIndex].questions.length-1:0;pointIndex=slides[slideIndex].image?0:isQuestion(slides[slideIndex])?0:(slides[slideIndex].points||[]).length;answerShown=isQuestion(slides[slideIndex])||Boolean(slides[slideIndex].process);imageIntro=Boolean(slides[slideIndex].image);renderSlide(true)}
   }
   document.getElementById('start-presentation').addEventListener('click',openPresenter);
