@@ -16,6 +16,16 @@ Process retenu :
 
 URL cible : `https://nricl.github.io/MyPage/`
 
+## Travailler avec l’IA
+
+Parcours de lecture et support d’animation : `https://nricl.github.io/MyPage/travailler-avec-ia/`.
+
+- `travailler-avec-ia/index.html` conserve les textes développés, les trois situations professionnelles et le mode « Animer ».
+- `travailler-avec-ia/masterclass-illustrations/` contient uniquement les 14 PNG finaux. Les messages courts suivent les fiches éditoriales de l’index validé le 10 novembre 2026.
+- En projection, chaque illustration apparaît seule ; les messages se révèlent ensuite un par un. Les flèches permettent de parcourir la présentation, Échap de revenir à la lecture.
+- Conserver les liens vers My Page en haut à gauche et en pied de page. Le compteur de projection est calculé depuis les diapositives.
+- Le site est statique, sans dépendance ni compilation. Les prompts, documents de travail et variantes abandonnées ne sont pas publiés.
+
 ## Fresque des métiers Tech autour de l'IA
 
 Atelier collectif pour les lycéens, accessible depuis les ressources de l'accueil et à l'adresse `https://nricl.github.io/MyPage/fresque-metiers-tech-ia/`.

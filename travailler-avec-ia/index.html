@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Des repères pour travailler avec l’IA : comprendre ses possibilités, exercer son jugement et renforcer les compétences humaines.">
+<link rel="icon" href="data:,">
+<title>Travailler avec l’IA · Repères et situations</title>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+:root{--ink:var(--cp-text);--paper:var(--cp-bg);--paper-bright:var(--cp-text);--coral:var(--cp-warning);--blue:var(--cp-warning);--muted:var(--cp-bg-elevated);--rule:var(--cp-border-strong);--serif:Georgia,"Times New Roman",serif}
+html[data-theme="dark"]{--ink:var(--cp-bg);--paper:var(--cp-text);--paper-bright:var(--cp-bg);--muted:var(--cp-text-soft);--rule:var(--cp-border-strong)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;background:var(--ink);color:var(--paper);font:17px/1.65 "Segoe UI",Aptos,Calibri,-apple-system,BlinkMacSystemFont,sans-serif}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.04;letter-spacing:-.035em;text-wrap:balance}
+p{margin-top:18px;text-wrap:pretty}
+button,a,summary{font:inherit}
+a{color:inherit}
+button,summary{cursor:pointer}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+::selection{background:var(--cp-highlight)}
+.skip{position:fixed;z-index:100;top:-80px;left:14px;padding:12px 16px;background:var(--ink);color:var(--paper);border:1px solid var(--rule)}
+.skip:focus{top:12px}
+.topline{height:4px;background:var(--rule)}
+.topline span{display:block;width:0;height:100%;background:var(--coral);transition:width .25s ease}
+.topbar{position:sticky;z-index:20;top:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;padding:12px clamp(18px,4.5vw,68px);border-bottom:1px solid var(--rule);background:var(--ink);color:var(--paper)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:12px;font-weight:750;letter-spacing:.09em;text-transform:uppercase}
+.home-link{display:block;width:fit-content;min-height:44px;padding:10px clamp(18px,4.5vw,68px);color:var(--muted);font-size:13px;text-decoration:none}
+.home-link:hover{color:var(--coral)}
+.brand-mark{display:grid;width:30px;height:30px;place-items:center;border:1px solid var(--ink);border-radius:50%;font-family:var(--serif);font-size:11px;font-weight:700;letter-spacing:0}
+.top-chapters{display:flex;gap:6px;align-items:center}
+.top-chapters a{padding:7px 10px;color:var(--muted);font-size:13px;text-decoration:none;transition:color .18s ease}
+.top-chapters a:hover,.top-chapters a[aria-current="location"]{color:var(--coral)}
+.top-actions{justify-self:end}
+.button{display:inline-flex;min-height:44px;align-items:center;justify-content:center;gap:9px;padding:9px 16px;border:1px solid var(--rule);background:transparent;color:var(--paper);font-size:14px;font-weight:700;text-decoration:none;transition:background .18s ease,color .18s ease,transform .18s ease}
+.button:hover{transform:translateY(-1px);background:var(--ink);color:var(--paper)}
+.button-primary{border-color:var(--coral);background:var(--coral);color:var(--ink)}
+.button-primary:hover{border-color:var(--cp-accent-hover);background:var(--cp-accent-hover);color:var(--cp-accent-fg)}
+.button-plain{min-height:36px;border-color:transparent;padding:6px 8px}
+.wrap{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr);align-items:end;min-height:520px;padding:clamp(64px,9vw,112px) 0 76px}
+.hero:after{position:absolute;right:2%;bottom:58px;width:28%;height:1px;background:var(--rule);content:""}
+.eyebrow{display:flex;align-items:center;gap:11px;color:var(--coral);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.eyebrow:before{width:24px;height:2px;background:var(--coral);content:""}
+.hero h1{max-width:1200px;margin-top:22px;font-size:clamp(54px,6.4vw,92px);line-height:.98}
+.hero h1 em{color:var(--coral);font-style:normal}
+.hero-deck{max-width:620px;margin-top:26px;color:var(--muted);font-size:clamp(19px,2.1vw,25px);line-height:1.48}
+.jump-start{display:inline-flex;margin-top:28px;align-items:center;gap:12px;color:var(--coral);font-size:14px;font-weight:800;text-decoration:none}
+.jump-start span{display:grid;width:36px;height:36px;place-items:center;border:1px solid var(--coral);border-radius:50%;transition:transform .2s ease}
+.jump-start:hover span{transform:translateY(4px)}
+.journey{display:grid;grid-template-columns:repeat(3,1fr);margin:76px auto 22px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.journey a{display:flex;min-height:86px;align-items:center;gap:14px;padding:16px 16px 16px 0;text-decoration:none}
+.journey a+a{padding-left:20px;border-left:1px solid var(--rule)}
+.journey-no{align-self:flex-start;color:var(--coral);font-size:12px;font-weight:800;letter-spacing:.08em}
+.journey-title{font-family:var(--serif);font-size:20px;line-height:1.1}
+.journey a:hover .journey-title{color:var(--coral)}
+.reader{padding-bottom:100px}
+.chapter{padding-top:clamp(76px,10vw,130px);scroll-margin-top:70px}
+.chapter-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr);gap:clamp(28px,7vw,100px);align-items:end;padding-bottom:34px;border-bottom:1px solid var(--rule)}
+.chapter-no{color:var(--coral);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.chapter-head h2{max-width:820px;margin-top:17px;font-size:clamp(44px,6vw,76px)}
+.chapter-lead{max-width:430px;color:var(--muted);font-size:17px}
+.topic{display:grid;grid-template-columns:minmax(195px,.45fr) minmax(0,1fr);gap:clamp(28px,7vw,100px);padding:36px 0;border-bottom:1px solid var(--rule);scroll-margin-top:88px}
+.topic-title{font-size:clamp(24px,3vw,34px)}
+.topic-index{display:block;margin-bottom:11px;color:var(--coral);font:700 11px/1.2 "Segoe UI",Aptos,Calibri,sans-serif;letter-spacing:.12em}
+.topic-copy{max-width:730px;font-size:18px;line-height:1.7}
+.topic-copy p:first-child{margin-top:0}
+.topic-copy p+p{margin-top:16px}
+.topic-copy .pull{margin-top:25px;padding:18px 22px;border-left:3px solid var(--coral);background:var(--cp-highlight);font-weight:650}
+.art-spread{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(220px,.95fr);gap:clamp(18px,4vw,48px);align-items:center;margin:30px 0 0}
+.art-spread img{display:block;width:100%;height:auto;max-height:510px;object-fit:contain}
+.art-caption{color:var(--muted);font-size:13px}
+.art-caption strong{display:block;margin-bottom:9px;color:var(--paper);font:500 clamp(23px,3vw,34px)/1.1 var(--serif)}
+.art-caption ol{display:grid;gap:0;margin:16px 0 0;padding:0;list-style:none;counter-reset:art-message}
+.art-caption li{display:grid;grid-template-columns:24px 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--rule);counter-increment:art-message;font-size:14px;line-height:1.45}
+.art-caption li::before{content:counter(art-message,decimal-leading-zero);color:var(--coral);font-size:11px;font-weight:800}
+.prompts{display:grid;gap:10px;margin-top:27px}
+.prompt details{border-top:1px solid var(--rule)}
+.prompt summary{padding:14px 0;font-weight:700;line-height:1.4}
+.prompt p{margin:0 0 16px;padding:14px 16px;border-left:2px solid var(--coral);background:var(--cp-highlight);font-size:16px}
+.source-note{margin-top:22px;border-top:1px solid var(--rule)}
+.source-note summary{padding:13px 0 5px;color:var(--paper);font-size:13px;font-weight:700;cursor:pointer}
+.source-note p{margin:0 0 15px;color:var(--muted);font-size:14px;line-height:1.55}
+.finish{margin-top:90px;padding:clamp(34px,6vw,74px) 0;border-top:1px solid var(--rule);color:var(--paper)}
+.finish .chapter-no{color:var(--cp-warning)}
+.finish h2{max-width:800px;margin-top:17px;font-size:clamp(38px,5.5vw,68px)}
+.finish p{max-width:800px;color:var(--muted);font-size:19px}
+.foot{display:flex;justify-content:space-between;gap:18px;padding:24px 0 44px;color:var(--muted);font-size:13px}
+.presenter{position:fixed;z-index:60;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;background:var(--ink);color:var(--paper);animation:fade-in .2s ease both}
+.presenter[hidden]{display:none}
+.presenter-top,.presenter-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,4vw,52px)}
+.presenter-top{border-bottom:1px solid var(--cp-border-strong)}
+.presenter-bottom{border-top:1px solid var(--cp-border-strong)}
+.presenter-brand{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.presenter-brand i{width:9px;height:9px;border-radius:50%;background:var(--cp-warning)}
+.presenter-status{display:flex;align-items:center;gap:14px;color:var(--cp-bg-elevated);font-size:12px;font-weight:700}
+.progress{width:min(20vw,190px);height:3px;background:var(--cp-border-strong)}
+.progress span{display:block;width:0;height:100%;background:var(--cp-warning);transition:width .25s ease}
+.presenter-main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(240px,.95fr);gap:clamp(25px,6vw,80px);align-items:center;width:min(1320px,calc(100% - 52px));height:100%;margin:auto;padding:clamp(18px,4vh,52px) 0;overflow:auto}
+.presenter-main.no-art{grid-template-columns:1fr}
+.presenter-main.has-art{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+.presenter-main.has-art .slide-art{grid-column:1;grid-row:1}
+.presenter-main.has-art .slide-copy{grid-column:2;grid-row:1}
+.presenter-main.image-intro{grid-template-columns:1fr}
+.presenter-main.image-intro .slide-art{grid-column:1;grid-row:1}
+.presenter-main.image-intro .slide-art img{max-height:min(76vh,760px)}
+.slide-copy{max-width:880px;animation:rise-in .32s ease both}
+.slide-copy[hidden]{display:none}
+.slide-kicker{display:flex;align-items:center;gap:9px;color:var(--cp-warning);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.slide-kicker:before{width:21px;height:2px;background:var(--cp-warning);content:""}
+.slide-title{max-width:920px;margin-top:19px;font:500 clamp(42px,6.6vw,88px)/.99 var(--serif);letter-spacing:-.035em}
+.slide-lead{max-width:740px;margin-top:20px;color:var(--cp-bg-elevated);font-size:clamp(19px,2.3vw,28px);line-height:1.42}
+.slide-points{display:grid;gap:0;max-width:800px;margin:26px 0 0;padding:0;list-style:none}
+.slide-points li{display:grid;grid-template-columns:30px 1fr;gap:11px;padding:12px 0;border-top:1px solid var(--cp-border-strong);font-size:clamp(17px,1.85vw,23px);line-height:1.38;animation:rise-in .25s ease both}
+.slide-points .n{color:var(--cp-warning);font-size:12px;font-weight:800}
+.slide-art{display:flex;justify-content:center;align-items:center}
+.slide-art[hidden]{display:none}
+.slide-art img{display:block;width:100%;max-height:min(67vh,680px);object-fit:contain}
+.slide-question{margin-top:20px;padding:18px 20px;border-left:3px solid var(--cp-warning);background:var(--cp-panel)}
+.slide-question .q-label{color:var(--cp-text-muted);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.slide-question .q-text{margin-top:7px;color:var(--cp-text);font:500 clamp(22px,3vw,34px)/1.18 var(--serif)}
+.slide-answer{margin-top:11px;padding:15px 17px;border:1px solid var(--cp-border-strong);color:var(--cp-text);background:var(--cp-panel-strong);font-size:16px}
+.slide-answer[hidden],.slide-question[hidden]{display:none}
+.presenter-main.scenario .slide-copy{max-width:none;width:100%}
+.presenter-main.scenario .slide-title{max-width:1150px;font-size:clamp(42px,5.5vw,78px);line-height:1.12}
+.presenter-main.scenario.process-shown{align-items:start}
+.presenter-main.process-shown .slide-title{font-size:clamp(26px,3vw,40px);max-width:none;margin-top:12px}
+.workflow{margin-top:24px}
+.workflow[hidden]{display:none}
+.workflow-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px}
+.workflow-heading h2{font:600 clamp(21px,2.4vw,32px)/1.2 "Segoe UI",Aptos,Calibri,sans-serif;letter-spacing:-.02em}
+.workflow-heading span{color:var(--cp-text-muted);font-size:14px}
+.workflow-track{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:0}
+.workflow-step{position:relative;display:grid;grid-template-rows:34px minmax(2.5em,auto) minmax(9.8em,auto) minmax(9.8em,auto);min-width:0;padding:20px 16px;border:1px solid var(--cp-border);border-top:3px solid var(--cp-link);border-radius:14px;background:var(--cp-surface);color:var(--cp-text);animation:rise-in .35s ease both}
+.workflow-step:not(:last-child)::after{content:"→";position:absolute;right:-14px;top:24px;z-index:1;color:var(--cp-link);font-size:22px;font-weight:800}
+.workflow-number{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--cp-link);color:var(--cp-accent-fg);font-size:13px;font-weight:800}
+.workflow-step h3{min-height:2.5em;margin:16px 0 20px;font:700 clamp(18px,1.6vw,23px)/1.15 "Segoe UI",Aptos,Calibri,sans-serif;letter-spacing:-.02em}
+.workflow-role{display:block;color:var(--cp-link);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.workflow-step p{margin:7px 0 0;font-size:clamp(14px,1.25vw,18px);line-height:1.45}
+.workflow-assist{margin-top:18px;padding-top:14px;border-top:1px solid var(--cp-border)}
+.workflow-assist .workflow-role{color:var(--cp-text-muted)}
+.workflow-takeaway{margin-top:18px;padding-left:16px;border-left:3px solid var(--cp-link);font-size:clamp(16px,1.6vw,21px)}
+#partie-3 .topic{grid-template-columns:1fr;gap:22px}
+#partie-3 .topic-title{font-size:clamp(30px,4vw,48px)}
+#partie-3 .topic-copy{max-width:none}
+.scenario-brief{max-width:1000px;font:500 clamp(28px,3.8vw,48px)/1.22 var(--serif);letter-spacing:-.02em}
+.scenario-reveal{margin-top:24px}
+.scenario-reveal>summary{width:fit-content;padding:12px 20px;border:1px solid var(--cp-warning);border-radius:10px;color:var(--cp-warning);font-weight:700}
+.scenario-notes{margin-top:24px}
+.scenario-notes>summary{font-size:14px;color:var(--muted)}
+.scenario-notes .prompts{display:none}
+@media(max-width:1120px){
+ .workflow-track{grid-template-columns:1fr}
+ .workflow-step{grid-template-columns:34px minmax(130px,.6fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"number title title title" "number human human ai";align-items:start;gap:16px;padding:16px}
+ .workflow-number{grid-area:number}
+ .workflow-step h3{grid-area:title;min-height:0;margin:0}
+ .workflow-step>div:not(.workflow-assist){grid-area:human;min-height:0}
+ .workflow-assist{grid-area:ai;min-height:0;margin:0;padding:0 0 0 16px;border-top:0;border-left:1px solid var(--cp-border)}
+ .workflow-step:not(:last-child)::after{content:"↓";top:auto;bottom:-20px;right:auto;left:25px}
+}
+@media(max-width:620px){
+ .workflow-heading{display:block}
+ .workflow-heading span{display:block;margin-top:8px}
+ .workflow-step{grid-template-columns:34px minmax(0,1fr);grid-template-areas:"number title" ". human" ". ai"}
+ .workflow-step h3{align-self:center}
+ .workflow-step>div:not(.workflow-assist){grid-area:human}
+ .workflow-assist{grid-area:ai;border-left:0;border-top:1px solid var(--cp-border);padding:12px 0 0}
+}
+.presenter-bottom .button{border-color:var(--cp-border-strong);color:var(--paper)}
+.presenter-bottom .button-primary{border-color:var(--cp-warning);background:var(--cp-warning);color:var(--ink)}
+.presenter-bottom .button:hover{background:var(--cp-bg-elevated);color:var(--ink)}
+.presenter-bottom .button-primary:hover{background:var(--cp-warning);color:var(--ink)}
+.control-group{display:flex;gap:8px;align-items:center}
+.key-hint{color:var(--cp-bg-elevated);font-size:12px}
+.progress-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes rise-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;min-height:0}
+ .chapter-head{grid-template-columns:1fr;gap:17px}
+ .presenter-main,.presenter-main.has-art{grid-template-columns:1fr;align-content:center;gap:14px}
+ .presenter-main.no-art{grid-template-columns:1fr}
+ .presenter-main.has-art .slide-art,.presenter-main.image-intro .slide-art{grid-column:1;grid-row:1}
+ .presenter-main.has-art .slide-copy{grid-column:1;grid-row:2}
+ .slide-art{order:0}
+ .slide-art img{width:auto;max-width:100%;max-height:48vh}
+ .slide-title{font-size:clamp(40px,7vw,68px)}
+ .presenter-main.scenario.process-shown{align-content:start}
+}
+@media(max-width:620px){
+ body{font-size:16px}
+ .topbar{grid-template-columns:1fr auto;padding:10px 14px}
+ .top-chapters{grid-column:1/-1;grid-row:2;justify-content:space-between;width:100%;border-top:1px solid var(--rule)}
+ .top-chapters a{padding:8px 2px;font-size:12px}
+ .brand{font-size:10px}
+ .top-actions .button{min-height:38px;padding:7px 10px;font-size:12px}
+ .wrap{width:calc(100% - 32px)}
+ .hero{padding:58px 0 58px}
+ .hero h1{font-size:clamp(42px,11vw,56px)}
+ .hero:after{bottom:28px;width:34%}
+ .journey{grid-template-columns:1fr;margin-top:52px}
+ .journey a{min-height:61px;padding:10px 0}
+ .journey a+a{padding-left:0;border-left:0;border-top:1px solid var(--rule)}
+ .journey-title{font-size:18px}
+ .chapter{padding-top:76px}
+ .chapter-head h2{font-size:45px}
+ .topic{grid-template-columns:1fr;gap:15px;padding:27px 0}
+ .topic-copy{font-size:17px}
+ .art-spread{grid-template-columns:1fr;gap:11px}
+ .art-spread img{max-height:42vh}
+ .finish{margin-top:60px;padding:28px 0}
+ .finish h2{font-size:40px}
+ .foot{flex-direction:column}
+ .presenter-top,.presenter-bottom{padding:9px 11px}
+ .presenter-brand{font-size:9px}
+ .presenter-status{gap:7px;font-size:10px}
+ .progress{width:45px}
+ .presenter-main{width:calc(100% - 28px);padding:10px 0;gap:9px}
+ .slide-art img{max-height:38vh}
+ .slide-title{margin-top:13px;font-size:clamp(37px,10vw,52px)}
+ .slide-lead{margin-top:11px;font-size:17px}
+ .slide-points{margin-top:14px}
+ .slide-points li{grid-template-columns:23px 1fr;padding:8px 0;font-size:16px}
+ .slide-question{margin-top:12px;padding:14px}
+ .slide-question .q-text{font-size:23px}
+ .slide-answer{padding:12px;font-size:15px}
+ .key-hint{display:none}
+ .presenter-bottom .button{min-height:44px;padding:7px 10px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media print{
+ .topbar,.topline,.journey,.presenter,.foot,.jump-start{display:none!important}
+ .hero{min-height:0;padding:30px 0}
+ .chapter{padding-top:30px}
+ .topic{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<a class="home-link" href="https://nricl.github.io/MyPage/">← My Page</a>
+<div class="topline" aria-hidden="true"><span id="read-progress"></span></div>
+<header class="topbar">
+  <a class="brand" href="#accueil"><span class="brand-mark" aria-hidden="true">IA</span><span>Travailler avec l’IA</span></a>
+  <nav class="top-chapters" aria-label="Aller à une partie">
+    <a href="#partie-1">01 Le métier</a><a href="#partie-2">02 L’humain</a><a href="#partie-3">03 En situation</a>
+  </nav>
+  <div class="top-actions"><button class="button button-primary" id="start-presentation" type="button">Animer</button></div>
+</header>
+<main id="contenu">
+  <section class="hero wrap" id="accueil">
+    <div>
+      <p class="eyebrow">Mieux travailler avec l’intelligence artificielle</p>
+      <h1>Travailler avec l’IA.<br><em>Transformer le travail.</em></h1>
+      <p class="hero-deck">Comprendre ses possibilités, choisir où elle aide, vérifier ses résultats et renforcer ce qui reste profondément humain : l’expertise, le jugement et les relations.</p>
+      <a class="jump-start" href="#partie-1"><span aria-hidden="true">↓</span> Explorer le parcours</a>
+    </div>
+  </section>
+  <nav class="journey wrap" aria-label="Parcours en trois parties">
+    <a href="#partie-1"><span class="journey-no">01</span><span class="journey-title">Devenir un professionnel avec l’IA</span></a>
+    <a href="#partie-2"><span class="journey-no">02</span><span class="journey-title">Cultiver sa différence</span></a>
+    <a href="#partie-3"><span class="journey-no">03</span><span class="journey-title">S’entraîner en situation</span></a>
+  </nav>
+  <div class="reader wrap">
+    <section class="chapter" id="partie-1" aria-labelledby="partie-1-title">
+      <header class="chapter-head">
+        <div><p class="chapter-no">Partie 01 · Le travail</p><h2 id="partie-1-title">Devenir un professionnel avec l’IA</h2></div>
+        <p class="chapter-lead">Savoir écrire quelques consignes dans un outil grand public ne suffit pas. La compétence professionnelle consiste à comprendre ce que l’IA peut apporter, à choisir où l’intégrer dans son travail et à rester responsable de la qualité du résultat.</p>
+      </header>
+      <article class="topic" id="apprendre">
+        <h3 class="topic-title"><span class="topic-index">01.01 · APPRENDRE</span>Travailler avec l’IA, ce n’est pas juste prompter</h3>
+        <div class="topic-copy"><p>Savoir formuler un objectif, fournir le contexte utile, choisir une tâche pertinente pour l’IA et évaluer ce qu’elle produit. La maîtrise ne se réduit pas à la technique du prompt.</p><p>Expérimenter les usages dans son métier : préparation, recherche, analyse, structuration, production. Comprendre aussi quand l’IA n’est pas le bon outil.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/01-prompt-magique.png" alt="Une femme déguisée en magicienne pointe sa baguette vers son ordinateur." loading="lazy"><figcaption class="art-caption"><strong>La maîtrise ne se réduit pas au prompt.</strong><ol><li>Définir l’objectif</li><li>Fournir le contexte utile</li><li>Choisir la tâche à confier</li><li>Évaluer le résultat</li></ol></figcaption></figure>
+          <figure class="art-spread"><img src="masterclass-illustrations/02-mauvais-outil.png" alt="Une personne, la langue tirée de concentration, utilise son ordinateur comme un marteau alors qu’un vrai marteau est posé à côté." loading="lazy"><figcaption class="art-caption"><strong>Reconnaître quand l’IA n’est pas le bon outil.</strong><ol><li>Expérimenter les usages utiles dans son métier</li><li>Reconnaître quand l’IA n’est pas le bon outil</li></ol></figcaption></figure>
+        </div>
+      </article>
+      <article class="topic" id="critique">
+        <h3 class="topic-title"><span class="topic-index">01.02 · VÉRIFIER</span>Une réponse fluide n’est pas forcément juste</h3>
+        <div class="topic-copy"><p>Ne pas prendre une réponse fluide pour une réponse juste. Vérifier les faits, revenir aux sources, repérer les omissions, les contradictions et les nuances perdues. Ne pas laisser un résumé ou une proposition de l’IA définir seul ce qui mérite attention : confronter sa lecture à celle de l’outil.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/03-valider-sans-verifier.png" alt="Une personne souriante, les yeux bandés, tamponne VALIDÉ sur un document à côté de son ordinateur affichant un assistant IA." loading="lazy"><figcaption class="art-caption"><strong>Une réponse fluide n’est pas forcément juste.</strong><ol><li>Une réponse fluide n’est pas forcément juste</li><li>Vérifier les faits et revenir aux sources</li><li>Repérer les omissions, les contradictions et les nuances perdues</li></ol></figcaption></figure>
+          <figure class="art-spread"><img src="masterclass-illustrations/04-regard-ia.png" alt="Une personne observe le paysage à travers une longue-vue marquée IA qui ne montre qu’un seul arbre." loading="lazy"><figcaption class="art-caption"><strong>Confronter sa lecture à celle de l’outil.</strong><ol><li>Ne pas laisser l’IA décider seule de ce qui mérite attention</li><li>Confronter sa propre lecture à celle de l’outil</li></ol></figcaption></figure>
+        </div>
+      </article>
+      <article class="topic" id="superficiel">
+        <h3 class="topic-title"><span class="topic-index">01.03 · PRODUIRE</span>Ne déléguez pas vos erreurs aux collègues</h3>
+        <div class="topic-copy"><p>Un résumé, un texte ou un compte rendu généré rapidement ne signifie pas que le travail est fait. Un livrable non relu, vague, lisse ou erroné fait perdre du temps aux autres. La valeur professionnelle réside dans la précision, la profondeur, l’expertise du sujet, l’analyse et la capacité à assumer ce que l’on remet.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/05-travail-superficiel.png" alt="Une personne remet un cadeau étiqueté Généré par IA ; son collègue découvre les feuilles froissées et raturées qu’il contient." loading="lazy"><figcaption class="art-caption"><strong>Ne déléguez pas vos erreurs aux collègues.</strong><ol><li>Relire avant de transmettre</li><li>Précision et profondeur, pas seulement la forme</li><li>Assumer ce que l’on remet</li></ol></figcaption></figure>
+        </div>
+      </article>
+      <article class="topic" id="outils">
+        <h3 class="topic-title"><span class="topic-index">01.04 · PROTÉGER</span>Le bon outil, avec les bonnes données</h3>
+        <div class="topic-copy"><p>L’entrée dans l’entreprise implique de connaître les outils autorisés et les règles applicables aux informations traitées. On ne transfère pas un dossier ou des données internes dans un service grand public non approuvé : c’est le risque de l’« IA de l’ombre » (shadow AI). Le choix de l’outil et des données que l’on peut lui confier fait partie de la compétence professionnelle.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/06-shadow-ai.png" alt="Une personne cache son ordinateur avec une veste et glisse un dossier marqué INTERNE dans un assistant portant la mention IA publique." loading="lazy"><figcaption class="art-caption"><strong>L’IA en douce,<br>les données en fuite.</strong><ol><li>Utiliser les outils autorisés</li><li>Respecter les règles sur les données</li><li>Pas de dossier interne dans un service non approuvé</li></ol></figcaption></figure>
+        </div>
+      </article>
+      <article class="topic" id="orchestration">
+        <h3 class="topic-title"><span class="topic-index">01.05 · ORCHESTRER</span>Organiser le travail, garder la responsabilité</h3>
+        <div class="topic-copy"><p>À mesure que les outils deviennent capables d’enchaîner des tâches, la compétence ne consiste plus seulement à produire soi-même chaque élément. Il faut savoir décomposer un objectif, confier certaines étapes à l’IA ou à des agents, organiser les interventions humaines, contrôler les passages de relais et juger le résultat d’ensemble. L’orchestration n’efface ni la compréhension du sujet ni la responsabilité finale.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/07-orchestration.png" alt="Une cheffe dirige un orchestre composé de deux musiciens humains et de deux fenêtres Agent IA jouant des instruments." loading="lazy"><figcaption class="art-caption"><strong>À vous de diriger.</strong><ol><li>Décomposer l’objectif et répartir les tâches</li><li>Organiser les interventions humaines et celles de l’IA</li><li>Contrôler les relais et le résultat d’ensemble</li><li>Garder la compréhension et la responsabilité</li></ol></figcaption></figure>
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="partie-2" aria-labelledby="partie-2-title">
+      <header class="chapter-head">
+        <div><p class="chapter-no">Partie 02 · La différence</p><h2 id="partie-2-title">Cultiver sa différence humaine et préserver ses capacités</h2></div>
+        <p class="chapter-lead">L’enjeu n’est pas de se définir contre l’IA. Il est de renforcer ce que l’on apporte au travail avec elle : une expertise réelle, une capacité à apprendre et à remettre en question, des relations humaines solides et une pensée qui continue de s’exercer.</p>
+      </header>
+      <figure class="art-spread"><img src="masterclass-illustrations/08-apprendre-cultiver-humain.png" alt="Une femme tient une tablette marquée IA et un livre ouvert tandis qu’un cœur cartoon soulève des haltères sur sa poitrine." loading="lazy"><figcaption class="art-caption"><strong>Apprendre toujours,<br>cultiver son humanité.</strong><ol><li>Apprendre en permanence : son métier et l’IA</li><li>Cultiver sa dimension humaine : créativité, empathie, curiosité, esprit critique</li></ol></figcaption></figure>
+      <article class="topic" id="metier">
+        <h3 class="topic-title"><span class="topic-index">02.01 · APPROFONDIR</span>Continuer à apprendre son métier et l’IA</h3>
+        <div class="topic-copy"><p>Approfondir son domaine, ses méthodes et ses réalités de terrain : sans expertise, il devient difficile de poser les bonnes questions ou de repérer une réponse médiocre. Apprendre aussi en permanence ce que les outils savent faire, ce qu’ils ne savent pas faire et comment leurs usages évoluent. Être en apprentissage continu ne veut pas dire déléguer à l’IA les étapes qui permettent justement d’apprendre.</p></div>
+      </article>
+      <article class="topic" id="experimenter">
+        <h3 class="topic-title"><span class="topic-index">02.02 · EXPÉRIMENTER</span>Remettre en cause le statu quo</h3>
+        <div class="topic-copy"><p>Tester de nouvelles façons de travailler, comparer les résultats, accepter de revoir une méthode établie. Cet état d’esprit de progression n’est pas la recherche du nouvel outil pour lui-même : il sert à résoudre de vrais problèmes et à améliorer le travail.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/09-changer-perspective.png" alt="Un jeune adulte fait le poirier près de collègues au bureau et propose de s’y prendre autrement avec l’IA." loading="lazy"><figcaption class="art-caption"><strong>Changer de perspective.</strong><ol><li>L’IA permet de changer de perspective</li><li>Repenser les processus avec l’IA</li><li>Oser tester, comparer les résultats</li></ol></figcaption></figure>
+        </div>
+      </article>
+      <article class="topic" id="relations">
+        <h3 class="topic-title"><span class="topic-index">02.03 · RELIER</span>Renforcer les compétences relationnelles</h3>
+        <div class="topic-copy"><p>Écouter, comprendre le problème réel d’un collègue ou d’un client, communiquer clairement, négocier, faire passer une idée, créer, collaborer et faire preuve d’empathie. Ces compétences, parfois dites « douces », sont au cœur du travail collectif et ne se résument pas à la production d’un contenu.</p></div>
+      </article>
+      <article class="topic" id="cognition">
+        <h3 class="topic-title"><span class="topic-index">02.04 · ENTRETENIR</span>Utiliser l’IA sans cesser de penser</h3>
+        <div class="topic-copy"><p>Garder des moments sans IA : commencer parfois par réfléchir, faire un premier remue-méninges ou tracer un plan soi-même avant de solliciter l’outil.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/10-reflechir-avant-ia.png" alt="Une personne tient son crayon au-dessus d’un carnet et regarde en l’air pour trouver l’inspiration, l’autre main posée sur son ordinateur fermé marqué IA." loading="lazy"><figcaption class="art-caption"><strong>D’abord, vos idées.</strong><ol><li>Réfléchir d’abord par soi-même</li><li>Poser ses premières idées ou tracer son plan</li><li>Solliciter l’IA ensuite</li></ol></figcaption></figure>
+          <p>Utiliser l’IA comme partenaire de réflexion ou comme entraîneur, pas systématiquement comme substitut à l’effort intellectuel qui construit l’expertise.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/11-partenaire-reflexion.png" alt="Une femme réfléchit, crayon en main devant son carnet ; une main sortant de son ordinateur marqué IA lui tend une carte avec un point d’interrogation." loading="lazy"><figcaption class="art-caption"><strong>Des questions pour progresser.</strong><ol><li>Utiliser l’IA comme partenaire de réflexion</li><li>Se faire questionner et challenger</li><li>Garder l’effort qui construit l’expertise</li></ol></figcaption></figure>
+          <p>Savoir s’arrêter : si l’IA a fourni l’essentiel d’une première version, ne pas multiplier les consignes pour les derniers détails. Reprendre le document et terminer soi-même peut être plus rapide, plus juste et meilleur pour l’hygiène cognitive. La règle des « 80 % en deux échanges » est un repère pratique, pas un seuil universel.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/12-tout-ca-pour-une-virgule.png" alt="Un homme épuisé tape devant son ordinateur, entouré d’un immense ruban de conversation, et dit : Enlève juste cette virgule." loading="lazy"><figcaption class="art-caption"><strong>Tout ça pour une virgule.</strong><ol><li>Savoir arrêter les allers-retours</li><li>Reprendre la main sur les derniers détails</li><li>Finaliser soi-même peut être plus rapide et plus juste</li></ol></figcaption></figure>
+          <p>Éviter la surcharge liée à l’accumulation d’outils, de sollicitations et de vérifications, parfois appelée « brain fry ». Limiter les outils mobilisés dans une même tâche, par exemple à trois au maximum comme règle personnelle, et ménager des temps de concentration sans IA.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/13-brain-fry.png" alt="Une femme entourée d’écrans IA tourne la tête dans plusieurs directions et de la fumée s’échappe de sa tête." loading="lazy"><figcaption class="art-caption"><strong>Le cerveau en surchauffe.</strong><ol><li>Limiter les outils et les sollicitations</li><li>Préserver des temps de concentration sans IA</li><li>Éviter l’accumulation de vérifications</li></ol></figcaption></figure>
+          <p>Savoir expliquer ses choix : pourquoi avoir utilisé l’IA à telle étape, sur quelle base avoir retenu ou écarté sa proposition, et ce que l’on a vérifié soi-même. Cette explicabilité est concrète : elle rend le travail compréhensible et assumable.</p>
+          <figure class="art-spread"><img src="masterclass-illustrations/14-assumer-ses-choix.png" alt="Un homme pointe son ordinateur marqué IA et dit C’est pas moi, c’est l’IA ! tandis qu’une collègue demande une explication sur son document." loading="lazy"><figcaption class="art-caption"><strong>Expliquer et assumer ses choix.</strong><ol><li>Expliquer pourquoi on a utilisé l’IA</li><li>Justifier ce qu’on a retenu ou écarté</li><li>Dire ce qu’on a vérifié soi-même</li></ol></figcaption></figure>
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="partie-3" aria-labelledby="partie-3-title">
+      <header class="chapter-head">
+        <div><p class="chapter-no">Partie 03 · S’entraîner</p><h2 id="partie-3-title">Trois situations. À vous de décider.</h2></div>
+        <p class="chapter-lead">Pas de recette parfaite. Chaque situation montre un usage crédible, utile et transposable. Les principes apparaissent dans les choix effectués.</p>
+      </header>
+      <details class="source-note"><summary>Texte de cadrage initial des situations</summary><p>Cette troisième partie de la présentation montre concrètement ce que les deux premières changent dans le quotidien professionnel. Il ne s’agit pas de jouer des saynètes artificielles ni d’illustrer mécaniquement un principe par scène. Chaque situation doit d’abord montrer un usage crédible, utile et transposable en entreprise. Les principes apparaissent ensuite dans les choix effectués. Le format précis des illustrations ou démonstrations reste à définir.</p></details>
+      <article class="topic" id="dossier">
+        <h3 class="topic-title"><span class="topic-index">03.01 · SITUATION</span>Analyser un dossier</h3>
+        <div class="topic-copy"><p>Exemple : un jeune professionnel doit comprendre un dossier interne, un dossier client ou un appel d’offres avant de formuler une analyse.</p><p>Faire deux lectures rapides en parallèle : demander à l’IA, dans un outil autorisé, un guide de lecture avec les grands thèmes et des renvois aux passages pertinents ; parcourir soi-même le dossier en diagonale et noter les sections, questions ou anomalies qui attirent l’attention.</p><p>Comparer les deux grilles de lecture. Le guide de l’IA oriente, mais ne dicte pas l’attention : un résumé peut gommer les aspérités, les tensions ou les signaux faibles.</p><p>Lire ensuite en profondeur les passages importants. Annoter le document, prendre des notes à la main ou les dicter : consigner ses propres observations, contradictions, interrogations et points saillants.</p><p>Soumettre ses notes à l’IA pour aider à les organiser, vérifier si un angle important manque et proposer une synthèse. Revenir au dossier pour confirmer les points nouveaux ou discutables.</p><p>Reprendre la main sur la synthèse finale : choisir l’angle, les aspérités à préserver, les faits à mettre en avant et la manière de les présenter. Ne pas déléguer les données sensibles à un outil non autorisé.</p><p class="pull">Ce que la situation révèle : une IA peut accélérer le repérage et aider à confronter les lectures ; elle ne remplace ni la lecture personnelle, ni le jugement, ni la maîtrise des informations confiées à l’outil.</p>
+          <div class="prompts">
+            <div class="prompt"><details><summary>Avant d’ouvrir l’IA, comment commenceriez-vous l’analyse ?</summary><p>Faire deux lectures rapides en parallèle : demander à l’IA un guide de lecture dans un outil autorisé et noter soi-même les sections, questions et anomalies qui attirent l’attention.</p></details></div>
+            <div class="prompt"><details><summary>Le résumé efface une contradiction : que faites-vous ?</summary><p>Revenir aux passages sources, vérifier et préserver les aspérités utiles. L’IA oriente la lecture ; elle ne décide pas seule de ce qui compte.</p></details></div>
+          </div>
+        </div>
+      </article>
+      <article class="topic" id="reunion">
+        <h3 class="topic-title"><span class="topic-index">03.02 · SITUATION</span>Préparer et conduire une réunion</h3>
+        <div class="topic-copy"><p>Exemple : préparer une réunion d’équipe ou un échange avec un client, puis en tirer des suites utiles.</p><p>Définir d’abord ce que la réunion doit permettre : comprendre un problème, arbitrer, recueillir des avis ou décider. L’IA peut aider à rassembler l’ordre du jour, les documents, les éléments de contexte, les questions ouvertes et les décisions attendues, mais elle ne fixe pas seule l’objectif.</p><p>Préparer soi-même ses questions, ses points de vigilance et sa contribution. Utiliser éventuellement l’IA pour tester des objections ou repérer un sujet oublié.</p><p>Pendant la réunion, privilégier l’écoute, la participation, les questions, la reformulation et l’ajustement à ce qui se dit réellement. La préparation assistée par l’IA doit libérer de l’attention pour l’échange humain, pas transformer chacun en lecteur d’un script.</p><p>Après la réunion, l’IA peut aider à organiser les notes et à proposer un compte rendu. Vérifier les décisions, les désaccords, les responsables et les échéances dans les notes et auprès des personnes concernées avant diffusion. Ne pas transmettre un compte rendu vague ou erroné sous prétexte qu’il a été généré automatiquement.</p><p class="pull">Ce que la situation révèle : l’IA prépare le terrain et facilite le suivi ; la valeur de la réunion reste dans la discussion, la compréhension mutuelle et la décision. La relecture du compte rendu évite le travail superficiel qui reporte la charge sur les autres.</p>
+          <div class="prompts">
+            <div class="prompt"><details><summary>Que décider avant de demander à l’IA de préparer la réunion ?</summary><p>Définir l’objectif : comprendre un problème, arbitrer, recueillir des avis ou décider.</p></details></div>
+            <div class="prompt"><details><summary>Que vérifier avant de diffuser le compte rendu ?</summary><p>Valider les décisions, les désaccords, les responsables et les échéances à partir des notes et auprès des personnes concernées.</p></details></div>
+          </div>
+        </div>
+      </article>
+      <article class="topic" id="livrable">
+        <h3 class="topic-title"><span class="topic-index">03.03 · SITUATION</span>Produire un livrable</h3>
+        <div class="topic-copy"><p>Exemple : rédiger une note, un document Word ou une présentation à partir d’un sujet à instruire.</p><p>Commencer par sa propre réflexion : quel problème résoudre, pour qui, avec quel objectif ? Noter ses premières idées, ses hypothèses et les endroits où chercher l’information avant d’ouvrir l’IA.</p><p>Utiliser l’IA pour accélérer la recherche documentaire et faire émerger des pistes auxquelles on n’avait pas pensé. Vérifier les sources et sélectionner soi-même ce qui mérite d’être approfondi.</p><p>Appliquer ensuite le processus d’analyse du dossier : confronter la lecture de l’IA à la sienne, examiner les sources, prendre ses notes et chercher la substance plutôt qu’une synthèse simplement lisse.</p><p>Définir soi-même l’angle et la structure du livrable. L’IA peut suggérer des options, mais la logique retenue doit être comprise et choisie par la personne qui signe le travail.</p><p>Une fois les idées clés et la structure clarifiées, déléguer à l’IA les tâches de production utiles : première rédaction de certains passages, mise en forme, reformulations ou variantes. Il ne s’agit pas d’écrire un roman, mais de gagner du temps sur la fabrication d’un support professionnel.</p><p>Relire, corriger les erreurs, réintroduire la nuance et les aspérités, puis finaliser soi-même la formulation. Ne pas prolonger indéfiniment la conversation avec l’outil pour les derniers mots : reprendre la main sur la finition.</p><p class="pull">Ce que la situation révèle : la vitesse de production est utile lorsque l’intention, l’analyse et la structure sont maîtrisées. La version finale doit rester précise, personnelle et réellement exploitable, pas simplement bien présentée.</p>
+          <div class="prompts">
+            <div class="prompt"><details><summary>Qui fixe l’angle et la structure de la note ?</summary><p>La personne qui signe le travail. L’IA peut proposer des options, mais l’angle et la logique doivent être compris et choisis par elle.</p></details></div>
+            <div class="prompt"><details><summary>Quand déléguer une partie de la rédaction ?</summary><p>Après avoir clarifié le problème, les hypothèses, les sources, les idées clés et la structure. Ensuite, relire et reprendre soi-même la finition.</p></details></div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="finish" id="conclusion">
+      <p class="chapter-no">À emporter</p>
+      <h2>La prochaine fois que vous utilisez l’IA, quelle étape gardez-vous pour vous ?</h2>
+      <p>Les trois situations montrent une même discipline, sans imposer une recette rigide : réfléchir avant de déléguer, choisir un usage pertinent et autorisé, confronter les résultats à sa propre compréhension, puis reprendre la main là où l’expertise et la relation humaine comptent. La maîtrise de l’IA se voit autant dans ce que l’on choisit de lui confier que dans ce que l’on décide de faire soi-même.</p>
+    </section>
+  </div>
+</main>
+<footer class="foot wrap"><a href="https://nricl.github.io/MyPage/">← Revenir à My Page</a><span>Comprendre · Développer ses compétences · Agir en situation</span></footer>
+<section class="presenter" id="presenter" role="dialog" aria-modal="true" aria-label="Mode amphi" hidden>
+  <header class="presenter-top">
+    <div class="presenter-brand"><i aria-hidden="true"></i> Travailler avec l’IA</div>
+    <div class="presenter-status"><span id="presenter-part">01 · Le métier</span><span id="presenter-position"></span><span class="progress" role="progressbar" aria-label="Avancement de la présentation" aria-valuemin="1" aria-valuenow="1"><span id="presenter-progress"></span></span></div>
+    <button class="button button-plain" id="exit-presenter" type="button">Quitter ×</button>
+  </header>
+  <div class="presenter-main" id="presenter-main">
+    <figure class="slide-art" id="slide-art" hidden></figure>
+    <div class="slide-copy">
+      <p class="slide-kicker" id="slide-kicker"></p><h1 class="slide-title" id="slide-title" tabindex="-1"></h1><p class="slide-lead" id="slide-lead"></p>
+      <ul class="slide-points" id="slide-points"></ul>
+      <div class="workflow" id="slide-workflow" hidden></div>
+      <div class="slide-question" id="slide-question" aria-live="polite" aria-atomic="true" hidden><div class="q-label" id="q-label"></div><p class="q-text" id="q-text"></p></div>
+      <div class="slide-answer" id="slide-answer" aria-live="polite" aria-atomic="true" hidden></div>
+    </div>
+  </div>
+  <footer class="presenter-bottom">
+    <span class="key-hint">← → Parcourir · Échap Quitter</span>
+    <div class="control-group"><button class="button" id="prev-slide" type="button">← Retour</button><button class="button" id="fullscreen-slide" type="button">Plein écran</button><button class="button button-primary" id="next-slide" type="button">Message suivant →</button></div>
+  </footer>
+</section>
+<script>
+(()=>{
+  'use strict';
+  const progress=document.getElementById('read-progress'),chapterLinks=[...document.querySelectorAll('.top-chapters a')];
+  const updateProgress=()=>{
+    const root=document.documentElement,range=root.scrollHeight-innerHeight,amount=range>0?Math.min(100,Math.max(0,scrollY/range*100)):0;progress.style.width=amount+'%';
+    const current=[...document.querySelectorAll('.chapter')].filter(el=>el.getBoundingClientRect().top<innerHeight*.42).pop();
+    chapterLinks.forEach(link=>{if(current&&link.hash==='#'+current.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});
+  };
+  addEventListener('scroll',updateProgress,{passive:true});addEventListener('resize',updateProgress);updateProgress();
+  const slides=[
+    {part:'01 · Le métier',kicker:'01 / La compétence professionnelle',title:'Travailler avec l’IA. Transformer le travail.',lead:'Comprendre ses possibilités, choisir où elle aide, vérifier ses résultats et renforcer ce qui reste profondément humain.',points:['Développer une expertise qui permet de mieux travailler avec l’IA.','Exercer son jugement et prendre la responsabilité du résultat.']},
+    {part:'01 · Le métier',kicker:'01 / Apprendre réellement à travailler avec l’IA',title:'La maîtrise ne se réduit pas au prompt.',lead:'Une bonne consigne commence par un objectif et un contexte.',points:['Définir l’objectif','Fournir le contexte utile','Choisir la tâche à confier','Évaluer le résultat'],image:'masterclass-illustrations/01-prompt-magique.png',alt:'Une femme déguisée en magicienne pointe sa baguette vers son ordinateur.'},
+    {part:'01 · Le métier',kicker:'01 / Expérimenter les usages dans son métier',title:'Reconnaître quand l’IA n’est pas le bon outil.',lead:'',points:['Expérimenter les usages utiles dans son métier','Reconnaître quand l’IA n’est pas le bon outil'],image:'masterclass-illustrations/02-mauvais-outil.png',alt:'Une personne, la langue tirée de concentration, utilise son ordinateur comme un marteau alors qu’un vrai marteau est posé à côté.'},
+    {part:'01 · Le métier',kicker:'02 / Exercer et cultiver son esprit critique',title:'Une réponse fluide n’est pas forcément juste.',lead:'',points:['Une réponse fluide n’est pas forcément juste','Vérifier les faits et revenir aux sources','Repérer les omissions, les contradictions et les nuances perdues'],image:'masterclass-illustrations/03-valider-sans-verifier.png',alt:'Une personne souriante, les yeux bandés, tamponne VALIDÉ sur un document à côté de son ordinateur affichant un assistant IA.'},
+    {part:'01 · Le métier',kicker:'02 / Confronter les lectures',title:'Confronter sa lecture à celle de l’outil.',lead:'L’IA donne un angle. Pas tout le paysage.',points:['Ne pas laisser l’IA décider seule de ce qui mérite attention','Confronter sa propre lecture à celle de l’outil'],image:'masterclass-illustrations/04-regard-ia.png',alt:'Une personne observe le paysage à travers une longue-vue marquée IA qui ne montre qu’un seul arbre.'},
+    {part:'01 · Le métier',kicker:'03 / Éviter le travail superficiel',title:'Ne déléguez pas vos erreurs aux collègues.',lead:'La valeur professionnelle se joue dans la qualité de ce que vous remettez.',points:['Relire avant de transmettre','Précision et profondeur, pas seulement la forme','Assumer ce que l’on remet'],image:'masterclass-illustrations/05-travail-superficiel.png',alt:'Une personne remet un cadeau étiqueté Généré par IA ; son collègue découvre les feuilles froissées et raturées qu’il contient.'},
+    {part:'01 · Le métier',kicker:'04 / Utiliser les bons outils et protéger les données',title:'L’IA en douce, les données en fuite.',lead:'Le choix de l’outil et des informations que l’on peut lui confier fait partie du métier.',points:['Utiliser les outils autorisés','Respecter les règles sur les données','Pas de dossier interne dans un service non approuvé'],image:'masterclass-illustrations/06-shadow-ai.png',alt:'Une personne cache son ordinateur avec une veste et glisse un dossier marqué INTERNE dans un assistant portant la mention IA publique.'},
+    {part:'01 · Le métier',kicker:'05 / Développer l’analyse et l’orchestration',title:'À vous de diriger.',lead:'L’orchestration n’efface ni la compréhension du sujet ni la responsabilité finale.',points:['Décomposer l’objectif et répartir les tâches','Organiser les interventions humaines et celles de l’IA','Contrôler les relais et le résultat d’ensemble','Garder la compréhension et la responsabilité'],image:'masterclass-illustrations/07-orchestration.png',alt:'Une cheffe dirige un orchestre composé de deux musiciens humains et de deux fenêtres Agent IA jouant des instruments.'},
+    {part:'02 · La différence',kicker:'02 / Cultiver sa différence humaine',title:'Apprendre toujours, cultiver son humanité.',lead:'Approfondir son métier et l’IA, tout en faisant grandir ses compétences humaines.',points:['Apprendre en permanence : son métier et l’IA','Cultiver sa dimension humaine : créativité, empathie, curiosité, esprit critique'],image:'masterclass-illustrations/08-apprendre-cultiver-humain.png',alt:'Une femme tient une tablette marquée IA et un livre ouvert tandis qu’un cœur cartoon soulève des haltères sur sa poitrine.'},
+    {part:'02 · La différence',kicker:'01 / Continuer à apprendre son métier et l’IA',title:'Sans expertise, difficile de poser les bonnes questions.',lead:'Apprendre son métier, c’est aussi apprendre à reconnaître une réponse médiocre.',points:['Approfondir son domaine et ses réalités de terrain','Comprendre les limites et l’évolution des outils','Ne pas déléguer les étapes qui construisent l’expertise']},
+    {part:'02 · La différence',kicker:'02 / Expérimenter et remettre en cause le statu quo',title:'Changer de perspective.',lead:'La nouveauté n’est pas une fin en soi : elle sert à résoudre de vrais problèmes et à améliorer le travail.',points:['L’IA permet de changer de perspective','Repenser les processus avec l’IA','Oser tester, comparer les résultats'],image:'masterclass-illustrations/09-changer-perspective.png',alt:'Un jeune adulte fait le poirier près de collègues au bureau et propose de s’y prendre autrement avec l’IA.'},
+    {part:'02 · La différence',kicker:'03 / Renforcer les compétences relationnelles',title:'Le travail reste profondément humain.',lead:'Les compétences relationnelles sont au cœur du collectif.',points:['Écouter et comprendre le problème réel','Communiquer, négocier et faire passer une idée','Créer, collaborer, faire preuve d’empathie']},
+    {part:'02 · La différence',kicker:'04 / Préserver sa cognition',title:'D’abord, vos idées.',lead:'Garder des moments sans IA : commencer parfois par réfléchir avant de solliciter l’outil.',points:['Réfléchir d’abord par soi-même','Poser ses premières idées ou tracer son plan','Solliciter l’IA ensuite'],image:'masterclass-illustrations/10-reflechir-avant-ia.png',alt:'Une personne tient son crayon au-dessus d’un carnet et regarde en l’air pour trouver l’inspiration, l’autre main posée sur son ordinateur fermé marqué IA.'},
+    {part:'02 · La différence',kicker:'04 / Préserver sa cognition',title:'Des questions pour progresser.',lead:'Utiliser l’IA comme partenaire de réflexion ou comme entraîneur, pas comme substitut à l’effort intellectuel.',points:['Utiliser l’IA comme partenaire de réflexion','Se faire questionner et challenger','Garder l’effort qui construit l’expertise'],image:'masterclass-illustrations/11-partenaire-reflexion.png',alt:'Une femme réfléchit, crayon en main devant son carnet ; une main sortant de son ordinateur marqué IA lui tend une carte avec un point d’interrogation.'},
+    {part:'02 · La différence',kicker:'04 / Préserver sa cognition',title:'Tout ça pour une virgule.',lead:'Savoir s’arrêter et reprendre la main sur les derniers détails.',points:['Savoir arrêter les allers-retours','Reprendre la main sur les derniers détails','Finaliser soi-même peut être plus rapide et plus juste'],image:'masterclass-illustrations/12-tout-ca-pour-une-virgule.png',alt:'Un homme épuisé tape devant son ordinateur, entouré d’un immense ruban de conversation, et dit : Enlève juste cette virgule.'},
+    {part:'02 · La différence',kicker:'04 / Préserver sa cognition',title:'Le cerveau en surchauffe.',lead:'Éviter la surcharge liée à l’accumulation d’outils, de sollicitations et de vérifications.',points:['Limiter les outils et les sollicitations','Préserver des temps de concentration sans IA','Éviter l’accumulation de vérifications'],image:'masterclass-illustrations/13-brain-fry.png',alt:'Une femme entourée d’écrans IA tourne la tête dans plusieurs directions et de la fumée s’échappe de sa tête.'},
+    {part:'02 · La différence',kicker:'04 / Savoir expliquer ses choix',title:'Expliquer et assumer ses choix.',lead:'Cette explicabilité est concrète : elle rend le travail compréhensible et assumable.',points:['Expliquer pourquoi on a utilisé l’IA','Justifier ce qu’on a retenu ou écarté','Dire ce qu’on a vérifié soi-même'],image:'masterclass-illustrations/14-assumer-ses-choix.png',alt:'Un homme pointe son ordinateur marqué IA et dit C’est pas moi, c’est l’IA ! tandis qu’une collègue demande une explication sur son document.'},
+    {part:'03 · En situation',kicker:'03 / Trois situations de travail',title:'À vous de décider.',lead:'Trois décisions professionnelles, une méthode à éprouver.',points:['Analyser un dossier','Préparer et conduire une réunion','Produire un livrable']},
+    {part:'03 · En situation',kicker:'Situation 1 / Analyser un dossier',title:'Vous recevez un dossier interne, un dossier client ou un appel d’offres. Vous devez en tirer une analyse.',lead:'',scenario:'dossier',takeaway:'L’IA guide le repérage. Vous gardez la lecture, les nuances et le jugement.',process:[
+      {title:'Repérer en parallèle',human:'Parcourir le dossier et noter les questions ou anomalies.',ai:'Proposer un guide de lecture avec des renvois aux passages sources, dans un outil autorisé.'},
+      {title:'Croiser les regards',human:'Comparer les deux lectures et repérer ce qui manque.',ai:'Apporter une seconde grille de lecture, pas une vérité unique.'},
+      {title:'Approfondir',human:'Lire les passages clés. Annoter les tensions et les signaux faibles.',ai:'Aider à éclaircir un passage précis, sans remplacer sa lecture.'},
+      {title:'Structurer',human:'Partager ses notes et vérifier les pistes nouvelles dans le dossier.',ai:'Organiser les notes, suggérer un angle oublié et une synthèse.'},
+      {title:'Prendre position',human:'Choisir l’angle, préserver les nuances et signer l’analyse.',ai:'Aider à formuler, sans décider de ce qui compte.'}
+    ]},
+    {part:'03 · En situation',kicker:'Situation 2 / Préparer et conduire une réunion',title:'Vous préparez une réunion d’équipe ou un échange avec un client. Il faut en sortir avec des suites utiles.',lead:'',scenario:'reunion',takeaway:'L’IA prépare et facilite le suivi. L’écoute, l’échange et les décisions restent humains.',process:[
+      {title:'Fixer le cap',human:'Définir l’objectif : comprendre, arbitrer, recueillir des avis ou décider.',ai:'Rassembler le contexte et les décisions attendues.'},
+      {title:'Se préparer',human:'Construire ses questions et ses points de vigilance.',ai:'Proposer un ordre du jour, tester des objections et repérer les oublis.'},
+      {title:'Être présent',human:'Écouter, questionner, reformuler et ajuster la discussion.',ai:'La préparation libère de l’attention ; elle ne fournit pas un script à réciter.'},
+      {title:'Mettre au clair',human:'Relire ses notes et identifier décisions et désaccords.',ai:'Organiser les notes et proposer un compte rendu.'},
+      {title:'Valider les suites',human:'Confirmer avec les personnes les responsables et échéances avant diffusion.',ai:'Mettre en forme le suivi après validation.'}
+    ]},
+    {part:'03 · En situation',kicker:'Situation 3 / Produire un livrable',title:'Vous devez rédiger une note, un document ou une présentation sur un sujet à instruire.',lead:'',scenario:'livrable',takeaway:'D’abord la substance et l’angle. Ensuite la fabrication assistée. À vous la finition.',process:[
+      {title:'Penser d’abord',human:'Définir le problème, le public, l’objectif et ses premières hypothèses.',ai:'Pas encore : garder un premier temps de réflexion personnelle.'},
+      {title:'Explorer et vérifier',human:'Sélectionner les sources, lire et confronter les analyses.',ai:'Accélérer la recherche et proposer des pistes à vérifier.'},
+      {title:'Choisir l’angle',human:'Décider des idées clés et de la structure du livrable.',ai:'Suggérer des options de plan, sans choisir à votre place.'},
+      {title:'Produire',human:'Donner une intention, des sources et une structure claires.',ai:'Rédiger des passages, reformuler et mettre en forme.'},
+      {title:'Finir soi-même',human:'Corriger les erreurs, remettre de la nuance et finaliser les mots.',ai:'Un appui ponctuel, pas une conversation sans fin.'}
+    ]},
+    {part:'Synthèse',kicker:'À retenir',title:'L’IA peut accélérer le travail. Le jugement reste le vôtre.',lead:'La maîtrise se voit dans ce que l’on choisit de lui confier et dans ce que l’on décide de faire soi-même.',points:['Réfléchir avant de déléguer','Choisir un usage pertinent et autorisé','Confronter les résultats à sa propre compréhension','Reprendre la main là où l’expertise et la relation humaine comptent']}
+  ];
+  const presenter=document.getElementById('presenter'),slideTitle=document.getElementById('slide-title'),slideKicker=document.getElementById('slide-kicker'),slideLead=document.getElementById('slide-lead'),slidePoints=document.getElementById('slide-points'),slideArt=document.getElementById('slide-art'),slideQuestion=document.getElementById('slide-question'),qLabel=document.getElementById('q-label'),qText=document.getElementById('q-text'),slideAnswer=document.getElementById('slide-answer'),presenterPosition=document.getElementById('presenter-position'),presenterPart=document.getElementById('presenter-part'),presenterProgress=document.getElementById('presenter-progress'),progressBar=presenter.querySelector('[role="progressbar"]'),presenterMain=document.getElementById('presenter-main');
+  let slideIndex=0,pointIndex=0,questionIndex=0,answerShown=false,imageIntro=false,returnFocus=null;
+  const currentSlide=()=>slides[slideIndex],isQuestion=slide=>Array.isArray(slide.questions);
+  const slideWorkflow=document.getElementById('slide-workflow');
+  function renderWorkflow(container,slide){
+    container.replaceChildren();
+    const heading=document.createElement('div');heading.className='workflow-heading';
+    const title=document.createElement('h2');title.textContent='Le processus idéal · Humain + IA';
+    const legend=document.createElement('span');legend.textContent='Vous pilotez. L’IA vous assiste.';heading.append(title,legend);
+    const track=document.createElement('ol');track.className='workflow-track';
+    slide.process.forEach((step,i)=>{
+      const card=document.createElement('li');card.className='workflow-step';card.style.animationDelay=(i*.07)+'s';
+      const number=document.createElement('span');number.className='workflow-number';number.textContent=String(i+1).padStart(2,'0');
+      const label=document.createElement('h3');label.textContent=step.title;card.append(number,label);
+      [['Vous',step.human,''],['L’IA',step.ai,'workflow-assist']].forEach(([role,text,className])=>{
+        const block=document.createElement('div');block.className=className;
+        const tag=document.createElement('span');tag.className='workflow-role';tag.textContent=role;
+        const copy=document.createElement('p');copy.textContent=text;block.append(tag,copy);card.append(block);
+      });
+      track.append(card);
+    });
+    const takeaway=document.createElement('p');takeaway.className='workflow-takeaway';takeaway.textContent=slide.takeaway;
+    container.append(heading,track,takeaway);
+  }
+  slides.filter(slide=>slide.scenario).forEach(slide=>{
+    const copy=document.querySelector('#'+slide.scenario+' .topic-copy');
+    const notes=document.createElement('details');notes.className='scenario-notes';
+    const notesTitle=document.createElement('summary');notesTitle.textContent='Lire les explications détaillées';notes.append(notesTitle,...copy.childNodes);
+    const brief=document.createElement('p');brief.className='scenario-brief';brief.textContent=slide.title;
+    const reveal=document.createElement('details');reveal.className='scenario-reveal';
+    const summary=document.createElement('summary');summary.textContent='Voir le processus idéal · Humain + IA';
+    const flow=document.createElement('div');flow.className='workflow';renderWorkflow(flow,slide);reveal.append(summary,flow);
+    copy.append(brief,reveal,notes);
+  });
+  function renderSlide(moveFocus=false){
+    const slide=currentSlide();slideKicker.textContent=slide.kicker;slideTitle.textContent=slide.title;slideLead.textContent=slide.lead;
+    presenterMain.classList.toggle('scenario',Boolean(slide.process));
+    presenterMain.classList.toggle('process-shown',Boolean(slide.process)&&answerShown);
+    slideLead.hidden=!slide.lead;
+    slideWorkflow.hidden=!slide.process||!answerShown;
+    if(slide.process&&answerShown)renderWorkflow(slideWorkflow,slide);else slideWorkflow.replaceChildren();
+    presenterMain.classList.toggle('no-art',!slide.image);
+    presenterMain.classList.toggle('has-art',Boolean(slide.image));
+    presenterMain.classList.toggle('image-intro',Boolean(slide.image)&&imageIntro);
+    document.querySelector('.slide-copy').hidden=Boolean(slide.image)&&imageIntro;
+    slidePoints.replaceChildren();
+    const points=isQuestion(slide)?[]:(slide.points||[]).slice(0,pointIndex);
+    points.forEach((text,i)=>{const li=document.createElement('li');li.style.animationDelay=(i*.045)+'s';const n=document.createElement('span');n.className='n';n.textContent=String(i+1).padStart(2,'0');const copy=document.createElement('span');copy.textContent=text;li.append(n,copy);slidePoints.append(li)});
+    if(slide.image){slideArt.replaceChildren();const img=document.createElement('img');img.src=slide.image;img.alt=slide.alt;slideArt.append(img);slideArt.hidden=false}
+    else{slideArt.replaceChildren();slideArt.hidden=true}
+    slideQuestion.hidden=!isQuestion(slide);
+    if(isQuestion(slide)){const question=slide.questions[questionIndex];qLabel.textContent='Question '+(questionIndex+1)+' / '+slide.questions.length;qText.textContent=question.q;slideAnswer.textContent=question.a}
+    slideAnswer.hidden=!isQuestion(slide)||!answerShown;
+    presenterPosition.textContent=String(slideIndex+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+    presenterPart.textContent=slide.part;presenterProgress.style.width=((slideIndex+1)/slides.length*100)+'%';progressBar.setAttribute('aria-valuenow',String(slideIndex+1));progressBar.setAttribute('aria-valuemax',String(slides.length));
+    const complete=slide.process?answerShown:isQuestion(slide)?questionIndex===slide.questions.length-1&&answerShown:pointIndex>=(slide.points||[]).length;
+    const next=document.getElementById('next-slide');next.replaceChildren();next.append(document.createTextNode(slide.process?(answerShown?'Situation suivante':'Voir le processus idéal'):isQuestion(slide)?answerShown?(questionIndex<slide.questions.length-1?'Question suivante':'Continuer'):'Révéler le repère':complete?'Continuer':'Message suivant'));const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent=' →';next.append(arrow);next.disabled=slideIndex===slides.length-1&&complete;
+    document.getElementById('prev-slide').disabled=slideIndex===0&&pointIndex===0&&questionIndex===0;
+    if(moveFocus){presenterMain.scrollTop=0;(imageIntro?document.getElementById('next-slide'):slideTitle).focus({preventScroll:true})}
+  }
+  function openPresenter(){returnFocus=document.activeElement;slideIndex=0;pointIndex=0;questionIndex=0;answerShown=false;imageIntro=false;document.querySelector('.topbar').inert=true;document.getElementById('contenu').inert=true;document.querySelector('.foot').inert=true;presenter.hidden=false;document.body.style.overflow='hidden';renderSlide(true)}
+  function closePresenter(){presenter.hidden=true;document.querySelector('.topbar').inert=false;document.getElementById('contenu').inert=false;document.querySelector('.foot').inert=false;document.body.style.overflow='';if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});if(returnFocus&&returnFocus.focus)returnFocus.focus()}
+  function next(){
+    const slide=currentSlide();
+    if(slide.process&&!answerShown){answerShown=true;renderSlide();presenterMain.scrollTop=0;return}
+    if(slide.image&&imageIntro){imageIntro=false;pointIndex=Math.min(1,(slide.points||[]).length);renderSlide();return}
+    if(isQuestion(slide)){if(!answerShown){answerShown=true;renderSlide();return}if(questionIndex<slide.questions.length-1){questionIndex++;answerShown=false;renderSlide();return}}
+    else if(pointIndex<(slide.points||[]).length){pointIndex++;renderSlide();return}
+    if(slideIndex<slides.length-1){slideIndex++;pointIndex=0;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[slideIndex].image);renderSlide(true)}
+  }
+  function previous(){
+    const slide=currentSlide();
+    if(slide.process&&answerShown){answerShown=false;renderSlide();presenterMain.scrollTop=0;return}
+    if(slide.image&&!imageIntro){if(pointIndex>0){pointIndex--;if(pointIndex===0)imageIntro=true;renderSlide();return}}
+    if(isQuestion(slide)){if(answerShown){answerShown=false;renderSlide();return}if(questionIndex>0){questionIndex--;renderSlide();return}}
+    else if(pointIndex>0){pointIndex--;renderSlide();return}
+    if(slideIndex>0){slideIndex--;questionIndex=isQuestion(slides[slideIndex])?slides[slideIndex].questions.length-1:0;pointIndex=slides[slideIndex].image?0:isQuestion(slides[slideIndex])?0:(slides[slideIndex].points||[]).length;answerShown=isQuestion(slides[slideIndex])||Boolean(slides[slideIndex].process);imageIntro=Boolean(slides[slideIndex].image);renderSlide(true)}
+  }
+  document.getElementById('start-presentation').addEventListener('click',openPresenter);
+  document.getElementById('exit-presenter').addEventListener('click',closePresenter);
+  document.getElementById('next-slide').addEventListener('click',next);
+  document.getElementById('prev-slide').addEventListener('click',previous);
+  document.getElementById('fullscreen-slide').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await presenter.requestFullscreen()}catch{document.getElementById('fullscreen-slide').textContent='Plein écran indisponible'}});
+  document.addEventListener('keydown',event=>{
+    if(presenter.hidden)return;
+    if(event.key==='Tab'){
+      const focusable=[...presenter.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+      const first=focusable[0],last=focusable[focusable.length-1];
+      if(event.shiftKey&&(document.activeElement===first||document.activeElement===slideTitle)){event.preventDefault();last.focus()}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+      return;
+    }
+    if(event.key==='Escape'){event.preventDefault();closePresenter();return}
+    const target=event.target instanceof Element?event.target:null;
+    if(target?.closest('input,textarea,select,[contenteditable="true"]'))return;
+    if(event.key==='ArrowRight'||(event.key===' '&&!target?.closest('button'))){event.preventDefault();next()}
+    if(event.key==='ArrowLeft'){event.preventDefault();previous()}
+  });
+})();
+</script>
+</body>
+</html>
