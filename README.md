@@ -22,6 +22,7 @@ Parcours de lecture et support d’animation : `https://nricl.github.io/MyPage/t
 
 - La carte « Travailler avec l’IA. Progresser dans son métier. » figure dans la rubrique « Mes réalisations personnelles » de la section Ressources et pointe vers `https://nricl.github.io/MyPage/travailler-avec-ia/?v=263740d`.
 - `travailler-avec-ia/index.html` conserve les textes développés, les trois situations professionnelles et le mode « Animer ».
+- La section `#formations`, après la conclusion du site, regroupe six ressources en deux axes : maîtrise de l’IA et compétences pour le premier emploi. Elle reste hors du mode Animation. Les liens LinkedIn fournis ouvrent le catalogue, ce qui est indiqué au lecteur.
 - `travailler-avec-ia/masterclass-illustrations/` contient les 14 PNG finaux ; `travailler-avec-ia/assets/iaetjob-qr.svg` est le QR code de fin vers `https://aka.ms/iaetjob`.
 - En projection, les illustrations apparaissent seules puis leurs messages s’affichent ensemble. Le clic sur la diapositive et les flèches permettent de parcourir la présentation ; Échap revient à la lecture. Des écrans d’ouverture introduisent les parties 1 et 2, et la synthèse finale affiche ses messages en rappel latéral.
 - L’expertise, l’apprentissage permanent et les compétences relationnelles sont rattachés à l’illustration 08 : les deux messages courts restent inchangés, les paragraphes complets sont conservés dans la consultation, sans écrans autonomes supplémentaires en projection.

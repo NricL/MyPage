@@ -146,6 +146,20 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
 .finish .chapter-no{color:var(--cp-warning)}
 .finish h2{max-width:800px;margin-top:17px;font-size:clamp(38px,5.5vw,68px)}
 .finish p{max-width:800px;color:var(--muted);font-size:19px}
+.learning-resources{padding-top:48px;border-top:1px solid var(--rule);scroll-margin-top:100px}
+.learning-resources>h2{max-width:800px;margin-top:17px;font-size:clamp(38px,5.5vw,68px)}
+.resources-intro{max-width:720px;color:var(--muted);font-size:19px}
+.resource-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,64px);margin-top:40px}
+.resource-group h3{max-width:500px;min-height:2.2em;margin-bottom:24px;font-size:clamp(26px,3vw,36px);line-height:1.1}
+.resource-list{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.resource-list li{padding:24px 0;border-top:1px solid var(--rule)}
+.resource-meta{margin:0 0 10px;color:var(--coral);font-size:12px;font-weight:750;letter-spacing:.03em}
+.resource-link{display:inline-flex;align-items:baseline;gap:12px;min-height:44px;font-size:19px;font-weight:700;line-height:1.4;text-decoration-thickness:1px;text-underline-offset:5px}
+.resource-link:hover{color:var(--coral)}
+.resource-link span{flex:none}
+.resource-description{margin-top:10px;color:var(--muted);font-size:16px;line-height:1.6}
+.resource-note{max-width:850px;margin-top:24px;padding-top:20px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+@media(max-width:850px){.resource-groups{grid-template-columns:1fr}.resource-group h3{min-height:0}}
 .foot{display:flex;justify-content:space-between;gap:18px;padding:24px 0 44px;color:var(--muted);font-size:13px}
 .presenter{position:fixed;z-index:60;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;background:var(--ink);color:var(--paper);animation:fade-in .2s ease both}
 .presenter[hidden]{display:none}
@@ -490,6 +504,54 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
         </ol>
         <p><strong>Amplifier notre ingéniosité, pas déléguer notre humanité.</strong></p>
       </section>
+    </section>
+    <section class="learning-resources" id="formations" aria-labelledby="formations-title">
+      <p class="chapter-no">Pour continuer · Se former gratuitement</p>
+      <h2 id="formations-title">Passer à la pratique, continuer à apprendre.</h2>
+      <p class="resources-intro">Deux pistes pour prolonger la masterclass : découvrir les usages de l’IA et développer les compétences qui comptent dans la vie professionnelle.</p>
+      <div class="resource-groups">
+        <section class="resource-group" aria-labelledby="resources-ai-title">
+          <h3 id="resources-ai-title">Découvrir et maîtriser l’IA</h3>
+          <ul class="resource-list">
+            <li>
+              <p class="resource-meta">Microsoft · Parcours personnalisé</p>
+              <a class="resource-link" href="https://aiskillsnavigator.microsoft.com/" target="_blank" rel="noopener noreferrer">AI Skills Navigator <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Trouvez votre parcours de formation à l’IA selon votre profil, vos centres d’intérêt et vos objectifs professionnels.</p>
+            </li>
+            <li>
+              <p class="resource-meta">Microsoft Learn · 42 min · Français</p>
+              <a class="resource-link" href="https://learn.microsoft.com/fr-fr/training/paths/work-smarter-with-ai/" target="_blank" rel="noopener noreferrer">Travailler plus intelligemment avec l’IA <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Une formation de 42 minutes pour apprendre à utiliser l’IA au travail, développer son esprit critique et vérifier les résultats.</p>
+            </li>
+            <li>
+              <p class="resource-meta">Microsoft Learn · 37 min · Anglais</p>
+              <a class="resource-link" href="https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/" target="_blank" rel="noopener noreferrer">Introduction à l’IA générative et aux agents <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Découvrez les fondamentaux de l’IA générative, des prompts et des agents IA en 37 minutes.</p>
+            </li>
+          </ul>
+        </section>
+        <section class="resource-group" aria-labelledby="resources-career-title">
+          <h3 id="resources-career-title">Développer les compétences pour son premier emploi</h3>
+          <ul class="resource-list">
+            <li>
+              <p class="resource-meta">Microsoft &amp; LinkedIn · Certificat de réussite</p>
+              <a class="resource-link" href="https://www.linkedin.com/learning/" target="_blank" rel="noopener noreferrer">Career Essentials in Generative AI <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Un parcours pour comprendre l’IA générative, apprendre à l’utiliser professionnellement et développer une pratique responsable, avec certificat de réussite.</p>
+            </li>
+            <li>
+              <p class="resource-meta">Microsoft &amp; LinkedIn · Compétences humaines</p>
+              <a class="resource-link" href="https://www.linkedin.com/learning/" target="_blank" rel="noopener noreferrer">Career Essentials : compétences interpersonnelles <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Développez les compétences humaines essentielles au travail : communication, collaboration, adaptabilité et relations professionnelles.</p>
+            </li>
+            <li>
+              <p class="resource-meta">Microsoft Learn · Orientation et métiers</p>
+              <a class="resource-link" href="https://learn.microsoft.com/fr-fr/training/career-paths/" target="_blank" rel="noopener noreferrer">Parcours de carrière Microsoft Learn <span aria-hidden="true">↗</span></a>
+              <p class="resource-description">Explorez les métiers du numérique, identifiez les compétences attendues et trouvez les formations pour préparer votre avenir professionnel.</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <p class="resource-note">Les ressources s’ouvrent dans un nouvel onglet. Les deux liens LinkedIn ouvrent le catalogue : recherchez le titre du parcours et vérifiez les conditions d’accès gratuit. Un compte peut être nécessaire.</p>
     </section>
   </div>
 </main>
