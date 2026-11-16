@@ -524,7 +524,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
   </div>
   <footer class="presenter-bottom">
     <span class="key-hint">Cliquer ou ← → Parcourir · Échap Quitter</span>
-    <div class="control-group"><button class="button" id="prev-slide" type="button">← Retour</button><button class="button" id="fullscreen-slide" type="button">Plein écran</button><button class="button button-primary" id="next-slide" type="button">Message suivant →</button></div>
+    <div class="control-group"><button class="button" id="prev-slide" type="button">← Retour</button><button class="button" id="fullscreen-slide" type="button">Plein écran</button><button class="button button-primary" id="next-slide" type="button">Continuer →</button></div>
   </footer>
 </section>
 <script>
@@ -590,7 +590,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     {key:'QR',label:'Pour aller plus loin',title:'IA et emploi'}
   ];
   const presenterSteps=document.getElementById('presenter-steps'),presenterStepStatus=document.getElementById('presenter-step-status'),presenterSectionLabel=document.getElementById('presenter-section-label');
-  let slideIndex=0,pointIndex=0,questionIndex=0,answerShown=false,imageIntro=false,returnFocus=null;
+  let slideIndex=0,questionIndex=0,answerShown=false,imageIntro=false,returnFocus=null;
   const currentSlide=()=>slides[slideIndex],isQuestion=slide=>Array.isArray(slide.questions);
   const slideFinal=document.getElementById('slide-final'),slideReminders=document.getElementById('slide-reminders'),slideReminderList=document.getElementById('slide-reminder-list');
   function renderPresentationProgress(){
@@ -668,26 +668,25 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var
     if(isQuestion(slide)){const question=slide.questions[questionIndex];qLabel.textContent='Question '+(questionIndex+1)+' / '+slide.questions.length;qText.textContent=question.q;slideAnswer.textContent=question.a}
     slideAnswer.hidden=!isQuestion(slide)||!answerShown;
     renderPresentationProgress();
-    pointIndex=imageIntro?0:(slide.points||[]).length;
     const next=document.getElementById('next-slide');next.replaceChildren();next.append(document.createTextNode(slide.qr?'Terminé':slide.final?'Afficher le QR code':slide.image&&imageIntro?'Afficher les messages':slide.process?(answerShown?'Situation suivante':'Voir le processus idéal'):isQuestion(slide)?answerShown?(questionIndex<slide.questions.length-1?'Question suivante':'Continuer'):'Révéler le repère':'Continuer'));const arrow=document.createElement('span');arrow.setAttribute('aria-hidden','true');arrow.textContent=' →';next.append(arrow);next.disabled=slideIndex===slides.length-1;
     document.getElementById('prev-slide').disabled=slideIndex===0&&(!slide.image||imageIntro)&&!answerShown;
     if(moveFocus){presenterMain.scrollTop=0;(imageIntro?document.getElementById('next-slide'):slideTitle).focus({preventScroll:true})}
   }
-  function openPresenter(){returnFocus=document.activeElement;slideIndex=0;pointIndex=0;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[0].image)&&!slides[0].qr;document.querySelector('.topbar').inert=true;document.getElementById('contenu').inert=true;document.querySelector('.foot').inert=true;presenter.hidden=false;document.body.style.overflow='hidden';renderSlide(true)}
+  function openPresenter(){returnFocus=document.activeElement;slideIndex=0;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[0].image)&&!slides[0].qr;document.querySelector('.topbar').inert=true;document.getElementById('contenu').inert=true;document.querySelector('.foot').inert=true;presenter.hidden=false;document.body.style.overflow='hidden';renderSlide(true)}
   function closePresenter(){presenter.hidden=true;document.querySelector('.topbar').inert=false;document.getElementById('contenu').inert=false;document.querySelector('.foot').inert=false;document.body.style.overflow='';if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});if(returnFocus&&returnFocus.focus)returnFocus.focus()}
   function next(){
     const slide=currentSlide();
     if(slide.process&&!answerShown){answerShown=true;renderSlide();presenterMain.scrollTop=0;return}
-    if(slide.image&&imageIntro){imageIntro=false;pointIndex=(slide.points||[]).length;renderSlide();return}
+    if(slide.image&&imageIntro){imageIntro=false;renderSlide();return}
     if(isQuestion(slide)){if(!answerShown){answerShown=true;renderSlide();return}if(questionIndex<slide.questions.length-1){questionIndex++;answerShown=false;renderSlide();return}}
-    if(slideIndex<slides.length-1){slideIndex++;pointIndex=0;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[slideIndex].image)&&!slides[slideIndex].qr;renderSlide(true)}
+    if(slideIndex<slides.length-1){slideIndex++;questionIndex=0;answerShown=false;imageIntro=Boolean(slides[slideIndex].image)&&!slides[slideIndex].qr;renderSlide(true)}
   }
   function previous(){
     const slide=currentSlide();
     if(slide.process&&answerShown){answerShown=false;renderSlide();presenterMain.scrollTop=0;return}
-    if(slide.image&&!imageIntro&&!slide.qr){imageIntro=true;pointIndex=0;renderSlide();return}
+    if(slide.image&&!imageIntro&&!slide.qr){imageIntro=true;renderSlide();return}
     if(isQuestion(slide)){if(answerShown){answerShown=false;renderSlide();return}if(questionIndex>0){questionIndex--;renderSlide();return}}
-    if(slideIndex>0){slideIndex--;questionIndex=isQuestion(slides[slideIndex])?slides[slideIndex].questions.length-1:0;pointIndex=slides[slideIndex].image?0:(slides[slideIndex].points||[]).length;answerShown=isQuestion(slides[slideIndex])||Boolean(slides[slideIndex].process);imageIntro=Boolean(slides[slideIndex].image)&&!slides[slideIndex].qr;renderSlide(true)}
+    if(slideIndex>0){slideIndex--;questionIndex=isQuestion(slides[slideIndex])?slides[slideIndex].questions.length-1:0;answerShown=isQuestion(slides[slideIndex])||Boolean(slides[slideIndex].process);imageIntro=Boolean(slides[slideIndex].image)&&!slides[slideIndex].qr;renderSlide(true)}
   }
   document.getElementById('start-presentation').addEventListener('click',openPresenter);
   document.getElementById('exit-presenter').addEventListener('click',closePresenter);
